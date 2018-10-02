@@ -1,1 +1,2 @@
 Private-Package: net.fognode.client.stub.http
+Bundle-Activator: net.fognode.client.stub.http.Activator

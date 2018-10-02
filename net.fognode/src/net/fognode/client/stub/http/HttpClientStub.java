@@ -6,28 +6,29 @@ import java.util.Map;
 import net.fognode.client.api.Client;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
-import net.fognode.response.http.HttpResponse;
+import net.fognode.response.api.ResponseFactory;
 
 public class HttpClientStub implements Client {
+	ResponseFactory factory;
 
 	@Override
 	public Response post(Request req) {
-		return new HttpResponse(201, req.getPayload());
+		return factory.createResponse(201, req.getPayload());
 	}
 
 	@Override
 	public Response get(Request req) {
-		return new HttpResponse(200, createRandomPayload());
+		return factory.createResponse(200, createRandomPayload());
 	}
 
 	@Override
 	public Response put(Request req) {
-		return new HttpResponse(204);
+		return factory.createResponse(204);
 	}
 
 	@Override
 	public Response delete(Request req) {
-		return new HttpResponse(204);
+		return factory.createResponse(204);
 	}
 	
 	private Map<String, Object> createRandomPayload() {

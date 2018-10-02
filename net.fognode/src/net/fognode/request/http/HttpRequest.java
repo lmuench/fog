@@ -1,5 +1,6 @@
 package net.fognode.request.http;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import net.fognode.request.api.Request;
@@ -38,6 +39,17 @@ public class HttpRequest implements Request {
 		this.method = method;
 		this.location = location;
 		this.payload = payload;
+	}
+	
+	public HttpRequest(
+		String protocol,
+		String method,
+		String location
+	) {
+		this.protocol = protocol;
+		this.method = method;
+		this.location = location;
+		this.payload = new HashMap<String, Object>();
 	}
 
 	@Override

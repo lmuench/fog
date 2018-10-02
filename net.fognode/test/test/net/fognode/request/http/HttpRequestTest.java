@@ -16,6 +16,7 @@ public class HttpRequestTest {
 	String method;
 	String location;
 	Map<String, Object> payload;
+	Request cut;
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,15 +27,15 @@ public class HttpRequestTest {
 		payload.put("someString", "foo");
 		payload.put("someNumber", 4.2);
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
+		cut = new HttpRequest(protocol, method, location, payload);
 	}
 
 	@Test
 	public void testHttpRequest() {
-		Request req = new HttpRequest(protocol, method, location, payload);
-		assertEquals(req.getProtocol(), protocol);
-		assertEquals(req.getMethod(), method);
-		assertEquals(req.getLocation(), location);
-		assertEquals(req.getPayload(), payload);
+		assertEquals(cut.getProtocol(), protocol);
+		assertEquals(cut.getMethod(), method);
+		assertEquals(cut.getLocation(), location);
+		assertEquals(cut.getPayload(), payload);
 	}
 	
 	/**
@@ -45,8 +46,7 @@ public class HttpRequestTest {
 	 */
 	@Test
 	public void testHttpRequestChangingPayload() {
-		Request req = new HttpRequest(protocol, method, location, payload);
 		payload.replace("someNumber", 2.3);
-		assertEquals(req.getPayload().get("someNumber"), 2.3);
+		assertEquals(cut.getPayload().get("someNumber"), 2.3);
 	}
 }

@@ -14,12 +14,14 @@ import net.fognode.request.http.HttpRequest;
 public class HttpRequestTest {
 	String protocol;
 	String method;
+	String location;
 	Map<String, Object> payload;
 
 	@Before
 	public void setUp() throws Exception {
 		protocol = "HTTP";
 		method = "POST";
+		location = "http://www.example.com/foo/bar";
 		payload = new HashMap<>();
 		payload.put("someString", "foo");
 		payload.put("someNumber", 4.2);
@@ -28,9 +30,10 @@ public class HttpRequestTest {
 
 	@Test
 	public void testHttpRequest() {
-		Request req = new HttpRequest(protocol, method, payload);
+		Request req = new HttpRequest(protocol, method, location, payload);
 		assertEquals(req.getProtocol(), protocol);
 		assertEquals(req.getMethod(), method);
+		assertEquals(req.getLocation(), location);
 		assertEquals(req.getPayload(), payload);
 	}
 	
@@ -42,7 +45,7 @@ public class HttpRequestTest {
 	 */
 	@Test
 	public void testHttpRequestChangingPayload() {
-		Request req = new HttpRequest(protocol, method, payload);
+		Request req = new HttpRequest(protocol, method, location, payload);
 		payload.replace("someNumber", 2.3);
 		assertEquals(req.getPayload().get("someNumber"), 2.3);
 	}

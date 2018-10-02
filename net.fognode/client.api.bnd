@@ -1,1 +1,2 @@
 Bundle-Name: Fog Node
+Export-Package: net.fognode.client.api

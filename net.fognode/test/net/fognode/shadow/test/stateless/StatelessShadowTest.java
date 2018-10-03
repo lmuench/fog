@@ -1,4 +1,4 @@
-package net.fognode.client.test.httpstub;
+package net.fognode.shadow.test.stateless;
 
 import static org.junit.Assert.*;
 
@@ -14,14 +14,16 @@ import net.fognode.request.api.RequestFactory;
 import net.fognode.request.simple.SimpleRequestFactory;
 import net.fognode.response.api.Response;
 import net.fognode.response.simple.SimpleResponseFactory;
+import net.fognode.shadow.api.Shadow;
+import net.fognode.shadow.stateless.StatelessShadow;
 
-public class HttpClientStubTest {
+public class StatelessShadowTest {
 	String protocol;
 	String method;
 	String location;
 	Map<String, Object> payload;
 	RequestFactory requestFactory;
-	HttpClientStub cut;
+	Shadow cut;
 
 	@Before
 	public void setUp() throws Exception {
@@ -33,8 +35,10 @@ public class HttpClientStubTest {
 		payload.put("someNumber", 4.2);
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
 		requestFactory = new SimpleRequestFactory();
-		cut = new HttpClientStub();
-		cut.injectResponseFactory(new SimpleResponseFactory());
+
+		HttpClientStub client = new HttpClientStub();
+		client.injectResponseFactory(new SimpleResponseFactory());
+		cut = new StatelessShadow(client);
 	}
 
 	@Test

@@ -18,12 +18,18 @@ public class StatelessShadowFactoryTest {
 		cut.added(new HttpClientStub());
 	}
 
+	/**
+	 * Positive test: creating shadow for supported protocol "HTTP"
+	 */
 	@Test
 	public void test1() {
 		Shadow shadow = cut.createShadow("HTTP");
 		assertNotNull(shadow);
 	}
 	
+	/**
+	 * Negative test: trying to create shadow for unsupported protocol "ABCDEF"
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test2() {
 		cut.createShadow("ABCDEF");

@@ -31,6 +31,11 @@ public class HttpClientStub implements Client {
 		return responseFactory.createResponse(204);
 	}
 	
+	@Override
+	public String getProtocol() {
+		return "HTTP";
+	}
+	
 	private Map<String, Object> createRandomPayload() {
 		Map<String, Object> payload = new HashMap<>();
 		payload.put("someString", "foo");

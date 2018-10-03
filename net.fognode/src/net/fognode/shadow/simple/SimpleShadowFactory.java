@@ -25,9 +25,10 @@ public class SimpleShadowFactory implements ShadowFactory {
 	@Override
 	public Shadow createShadow(String protocol) {
 		Client client = (
-			clients.stream()
-			.filter(c -> c.getProtocol().equalsIgnoreCase("HTTP"))
-			.findFirst()
+			clients
+			.stream()
+			.filter(c -> c.getProtocol().equalsIgnoreCase(protocol))
+			.findAny()
 			.orElseThrow(() -> new IllegalArgumentException(
 				"No client available for protocol: " + protocol
 			))

@@ -1,4 +1,4 @@
-package net.fognode.shadow.test.simple;
+package net.fognode.shadow.test.stateless;
 
 import static org.junit.Assert.*;
 
@@ -7,14 +7,14 @@ import org.junit.Test;
 
 import net.fognode.client.httpstub.HttpClientStub;
 import net.fognode.shadow.api.Shadow;
-import net.fognode.shadow.simple.SimpleShadowFactory;
+import net.fognode.shadow.stateless.StatelessShadowFactory;
 
-public class SimpleShadowFactoryTest {
-	SimpleShadowFactory cut;
+public class StatelessShadowFactoryTest {
+	StatelessShadowFactory cut;
 
 	@Before
 	public void setUp() throws Exception {
-		cut = new SimpleShadowFactory();
+		cut = new StatelessShadowFactory();
 		cut.added(new HttpClientStub());
 	}
 

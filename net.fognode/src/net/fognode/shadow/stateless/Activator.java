@@ -1,4 +1,4 @@
-package net.fognode.shadow.simple;
+package net.fognode.shadow.stateless;
 
 import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
@@ -15,7 +15,7 @@ public class Activator extends DependencyActivatorBase {
 		manager.add(
 			createComponent()
 			.setInterface(ShadowFactory.class.getName(), null)
-			.setImplementation(SimpleShadowFactory.class)
+			.setImplementation(StatelessShadowFactory.class)
 			.add(
 				createServiceDependency()
 				.setService(Client.class)

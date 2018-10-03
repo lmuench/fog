@@ -1,4 +1,4 @@
-package net.fognode.shadow.simple;
+package net.fognode.shadow.stateless;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import net.fognode.client.api.Client;
 import net.fognode.shadow.api.Shadow;
 import net.fognode.shadow.api.ShadowFactory;
 
-public class SimpleShadowFactory implements ShadowFactory {
+public class StatelessShadowFactory implements ShadowFactory {
 	private List<Client> clients = new ArrayList<Client>();
 	
 	public void added(Client client) {
@@ -33,6 +33,6 @@ public class SimpleShadowFactory implements ShadowFactory {
 				"No client available for protocol: " + protocol
 			))
 		);
-		return new SimpleShadow(client);
+		return new StatelessShadow(client);
 	}
 }

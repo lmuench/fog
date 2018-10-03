@@ -1,4 +1,4 @@
-package net.fognode.request.http;
+package net.fognode.request.simple;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ import net.fognode.request.api.Request;
  * @author Ludwig Muench
  *
  */
-public class HttpRequest implements Request {
+public class SimpleRequest implements Request {
 	private String protocol;
 	private String method;
 	private String location;
@@ -29,7 +29,7 @@ public class HttpRequest implements Request {
 	 * @param method
 	 * @param payload
 	 */
-	public HttpRequest(
+	public SimpleRequest(
 		String protocol,
 		String method,
 		String location,
@@ -41,7 +41,7 @@ public class HttpRequest implements Request {
 		this.payload = payload;
 	}
 	
-	public HttpRequest(
+	public SimpleRequest(
 		String protocol,
 		String method,
 		String location

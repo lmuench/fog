@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.fognode.request.api.Request;
-import net.fognode.request.http.HttpRequest;
+import net.fognode.request.simple.SimpleRequest;
 
 public class HttpRequestTest {
 	String protocol;
@@ -27,7 +27,7 @@ public class HttpRequestTest {
 		payload.put("someString", "foo");
 		payload.put("someNumber", 4.2);
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
-		cut = new HttpRequest(protocol, method, location, payload);
+		cut = new SimpleRequest(protocol, method, location, payload);
 	}
 
 	@Test

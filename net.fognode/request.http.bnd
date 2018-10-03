@@ -1,2 +1,2 @@
-Private-Package: net.fognode.request.http
-Bundle-Activator: net.fognode.request.http.Activator
+Private-Package: net.fognode.request.simple
+Bundle-Activator: net.fognode.request.simple.Activator

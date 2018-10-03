@@ -15,14 +15,14 @@ public class Activator extends DependencyActivatorBase {
 	public void init(BundleContext context, DependencyManager manager) throws Exception {
 		Properties properties = new Properties();
 		properties.put("protocol", "HTTP");
-		
+
 		manager.add(
 			createComponent()
 			.setInterface(Client.class.getName(), properties)
 			.setImplementation(HttpClientStub.class)
 			.add(
 				createServiceDependency()
-				.setService(ResponseFactory.class, "(protocol=HTTP)")
+				.setService(ResponseFactory.class)
 				.setRequired(true)
 			)
 		);

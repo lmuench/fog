@@ -1,11 +1,11 @@
-package net.fognode.request.http;
+package net.fognode.request.simple;
 
 import java.util.Map;
 
 import net.fognode.request.api.Request;
 import net.fognode.request.api.RequestFactory;
 
-public class HttpRequestFactory implements RequestFactory {
+public class SimpleRequestFactory implements RequestFactory {
 
 	@Override
 	public Request createRequest(
@@ -14,7 +14,7 @@ public class HttpRequestFactory implements RequestFactory {
 		String location,
 		Map<String, Object> payload
 	) {
-		return new HttpRequest(protocol, method, location, payload);
+		return new SimpleRequest(protocol, method, location, payload);
 	}
 
 	@Override
@@ -23,6 +23,6 @@ public class HttpRequestFactory implements RequestFactory {
 		String method,
 		String location
 	) {
-		return new HttpRequest(protocol, method, location);
+		return new SimpleRequest(protocol, method, location);
 	}
 }

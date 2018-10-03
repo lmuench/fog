@@ -10,16 +10,16 @@ import org.junit.Test;
 
 import net.fognode.client.httpstub.HttpClientStub;
 import net.fognode.request.api.Request;
-import net.fognode.request.http.HttpRequestFactory;
-import net.fognode.response.http.HttpResponseFactory;
+import net.fognode.request.simple.SimpleRequestFactory;
 import net.fognode.response.api.Response;
+import net.fognode.response.simple.SimpleResponseFactory;
 
 public class HttpClientStubTest {
 	String protocol;
 	String method;
 	String location;
 	Map<String, Object> payload;
-	HttpRequestFactory requestFactory;
+	SimpleRequestFactory requestFactory;
 	HttpClientStub cut;
 
 	@Before
@@ -31,9 +31,9 @@ public class HttpClientStubTest {
 		payload.put("someString", "foo");
 		payload.put("someNumber", 4.2);
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
-		requestFactory = new HttpRequestFactory();
+		requestFactory = new SimpleRequestFactory();
 		cut = new HttpClientStub();
-		cut.injectResponseFactory(new HttpResponseFactory());
+		cut.injectResponseFactory(new SimpleResponseFactory());
 	}
 
 	@Test

@@ -26,6 +26,6 @@ public class SimpleShadowFactoryTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void test2() {
-		Shadow shadow = cut.createShadow("ABCDEF");
+		cut.createShadow("ABCDEF");
 	}
 }

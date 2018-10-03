@@ -1,4 +1,4 @@
-package net.fognode.client.stub.http;
+package net.fognode.client.httpstub;
 
 import java.util.Properties;
 

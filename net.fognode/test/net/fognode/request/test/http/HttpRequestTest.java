@@ -1,4 +1,4 @@
-package test.net.fognode.request.http;
+package net.fognode.request.test.http;
 
 import static org.junit.Assert.*;
 

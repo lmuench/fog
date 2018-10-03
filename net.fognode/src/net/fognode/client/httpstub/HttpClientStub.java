@@ -1,4 +1,4 @@
-package net.fognode.client.stub.http;
+package net.fognode.client.httpstub;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,26 +9,26 @@ import net.fognode.response.api.Response;
 import net.fognode.response.api.ResponseFactory;
 
 public class HttpClientStub implements Client {
-	ResponseFactory factory;
+	ResponseFactory responseFactory;
 
 	@Override
 	public Response post(Request req) {
-		return factory.createResponse(201, req.getPayload());
+		return responseFactory.createResponse(201, req.getPayload());
 	}
 
 	@Override
 	public Response get(Request req) {
-		return factory.createResponse(200, createRandomPayload());
+		return responseFactory.createResponse(200, createRandomPayload());
 	}
 
 	@Override
 	public Response put(Request req) {
-		return factory.createResponse(204);
+		return responseFactory.createResponse(204);
 	}
 
 	@Override
 	public Response delete(Request req) {
-		return factory.createResponse(204);
+		return responseFactory.createResponse(204);
 	}
 	
 	private Map<String, Object> createRandomPayload() {
@@ -37,5 +37,13 @@ public class HttpClientStub implements Client {
 		payload.put("someNumber", 4.2);
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
 		return payload;
+	}
+	
+	/**
+	 * Manual dependency injection for OSGi-independent unit testing
+	 * @param responseFactory
+	 */
+	public void injectResponseFactory(ResponseFactory responseFactory) {
+		this.responseFactory = responseFactory;
 	}
 }

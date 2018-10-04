@@ -27,5 +27,4 @@ public class MockRDTest {
 		assertNotNull(endpoints);
 		assertTrue(endpoints.size() > 0);
 	}
-
 }

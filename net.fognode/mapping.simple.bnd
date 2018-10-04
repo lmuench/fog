@@ -1,0 +1,2 @@
+Private-Package: net.fognode.mapping.simple
+Bundle-Activator: net.fognode.mapping.simple.Activator

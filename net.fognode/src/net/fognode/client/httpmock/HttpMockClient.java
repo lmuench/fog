@@ -20,7 +20,7 @@ public class HttpMockClient implements Client {
 	List<Map<String, Object>> endpoints;
 	
 	public HttpMockClient() {
-		yamlPath = "/net/fognode/client/httpmock/resources.yaml";
+		yamlPath = "/net/fognode/client/httpmock/endpoints.yaml";
 		yaml = new Yaml();
 	}
 	

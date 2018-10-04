@@ -1,0 +1,15 @@
+ep: endpoint1                     # endpoint name
+d: THK/F07/ZW717                  # sector
+lt: 43200                         # lifetime in seconds
+base: 'http://192.168.1.50:1883'  # base URI "scheme://authority"
+gp: null                          # group name                           
+resources:
+  - protocol: HTTP                # protocol
+    if: sensor                    # interface description
+    rt: temperature               # resource type
+    path: /temperature/room1      # resource path
+  - protocol: HTTP                # protocol
+    if: actuator                  # interface description
+    rt: light                     # resource type
+    path: /light/room1/lef        # resource path
+

@@ -2,6 +2,10 @@ package net.fognode.client.httpmock;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.yaml.snakeyaml.Yaml;
 
 import net.fognode.client.api.Client;
@@ -11,11 +15,12 @@ import net.fognode.response.api.ResponseFactory;
 
 public class HttpMockClient implements Client {
 	ResponseFactory responseFactory;
-	String resourcesPath;
+	String yamlPath;
 	Yaml yaml;
+	List<Map<String, Object>> endpoints;
 	
 	public HttpMockClient() {
-		resourcesPath = "/net/fognode/client/httpmock/resources.yaml";
+		yamlPath = "/net/fognode/client/httpmock/resources.yaml";
 		yaml = new Yaml();
 	}
 	
@@ -49,11 +54,14 @@ public class HttpMockClient implements Client {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void loadYaml() throws IOException {
-		InputStream input = getClass().getResourceAsStream(resourcesPath);
+		endpoints = new ArrayList<Map<String, Object>>();
+		
+		InputStream input = getClass().getResourceAsStream(yamlPath);
 
 		for (Object data : yaml.loadAll(input)) {
-			System.out.println(data);
+			endpoints.add((Map<String, Object>) data);
 		}
 	}
 

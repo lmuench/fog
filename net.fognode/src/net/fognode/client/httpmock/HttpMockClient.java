@@ -2,8 +2,6 @@ package net.fognode.client.httpmock;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-
 import org.yaml.snakeyaml.Yaml;
 
 import net.fognode.client.api.Client;
@@ -13,20 +11,14 @@ import net.fognode.response.api.ResponseFactory;
 
 public class HttpMockClient implements Client {
 	ResponseFactory responseFactory;
-	URL resourcesUrl; 
+	String resourcesPath;
 	Yaml yaml;
 	
-//	public HttpMockClient() {
-//		yaml = new Yaml();
-//		System.out.println("constructed");
-//	}
-	
-	public HttpMockClient() throws IOException {
+	public HttpMockClient() {
+		resourcesPath = "/net/fognode/client/httpmock/resources.yaml";
 		yaml = new Yaml();
-		loadYaml();
-		System.out.println("constructed");
 	}
-
+	
 	@Override
 	public Response post(Request req) {
 		// TODO Auto-generated method stub
@@ -58,7 +50,8 @@ public class HttpMockClient implements Client {
 	}
 	
 	public void loadYaml() throws IOException {
-		InputStream input = resourcesUrl.openStream();
+		InputStream input = getClass().getResourceAsStream(resourcesPath);
+
 		for (Object data : yaml.loadAll(input)) {
 			System.out.println(data);
 		}

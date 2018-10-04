@@ -24,6 +24,14 @@ public class Activator extends DependencyActivatorBase {
 				createServiceDependency()
 				.setService(ResponseFactory.class)
 				.setRequired(true)
+			).add(
+				createResourceDependency()
+				.setResource(
+					context.getBundle()
+//					.getResource("/net/fognode/client/httpmock/resources.yaml")
+					.getResource("/META-INF/MANIFEST.MF")
+				)
+				.setRequired(true)
 			)
 		);
 	}

@@ -5,7 +5,8 @@
 	bnd.identity;id='org.apache.felix.gogo.command',\
 	bnd.identity;id='com.eclipsesource.jaxrs.publisher',\
 	bnd.identity;id='org.apache.felix.dependencymanager',\
-	bnd.identity;id='org.apache.felix.dependencymanager.shell'
+	bnd.identity;id='org.apache.felix.dependencymanager.shell',\
+	bnd.identity;id='org.yaml.snakeyaml'
 -runbundles: \
 	org.apache.felix.gogo.runtime;version='[1.0.10,1.0.11)',\
 	org.apache.felix.gogo.shell;version='[1.0.0,1.0.1)',\
@@ -18,8 +19,10 @@
 	com.eclipsesource.jaxrs.jersey-min;version='[2.22.2,2.22.3)',\
 	org.apache.felix.dependencymanager;version='[4.4.1,4.4.2)',\
 	org.apache.felix.metatype;version='[1.1.6,1.1.7)',\
-	org.apache.felix.dependencymanager.shell;version='[4.0.6,4.0.7)'
+	org.apache.felix.dependencymanager.shell;version='[4.0.6,4.0.7)',\
+	org.yaml.snakeyaml;version='[1.23.0,1.23.1)'
 -sub: *.bnd
 -buildpath: \
 	org.apache.felix.dependencymanager,\
-	org.apache.felix.framework
+	org.apache.felix.framework,\
+	org.yaml.snakeyaml

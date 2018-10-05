@@ -8,7 +8,7 @@ import net.fognode.shadow.api.Shadow;
 import net.fognode.shadow.api.ShadowFactory;
 
 public class StatelessShadowFactory implements ShadowFactory {
-	private List<Client> clients = new ArrayList<Client>();
+	private volatile List<Client> clients = new ArrayList<Client>();
 	
 	public void added(Client client) {
 		clients.add(client);

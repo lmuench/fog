@@ -6,7 +6,7 @@ import java.util.Map;
 import net.fognode.mapping.api.Mapping;
 
 public class SimpleMapping implements Mapping {
-	Map<String, String> mapping;
+	private Map<String, String> mapping;
 	
 	public SimpleMapping() {
 		mapping = new HashMap<String, String>();

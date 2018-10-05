@@ -11,9 +11,9 @@ import org.yaml.snakeyaml.Yaml;
 import net.fognode.rd.api.RD;
 
 public class MockRD implements RD {
-	String yamlPath;
-	Yaml yaml;
-	List<Map<String, Object>> endpoints;
+	private String yamlPath;
+	private Yaml yaml;
+	private List<Map<String, Object>> endpoints;
 	
 	public MockRD() {
 		yamlPath = "/net/fognode/rd/mock/endpoints.yaml";

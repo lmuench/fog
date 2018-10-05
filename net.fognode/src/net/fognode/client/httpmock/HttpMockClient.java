@@ -14,10 +14,10 @@ import net.fognode.response.api.Response;
 import net.fognode.response.api.ResponseFactory;
 
 public class HttpMockClient implements Client {
-	ResponseFactory responseFactory;
-	String yamlPath;
-	Yaml yaml;
-	List<Map<String, Object>> endpoints;
+	private volatile ResponseFactory responseFactory;
+	private String yamlPath;
+	private Yaml yaml;
+	private List<Map<String, Object>> endpoints;
 	
 	public HttpMockClient() {
 		yamlPath = "/net/fognode/client/httpmock/endpoints.yaml";

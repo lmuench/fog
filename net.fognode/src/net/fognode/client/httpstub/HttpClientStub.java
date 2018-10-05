@@ -9,7 +9,7 @@ import net.fognode.response.api.Response;
 import net.fognode.response.api.ResponseFactory;
 
 public class HttpClientStub implements Client {
-	ResponseFactory responseFactory;
+	private volatile ResponseFactory responseFactory;
 
 	@Override
 	public Response post(Request req) {

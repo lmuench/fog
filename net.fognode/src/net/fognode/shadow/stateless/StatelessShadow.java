@@ -16,7 +16,7 @@ import net.fognode.shadow.api.Shadow;
  *
  */
 public class StatelessShadow implements Shadow {
-	Client client;
+	private volatile Client client;
 	
 	public StatelessShadow(Client client) {
 		this.client = client;

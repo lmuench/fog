@@ -11,5 +11,5 @@ resources:
   - protocol: HTTP                # protocol
     if: actuator                  # interface description
     rt: light                     # resource type
-    path: /light/room1/left        # resource path
+    path: /light/room1/left       # resource path
 

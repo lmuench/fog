@@ -15,9 +15,19 @@ public class RDMappingBuilder implements MappingBuilder {
 	public List<Map<String, Object>> getEndpoints() {
 		return rd.getEndpoints();
 	}
+	
+	@Override
+	public Map<String, String> getMapping() {
+		return mapping.getMapping();
+	}
 
 	@Override
 	public void setMapping(Map<String, String> mapping) {
 		this.mapping.setMapping(mapping);
+	}
+
+	@Override
+	public void deleteMapping() {
+		mapping.deleteMapping();
 	}
 }

@@ -25,4 +25,5 @@
 -buildpath: \
 	org.apache.felix.dependencymanager,\
 	org.apache.felix.framework,\
-	org.yaml.snakeyaml
+	org.yaml.snakeyaml,\
+	com.eclipsesource.jaxrs.jersey-all

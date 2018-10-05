@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import net.fognode.mappingbuilder.api.MappingBuilder;
 
-@Path("/mapping")
+@Path("/builder")
 public class MappingBuilderRest {
 	private volatile MappingBuilder builder;
 	
@@ -24,21 +24,21 @@ public class MappingBuilderRest {
 		return builder.getEndpoints();
 	}
 	
-	@GET
+	@GET @Path("/mapping")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Map<String, String> getMaping() {
 		System.out.println("rest api called");
 		return builder.getMapping();
 	}
 	
-	@PUT
+	@PUT @Path("/mapping")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void setMapping(Map<String, String> mapping) {
 		System.out.println("rest api called");
 		builder.setMapping(mapping);
 	}
 	
-	@DELETE
+	@DELETE @Path("/mapping")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void deleteMapping() {
 		System.out.println("rest api called");

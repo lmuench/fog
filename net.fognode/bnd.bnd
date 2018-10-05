@@ -10,7 +10,8 @@
 	bnd.identity;id='com.eclipsesource.jaxrs.jersey-all',\
 	bnd.identity;id='org.apache.felix.http.jetty',\
 	bnd.identity;id='javax.annotation-api',\
-	bnd.identity;id='com.eclipsesource.jaxrs.provider.gson'
+	bnd.identity;id='com.eclipsesource.jaxrs.provider.gson',\
+	bnd.identity;id='org.apache.felix.webconsole'
 -runbundles: \
 	org.apache.felix.gogo.runtime;version='[1.0.10,1.0.11)',\
 	org.apache.felix.gogo.shell;version='[1.0.0,1.0.1)',\
@@ -27,11 +28,11 @@
 	com.eclipsesource.jaxrs.jersey-all;version='[2.22.2,2.22.3)',\
 	com.eclipsesource.jaxrs.provider.gson;version='[2.3.0,2.3.1)',\
 	com.google.gson;version='[2.5.0,2.5.1)',\
-	javax.annotation-api;version='[1.2.0,1.2.1)'
+	javax.annotation-api;version='[1.2.0,1.2.1)',\
+	org.apache.felix.webconsole;version='[4.3.4,4.3.5)'
 -sub: *.bnd
 -buildpath: \
 	org.apache.felix.dependencymanager,\
 	org.apache.felix.framework,\
 	org.yaml.snakeyaml,\
 	com.eclipsesource.jaxrs.jersey-all
--runvm: -Dorg.osgi.service.http.port=9090

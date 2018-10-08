@@ -7,9 +7,9 @@ resources:
   - protocol: HTTP                # protocol
     if: sensor                    # interface description
     rt: temperature               # resource type
-    path: /temperature/room1      # resource path
+    path: /temp1                  # resource path
   - protocol: HTTP                # protocol
     if: actuator                  # interface description
     rt: light                     # resource type
-    path: /light/room1/left       # resource path
+    path: /light1                 # resource path
 

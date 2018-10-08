@@ -20,28 +20,24 @@ public class MappingBuilderRest {
 	@GET @Path("/endpoints")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Map<String, Object>> getEndpoints() {
-		System.out.println("rest api called");
 		return builder.getEndpoints();
 	}
 	
 	@GET @Path("/mapping")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Map<String, String> getMaping() {
-		System.out.println("rest api called");
 		return builder.getMapping();
 	}
 	
 	@PUT @Path("/mapping")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void setMapping(Map<String, String> mapping) {
-		System.out.println("rest api called");
 		builder.setMapping(mapping);
 	}
 	
 	@DELETE @Path("/mapping")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void deleteMapping() {
-		System.out.println("rest api called");
 		builder.deleteMapping();
 	}
 }

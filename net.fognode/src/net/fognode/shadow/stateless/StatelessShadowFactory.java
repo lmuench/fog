@@ -23,13 +23,13 @@ public class StatelessShadowFactory implements ShadowFactory {
 	 * Throws IllegalArgumentException, if no matching client is available.
 	 */
 	@Override
-	public Shadow createShadow(String protocol) {
+	public Shadow createShadow(String protocol) throws IllegalArgumentException {
 		Client client = (
 			clients
 			.stream()
 			.filter(c -> c.getProtocol().equalsIgnoreCase(protocol))
 			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException(
+			.orElseThrow(() -> new UnsupportedOperationException(
 				"No client available for protocol: " + protocol
 			))
 		);

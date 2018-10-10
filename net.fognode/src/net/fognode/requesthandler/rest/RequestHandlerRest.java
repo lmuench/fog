@@ -1,12 +1,9 @@
 package net.fognode.requesthandler.rest;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -28,18 +25,25 @@ public class RequestHandlerRest {
 	@GET
 	@Path("{path}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Object handleRequest (@PathParam("path") String path) {
-		String protocol = "";
-		String method = "GET";
-		String location = "";
-		Request req = requestFactory.createRequest(protocol, method, location);
-		Response res = responseFactory.createResponse();
-		requestHandler.handleRequest(req, res);
-		return createJsonResponse();
+	public Map<String, Object> handleGetRequest (@PathParam("path") String path) {
+		return handleRequest("GET", path);
 	}
 
-	private Object createJsonResponse() {
-		// TODO Auto-generated method stub
-		return null;
+	private Map<String, Object> handleRequest(String method, String path) {
+		System.out.println(method + " /" + path);
+
+		Request req = requestFactory.createRequest("HTTP", method, path);
+		Response res = responseFactory.createResponse();
+		Map<String, Object> json = new HashMap<>();
+
+		try {
+			requestHandler.handleRequest(req, res);
+			json.put("status", res.getStatus());
+			json.put("payload", res.getPayload());
+		} catch (UnsupportedOperationException e) {
+			json.put("status", javax.ws.rs.core.Response.Status.NOT_IMPLEMENTED);
+		}
+
+		return json;
 	}
 }

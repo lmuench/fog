@@ -9,11 +9,12 @@ import net.fognode.request.api.Request;
 import net.fognode.requesthandler.api.RequestHandler;
 import net.fognode.response.api.Response;
 import net.fognode.shadow.api.Shadow;
+import net.fognode.shadow.api.ShadowFactory;
 
 public class SimpleRequestHandler implements RequestHandler {
 	private volatile Mapping mapping;
 	private volatile List<Middleware> activeMiddleware = new ArrayList<Middleware>();
-	private volatile Shadow shadow;	
+	private volatile ShadowFactory shadowFactory;	
 	
 	public void added(Middleware middleware) {
 		activeMiddleware.add(middleware);
@@ -24,12 +25,25 @@ public class SimpleRequestHandler implements RequestHandler {
 	}
 
 	@Override
-	public void handleRequest(Request req, Response res) {
+	public void handleRequest(Request req, Response res) throws UnsupportedOperationException {
 		addResourceLocationToRequest(req);
-		boolean rejected = processRequest(req, res);
+		
+		boolean rejected = !processRequest(req, res);
 		if (rejected) return;
-		shadow.get(req, res);
-		processResponse(req, res);
+		
+		try {
+			Shadow shadow;
+			shadow = shadowFactory.createShadow(req.getProtocol());
+			
+			shadow.get(req, res);
+			
+			processResponse(req, res);
+			
+		} catch (UnsupportedOperationException e) {
+			throw new UnsupportedOperationException(
+				"No client available for protocol: " + req.getProtocol()
+			);
+		}
 	}
 	
 	private boolean processRequest(Request req, Response res) {

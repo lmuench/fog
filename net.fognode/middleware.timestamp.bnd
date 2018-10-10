@@ -1,0 +1,2 @@
+Private-Package: net.fognode.middleware.timestamp
+Bundle-Activator: net.fognode.middleware.timestamp.Activator

@@ -1,0 +1,2 @@
+Private-Package: net.fognode.client.http
+Bundle-Activator: net.fognode.client.http.Activator

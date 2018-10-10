@@ -6,29 +6,29 @@ import java.util.Map;
 import net.fognode.client.api.Client;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
-import net.fognode.response.api.ResponseFactory;
 
 public class HttpClientStub implements Client {
-	private volatile ResponseFactory responseFactory;
 
 	@Override
-	public Response post(Request req) {
-		return responseFactory.createResponse(201, req.getPayload());
+	public void post(Request req, Response res) {
+		res.setStatus(201);
+		res.setPayload(req.getPayload());
 	}
 
 	@Override
-	public Response get(Request req) {
-		return responseFactory.createResponse(200, createRandomPayload());
+	public void get(Request req, Response res) {
+		res.setStatus(200);
+		res.setPayload(createRandomPayload());
 	}
 
 	@Override
-	public Response put(Request req) {
-		return responseFactory.createResponse(204);
+	public void put(Request req, Response res) {
+		res.setStatus(204);
 	}
 
 	@Override
-	public Response delete(Request req) {
-		return responseFactory.createResponse(204);
+	public void delete(Request req, Response res) {
+		res.setStatus(204);
 	}
 	
 	@Override
@@ -42,13 +42,5 @@ public class HttpClientStub implements Client {
 		payload.put("someNumber", 4.2);
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
 		return payload;
-	}
-	
-	/**
-	 * Manual dependency injection for OSGi-independent unit testing
-	 * @param responseFactory
-	 */
-	public void injectResponseFactory(ResponseFactory responseFactory) {
-		this.responseFactory = responseFactory;
 	}
 }

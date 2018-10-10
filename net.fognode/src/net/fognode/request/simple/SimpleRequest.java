@@ -18,6 +18,7 @@ public class SimpleRequest implements Request {
 	private String protocol;
 	private String method;
 	private String location;
+	private String resourceLocation;
 	private Map<String, Object> payload;
 	
 	/**
@@ -67,6 +68,16 @@ public class SimpleRequest implements Request {
 		return location;
 	}
 
+	@Override
+	public String getResourceLocation() {
+		return resourceLocation;
+	}
+	
+	@Override
+	public void setResourceLocation(String resourceLocation) {
+		this.resourceLocation = resourceLocation;
+	}
+	
 	/**
 	 * Payload getter.
 	 * For increased security, create a new implementation returning a
@@ -77,5 +88,10 @@ public class SimpleRequest implements Request {
 	@Override
 	public Map<String, Object> getPayload() {
 		return payload;
+	}
+
+	@Override
+	public void setPayload(Map<String, Object> payload) {
+		this.payload = payload;
 	}
 }

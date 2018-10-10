@@ -7,7 +7,6 @@ import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
 
 import net.fognode.client.api.Client;
-import net.fognode.response.api.ResponseFactory;
 
 public class Activator extends DependencyActivatorBase {
 
@@ -20,11 +19,6 @@ public class Activator extends DependencyActivatorBase {
 			createComponent()
 			.setInterface(Client.class.getName(), properties)
 			.setImplementation(HttpClientStub.class)
-			.add(
-				createServiceDependency()
-				.setService(ResponseFactory.class)
-				.setRequired(true)
-			)
 		);
 	}
 }

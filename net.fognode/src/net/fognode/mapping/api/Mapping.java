@@ -6,5 +6,5 @@ public interface Mapping {
 	public Map<String, String> getMapping();
 	public void setMapping(Map<String, String> mapping);
 	public void deleteMapping();
-	public String getLocation(String location);
+	public String getResourceLocation(String location);
 }

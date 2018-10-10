@@ -1,28 +1,32 @@
-package net.fognode.client.httpmock;
-
-import java.util.Properties;
+package net.fognode.requesthandler.rest;
 
 import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
 
-import net.fognode.client.api.Client;
+import net.fognode.request.api.RequestFactory;
+import net.fognode.requesthandler.api.RequestHandler;
 import net.fognode.response.api.ResponseFactory;
 
 public class Activator extends DependencyActivatorBase {
 
 	@Override
 	public void init(BundleContext context, DependencyManager manager) throws Exception {
-		Properties properties = new Properties();
-		properties.put("protocol", "HTTP");
-
 		manager.add(
 			createComponent()
-			.setInterface(Client.class.getName(), properties)
-			.setImplementation(HttpMockClient.class)
+			.setInterface(Object.class.getName(), null)
+			.setImplementation(RequestHandlerRest.class)
 			.add(
 				createServiceDependency()
+				.setService(RequestFactory.class)
+				.setRequired(true)
+			).add(
+				createServiceDependency()
 				.setService(ResponseFactory.class)
+				.setRequired(true)
+			).add(
+				createServiceDependency()
+				.setService(RequestHandler.class)
 				.setRequired(true)
 			)
 		);

@@ -23,22 +23,22 @@ public class StatelessShadow implements Shadow {
 	}
 
 	@Override
-	public Response post(Request req) {
-		return client.post(req);
+	public void post(Request req, Response res) {
+		client.post(req, res);
 	}
 
 	@Override
-	public Response get(Request req) {
-		return client.get(req);
+	public void get(Request req, Response res) {
+		client.get(req, res);
 	}
 
 	@Override
-	public Response put(Request req) {
-		return client.put(req);
+	public void put(Request req, Response res) {
+		client.put(req, res);
 	}
 
 	@Override
-	public Response delete(Request req) {
-		return client.delete(req);
+	public void delete(Request req, Response res) {
+		client.delete(req, res);
 	}
 }

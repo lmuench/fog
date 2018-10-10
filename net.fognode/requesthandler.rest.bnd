@@ -1,0 +1,2 @@
+Private-Package: net.fognode.requesthandler.rest
+Bundle-Activator: net.fognode.requesthandler.rest.Activator

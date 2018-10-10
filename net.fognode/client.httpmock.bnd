@@ -1,2 +1,0 @@
-Private-Package: net.fognode.client.httpmock
-Bundle-Activator: net.fognode.client.httpmock.Activator

@@ -20,6 +20,7 @@ public class SimpleMapping implements Mapping {
 	@Override
 	public void setMapping(Map<String, String> mapping) {
 		this.mapping = mapping;
+		System.out.println("Mapping created: " + this.mapping);
 	}
 
 	@Override
@@ -28,7 +29,7 @@ public class SimpleMapping implements Mapping {
 	}
 	
 	@Override
-	public String getLocation(String location) {
+	public String getResourceLocation(String location) {
 		return mapping.get(location);
 	}
 }

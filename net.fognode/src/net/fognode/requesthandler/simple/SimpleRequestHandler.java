@@ -3,6 +3,8 @@ package net.fognode.requesthandler.simple;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.Response.Status;
+
 import net.fognode.mapping.api.Mapping;
 import net.fognode.middleware.api.Middleware;
 import net.fognode.request.api.Request;
@@ -27,6 +29,10 @@ public class SimpleRequestHandler implements RequestHandler {
 	@Override
 	public void handleRequest(Request req, Response res) throws UnsupportedOperationException {
 		addResourceLocationToRequest(req);
+		if(null == req.getResourceLocation()) {
+			res.setStatus(Status.NOT_FOUND.getStatusCode());
+			return;
+		}
 		
 		boolean rejected = !processRequest(req, res);
 		if (rejected) return;

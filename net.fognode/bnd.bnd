@@ -39,4 +39,6 @@
 	org.apache.felix.framework,\
 	org.yaml.snakeyaml,\
 	com.eclipsesource.jaxrs.jersey-all,\
-	org.apache.servicemix.bundles.okhttp
+	org.apache.servicemix.bundles.okhttp,\
+	org.apache.servicemix.bundles.okio,\
+	com.google.gson

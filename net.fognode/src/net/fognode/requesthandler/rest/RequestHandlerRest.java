@@ -24,7 +24,7 @@ public class RequestHandlerRest {
 	private volatile RequestHandler requestHandler;
 	
 	@GET
-	@Path("{path}")
+	@Path("{path : .+}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Map<String, Object> handleGetRequest(@PathParam("path") String path) {
 		return handleRequest("GET", path);

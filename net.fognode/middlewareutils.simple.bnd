@@ -1,0 +1,2 @@
+Private-Package: net.fognode.middlewareutils.simple
+Bundle-Activator: net.fognode.middlewareutils.simple.Activator

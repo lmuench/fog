@@ -1,10 +1,9 @@
-package net.fognode.middleware.timestamp;
+package net.fognode.middlewareutils.simple;
 
 import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
 
-import net.fognode.middleware.api.Middleware;
 import net.fognode.middlewareutils.api.MiddlewareUtils;
 
 public class Activator extends DependencyActivatorBase {
@@ -13,13 +12,8 @@ public class Activator extends DependencyActivatorBase {
 	public void init(BundleContext context, DependencyManager manager) throws Exception {
 		manager.add(
 			createComponent()
-			.setInterface(Middleware.class.getName(), null)
-			.setImplementation(TimestampMiddleware.class)
-			.add(
-				createServiceDependency()
-				.setService(MiddlewareUtils.class)
-				.setRequired(true)
-			)
+			.setInterface(MiddlewareUtils.class.getName(), null)
+			.setImplementation(SimpleMiddlewareUtils.class)
 		);
 	}
 }

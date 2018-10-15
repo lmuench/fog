@@ -30,9 +30,9 @@ public class SimpleMappingTest {
 	@Test
 	public void test() {
 		cut.setMapping(mapping);
-		assertEquals(val1, cut.getLocation(key1));
-		assertEquals(val2, cut.getLocation(key2));
-		assertNotEquals(val1, cut.getLocation(key2));
-		assertNotEquals(val2, cut.getLocation(key1));
+		assertEquals(val1, cut.getResourceLocation(key1));
+		assertEquals(val2, cut.getResourceLocation(key2));
+		assertNotEquals(val1, cut.getResourceLocation(key2));
+		assertNotEquals(val2, cut.getResourceLocation(key1));
 	}
 }

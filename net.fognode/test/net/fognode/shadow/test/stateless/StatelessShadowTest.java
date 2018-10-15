@@ -13,6 +13,7 @@ import net.fognode.request.api.Request;
 import net.fognode.request.api.RequestFactory;
 import net.fognode.request.simple.SimpleRequestFactory;
 import net.fognode.response.api.Response;
+import net.fognode.response.api.ResponseFactory;
 import net.fognode.response.simple.SimpleResponseFactory;
 import net.fognode.shadow.api.Shadow;
 import net.fognode.shadow.stateless.StatelessShadow;
@@ -23,6 +24,7 @@ public class StatelessShadowTest {
 	String location;
 	Map<String, Object> payload;
 	RequestFactory requestFactory;
+	ResponseFactory responseFactory;
 	Shadow cut;
 
 	@Before
@@ -35,41 +37,41 @@ public class StatelessShadowTest {
 		payload.put("someNumber", 4.2);
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
 		requestFactory = new SimpleRequestFactory();
-
+		responseFactory = new SimpleResponseFactory();
 		HttpClientStub client = new HttpClientStub();
-		client.injectResponseFactory(new SimpleResponseFactory());
 		cut = new StatelessShadow(client);
 	}
 
 	@Test
 	public void testPost() {
 		Request req = requestFactory.createRequest(protocol, method, location, payload);
-		Response res = cut.post(req);
-		assertEquals(res.getCode(), 201);
+		Response res = responseFactory.createResponse();
+		cut.post(req, res);
+		assertEquals(res.getStatus(), 201);
 		assertEquals(res.getPayload(), payload);
 	}
 
 	@Test
 	public void testGet() {
 		Request req = requestFactory.createRequest(protocol, method, location);
-		Response res = cut.get(req);
-		assertEquals(res.getCode(), 200);
-		assertFalse(res.getPayload().isEmpty());
+		Response res = responseFactory.createResponse();
+		cut.get(req, res);
+		assertEquals(res.getStatus(), 200);
 	}
 
 	@Test
 	public void testPut() {
 		Request req = requestFactory.createRequest(protocol, method, location, payload);
-		Response res = cut.put(req);
-		assertEquals(res.getCode(), 204);
-		assertTrue(res.getPayload().isEmpty());
+		Response res = responseFactory.createResponse();
+		cut.put(req, res);
+		assertEquals(res.getStatus(), 204);
 	}
 
 	@Test
 	public void testDelete() {
 		Request req = requestFactory.createRequest(protocol, method, location);
-		Response res = cut.delete(req);
-		assertEquals(res.getCode(), 204);
-		assertTrue(res.getPayload().isEmpty());
+		Response res = responseFactory.createResponse();
+		cut.delete(req, res);
+		assertEquals(res.getStatus(), 204);
 	}
 }

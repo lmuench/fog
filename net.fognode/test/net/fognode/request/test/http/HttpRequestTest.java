@@ -44,9 +44,10 @@ public class HttpRequestTest {
 	 * deep copy, anyone with a reference to the payload can change it at any
 	 * point of time. 
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testHttpRequestChangingPayload() {
 		payload.replace("someNumber", 2.3);
-		assertEquals(cut.getPayload().get("someNumber"), 2.3);
+		assertEquals(((Map<String, Object>) cut.getPayload()).get("someNumber"), 2.3);
 	}
 }

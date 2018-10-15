@@ -41,7 +41,7 @@ public class SimpleRequestHandler implements RequestHandler {
 			Shadow shadow;
 			shadow = shadowFactory.createShadow(req.getProtocol());
 			
-			shadow.get(req, res);
+			shadow.get(req, res);  // nur GET
 			
 			processResponse(req, res);
 			

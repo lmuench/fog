@@ -30,7 +30,6 @@ public class StatelessShadowTest {
 	@Before
 	public void setUp() throws Exception {
 		protocol = "HTTP";
-		method = "POST";
 		location = "http://www.example.com/foo/bar";
 		payload = new HashMap<>();
 		payload.put("someString", "foo");
@@ -44,34 +43,34 @@ public class StatelessShadowTest {
 
 	@Test
 	public void testPost() {
-		Request req = requestFactory.createRequest(protocol, method, location, payload);
+		Request req = requestFactory.createRequest(protocol, "POST", location, payload);
 		Response res = responseFactory.createResponse();
-		cut.post(req, res);
+		cut.handle(req, res);
 		assertEquals(res.getStatus(), 201);
 		assertEquals(res.getPayload(), payload);
 	}
 
 	@Test
 	public void testGet() {
-		Request req = requestFactory.createRequest(protocol, method, location);
+		Request req = requestFactory.createRequest(protocol, "GET", location);
 		Response res = responseFactory.createResponse();
-		cut.get(req, res);
+		cut.handle(req, res);
 		assertEquals(res.getStatus(), 200);
 	}
 
 	@Test
 	public void testPut() {
-		Request req = requestFactory.createRequest(protocol, method, location, payload);
+		Request req = requestFactory.createRequest(protocol, "PUT", location, payload);
 		Response res = responseFactory.createResponse();
-		cut.put(req, res);
+		cut.handle(req, res);
 		assertEquals(res.getStatus(), 204);
 	}
 
 	@Test
 	public void testDelete() {
-		Request req = requestFactory.createRequest(protocol, method, location);
+		Request req = requestFactory.createRequest(protocol, "DELETE", location);
 		Response res = responseFactory.createResponse();
-		cut.delete(req, res);
+		cut.handle(req, res);
 		assertEquals(res.getStatus(), 204);
 	}
 }

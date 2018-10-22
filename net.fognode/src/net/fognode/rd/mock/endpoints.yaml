@@ -1,3 +1,4 @@
+---
 ep: endpoint1                     # endpoint name
 d: THK/F07/ZW717                  # sector
 lt: 43200                         # lifetime in seconds
@@ -16,6 +17,13 @@ resources:
     if: actuator                  # interface description
     rt: light                     # resource type
     path: /light1                 # resource path
+---
+ep: endpoint2                     # endpoint name
+d: THK/F07/ZW717                  # sector
+lt: 43200                         # lifetime in seconds
+base: 'http://localhost:5001'     # base URI "scheme://authority"
+gp: null                          # group name                           
+resources:
   - protocol: HTTP                # protocol
     if: actuator                  # interface description
     rt: light-on                  # resource type

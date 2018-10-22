@@ -8,30 +8,36 @@ import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
 public class HttpClientStub implements Client {
-
+	
 	@Override
+	public void handle(Request req, Response res) {
+		switch (req.getMethod()) {
+			case "POST": post(req, res); break;
+			case "GET": get(req, res); break;
+			case "PUT": put(req, res); break;
+			case "DELETE": delete(req, res); break;
+			default: break;
+		}
+	}
+
 	public void post(Request req, Response res) {
 		res.setStatus(201);
 		res.setPayload(req.getPayload());
 	}
 
-	@Override
 	public void get(Request req, Response res) {
 		res.setStatus(200);
 		res.setPayload(createRandomPayload());
 	}
 
-	@Override
 	public void put(Request req, Response res) {
 		res.setStatus(204);
 	}
 
-	@Override
 	public void delete(Request req, Response res) {
 		res.setStatus(204);
 	}
 	
-	@Override
 	public String getProtocol() {
 		return "HTTP";
 	}

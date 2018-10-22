@@ -23,6 +23,18 @@ public class HttpClient implements Client {
 		gson = new Gson();
 	}
 	
+	@Override
+	public void handle(Request req, Response res) {
+		switch (req.getMethod()) {
+			case "POST": post(req, res); break;
+			case "GET": get(req, res); break;
+			case "PUT": put(req, res); break;
+			case "DELETE": delete(req, res); break;
+			default: break;
+		}
+	}
+
+	
 //	String post(String url, String json) throws IOException {
 //		okhttp3.RequestBody body = okhttp3.RequestBody.create(JSON, json);
 //		okhttp3.Request request = (
@@ -35,8 +47,7 @@ public class HttpClient implements Client {
 //		return response.body().string();
 //	}
 
-	@Override
-	public void post(Request req, Response res) {
+	private void post(Request req, Response res) {
 //		String json = req.getPayload()
 //		okhttp3.RequestBody body = okhttp3.RequestBody.create(JSON, req.getPayload());
 //		okhttp3.Request request = (
@@ -49,8 +60,7 @@ public class HttpClient implements Client {
 //		return response.body().string();
 	}
 
-	@Override
-	public void get(Request req, Response res) {
+	private void get(Request req, Response res) {
 		okhttp3.Request httpReq = (
 			new okhttp3.Request.Builder()
 			.url(req.getResourceLocation())
@@ -73,19 +83,16 @@ public class HttpClient implements Client {
 		}
 	}
 
-	@Override
-	public void put(Request req, Response res) {
+	private void put(Request req, Response res) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void delete(Request req, Response res) {
+	private void delete(Request req, Response res) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public String getProtocol() {
 		return "HTTP";
 	}

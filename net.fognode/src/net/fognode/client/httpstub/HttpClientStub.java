@@ -3,6 +3,8 @@ package net.fognode.client.httpstub;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ws.rs.core.Response.Status;
+
 import net.fognode.client.api.Client;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
@@ -16,7 +18,7 @@ public class HttpClientStub implements Client {
 			case "GET": get(req, res); break;
 			case "PUT": put(req, res); break;
 			case "DELETE": delete(req, res); break;
-			default: break;
+			default: unsupportedMethod(req, res); break;
 		}
 	}
 
@@ -36,6 +38,10 @@ public class HttpClientStub implements Client {
 
 	public void delete(Request req, Response res) {
 		res.setStatus(204);
+	}
+	
+	private void unsupportedMethod(Request req, Response res) {
+		res.setStatus(Status.METHOD_NOT_ALLOWED.getStatusCode());
 	}
 	
 	public String getProtocol() {

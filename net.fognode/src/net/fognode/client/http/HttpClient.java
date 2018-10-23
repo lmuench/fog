@@ -30,7 +30,7 @@ public class HttpClient implements Client {
 			case "GET": get(req, res); break;
 			case "PUT": put(req, res); break;
 			case "DELETE": delete(req, res); break;
-			default: break;
+			default: unsupportedMethod(req, res); break;
 		}
 	}
 
@@ -91,6 +91,10 @@ public class HttpClient implements Client {
 	private void delete(Request req, Response res) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void unsupportedMethod(Request req, Response res) {
+		res.setStatus(Status.METHOD_NOT_ALLOWED.getStatusCode());
 	}
 
 	public String getProtocol() {

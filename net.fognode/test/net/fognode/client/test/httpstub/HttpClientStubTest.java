@@ -70,4 +70,12 @@ public class HttpClientStubTest {
 		cut.handle(req, res);
 		assertEquals(res.getStatus(), 204);
 	}
+	
+	@Test
+	public void testUnsupportedMethodPatch() {
+		Request req = requestFactory.createRequest(protocol, "PATCH", location);
+		Response res = responseFactory.createResponse();
+		cut.handle(req, res);
+		assertEquals(res.getStatus(), 405);
+	}
 }

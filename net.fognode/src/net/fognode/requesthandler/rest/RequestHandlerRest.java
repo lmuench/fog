@@ -3,7 +3,9 @@ package net.fognode.requesthandler.rest;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -27,14 +29,23 @@ public class RequestHandlerRest {
 	@Path("{path : .+}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Map<String, Object> handleGetRequest(@PathParam("path") String path) {
-		return handleRequest("GET", path);
+		return handleRequest("GET", path, null);
+	}
+	
+	@PUT
+	@Path("{path : .+}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Map<String, Object> handlePutRequest(Object httpBody, @PathParam("path") String path) {
+		return handleRequest("PUT", path, httpBody);
 	}
 
-	private Map<String, Object> handleRequest(String method, String path) {
+	private Map<String, Object> handleRequest(String method, String path, Object httpBody) {
 		path = "/" + path;
 		System.out.println(method + " " + path);
-
 		Request req = requestFactory.createRequest("HTTP", method, path);
+		req.setPayload(httpBody);
+	
 		Response res = responseFactory.createResponse();
 		Map<String, Object> json = new HashMap<>();
 

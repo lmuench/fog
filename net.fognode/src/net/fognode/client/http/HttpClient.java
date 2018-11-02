@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 import javax.ws.rs.core.Response.Status;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 import net.fognode.client.api.Client;
@@ -22,7 +21,6 @@ public class HttpClient implements Client {
 	Gson gson;
 	
 	public HttpClient() {
-//		client = new okhttp3.OkHttpClient();
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
 		builder.connectTimeout(30, TimeUnit.SECONDS); 
 		builder.readTimeout(30, TimeUnit.SECONDS); 
@@ -37,48 +35,21 @@ public class HttpClient implements Client {
 			case "POST": post(req, res); break;
 			case "GET": get(req, res); break;
 			case "PUT": put(req, res); break;
-			case "DELETE": delete(req, res); break;
 			default: unsupportedMethod(req, res); break;
 		}
 	}
 
-	
-//	String post(String url, String json) throws IOException {
-//		okhttp3.RequestBody body = okhttp3.RequestBody.create(JSON, json);
-//		okhttp3.Request request = (
-//			new okhttp3.Request.Builder()
-//			.url(url)
-//			.post(body)
-//			.build()
-//		);
-//		okhttp3.Response response = client.newCall(request).execute();
-//		return response.body().string();
-//	}
-
 	private void post(Request req, Response res) {
-		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(req.getPayload());
 		
 		okhttp3.RequestBody body = okhttp3.RequestBody.create(JSON, json);
-		okhttp3.Request request = (
+		okhttp3.Request httpReq = (
 			new okhttp3.Request.Builder()
 			.url(req.getResourceLocation())
 			.post(body)
 			.build()
 		);
-		
-		try {
-			okhttp3.Response httpRes = client.newCall(request).execute();
-			try {
-				res.setPayload(gson.fromJson(httpRes.body().string(), Object.class));
-				res.setStatus(httpRes.code());
-			} catch (JsonSyntaxException e) {
-				res.setStatus(Status.INTERNAL_SERVER_ERROR.getStatusCode());
-			}
-			
-		} catch (IOException e) {
-			res.setStatus(Status.BAD_GATEWAY.getStatusCode());
-		}
+		executeRequest(httpReq, res);
 	}
 
 	private void get(Request req, Response res) {
@@ -87,25 +58,12 @@ public class HttpClient implements Client {
 			.url(req.getResourceLocation())
 			.build()
 		);
-
-		try {
-			okhttp3.Response httpRes = client.newCall(httpReq).execute();
-			try {
-				res.setPayload(gson.fromJson(httpRes.body().string(), Object.class));
-				res.setStatus(httpRes.code());
-			} catch (JsonSyntaxException e) {
-				res.setStatus(Status.INTERNAL_SERVER_ERROR.getStatusCode());
-			}
-			
-		} catch (IOException e) {
-			res.setStatus(Status.BAD_GATEWAY.getStatusCode());
-		}
+		executeRequest(httpReq, res);
 	}
 
 	private void put(Request req, Response res) {
-		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(req.getPayload());
-		System.out.println(req.getPayload());
+
 		okhttp3.RequestBody body = okhttp3.RequestBody.create(JSON, json);
 		okhttp3.Request httpReq = (
 			new okhttp3.Request.Builder()
@@ -113,7 +71,10 @@ public class HttpClient implements Client {
 			.put(body)
 			.build()
 		);
-		
+		executeRequest(httpReq, res);
+	}
+	
+	private void executeRequest(okhttp3.Request httpReq, Response res) {
 		try {
 			okhttp3.Response httpRes = client.newCall(httpReq).execute();
 			try {
@@ -126,11 +87,6 @@ public class HttpClient implements Client {
 		} catch (IOException e) {
 			res.setStatus(Status.BAD_GATEWAY.getStatusCode());
 		}
-	}
-
-	private void delete(Request req, Response res) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	private void unsupportedMethod(Request req, Response res) {

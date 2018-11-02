@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -25,6 +26,14 @@ public class RequestHandlerRest {
 	private volatile ResponseFactory responseFactory;
 	private volatile RequestHandler requestHandler;
 	
+	@POST
+	@Path("{path : .+}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Map<String, Object> handlePostRequest(Object httpBody, @PathParam("path") String path) {
+		return handleRequest("POST", path, httpBody);
+	}
+	
 	@GET
 	@Path("{path : .+}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -42,7 +51,7 @@ public class RequestHandlerRest {
 
 	private Map<String, Object> handleRequest(String method, String path, Object httpBody) {
 		path = "/" + path;
-		System.out.println(method + " " + path);
+		System.out.println("RequestHandlerRest: " + method + " " + path);
 		Request req = requestFactory.createRequest("HTTP", method, path);
 		req.setPayload(httpBody);
 	

@@ -17,26 +17,50 @@ public class SimpleMiddlewareUtils implements MiddlewareUtils {
 		String key,
 		String value
 	) {
-		try {
+		if (res.getPayload() instanceof Map) {
 			@SuppressWarnings("unchecked")
 			Map<String, Object> payload = (Map<String, Object>) res.getPayload();
 			payload.put(key, value);
-		} catch (Exception e1) {
-			try {
-				@SuppressWarnings("unchecked")
-				List<Object> payload = (List<Object>) res.getPayload();
-				Map<String, String> map = new HashMap<String, String>();
-				map.put(key, value);
-				payload.add(map);
-			} catch (Exception e2) {
-				System.out.println(
-					"SimpleMiddlewareUtils: " +
-					"could not cast payload to either Map or List"
-				);
-				return false;
-			} 
+			return true;
+		} else if (res.getPayload() instanceof List) {	
+			@SuppressWarnings("unchecked")
+			List<Object> payload = (List<Object>) res.getPayload();
+			Map<String, String> map = new HashMap<>();
+			map.put(key, value);
+			payload.add(map);
+			return true;
 		}
-		return true;
+		return false;
 	}
-
+	
+//	@Override
+//	public boolean addToPayload(
+//		Request req,
+//		Response res,
+//		String key,
+//		String value
+//	) {
+//		if (res.getPayload() instanceof Map) {
+//			try {				
+//				@SuppressWarnings("unchecked")
+//				Map<String, Object> payload = (Map<String, Object>) res.getPayload();
+//				payload.put(key, value);
+//				return true;
+//			} catch (Exception e) {
+//				return false;
+//			}
+//		} else if (res.getPayload() instanceof List) {
+//			try {				
+//				@SuppressWarnings("unchecked")
+//				List<Object> payload = (List<Object>) res.getPayload();
+//				Map<String, String> map = new HashMap<>();
+//				map.put(key, value);
+//				payload.add(map);
+//				return true;
+//			} catch (Exception e) {
+//				return false;
+//			}
+//		}  
+//		return false;
+//	}
 }

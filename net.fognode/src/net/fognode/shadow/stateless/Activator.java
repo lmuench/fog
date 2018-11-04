@@ -11,7 +11,6 @@ public class Activator extends DependencyActivatorBase {
 
 	@Override
 	public void init(BundleContext context, DependencyManager manager) throws Exception {
-		
 		manager.add(
 			createComponent()
 			.setInterface(ShadowFactory.class.getName(), null)

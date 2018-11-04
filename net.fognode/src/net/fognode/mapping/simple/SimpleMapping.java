@@ -10,13 +10,12 @@ public class SimpleMapping implements Mapping {
 	private volatile Store store;
 	private static Map<String, String> mapping = new HashMap<String, String>();
 	
-	public void start() {
+	public void init() {
 		Map<String, String> mapping = store.getMap("mapping");
-		if (mapping != null) {
-			SimpleMapping.mapping = mapping;
-			System.out.println("SimpleMapping# mapping restored: ");
-			System.out.println(SimpleMapping.mapping);
-		}
+		if (mapping == null) return;
+		SimpleMapping.mapping = mapping;
+		System.out.println("SimpleMapping# mapping restored: ");
+		System.out.println(SimpleMapping.mapping);
 	}
 
 	@Override

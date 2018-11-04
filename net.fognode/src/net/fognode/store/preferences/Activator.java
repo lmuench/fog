@@ -1,10 +1,8 @@
-package net.fognode.store.preferencesservice;
+package net.fognode.store.preferences;
 
 import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
-import org.osgi.service.prefs.PreferencesService;
-
 import net.fognode.store.api.Store;
 
 public class Activator extends DependencyActivatorBase {
@@ -14,12 +12,7 @@ public class Activator extends DependencyActivatorBase {
 		manager.add(
 			createComponent()
 			.setInterface(Store.class.getName(), null)
-			.setImplementation(PreferencesServiceStore.class)
-			.add(
-				createServiceDependency()
-				.setService(PreferencesService.class)
-				.setRequired(true)
-			)
+			.setImplementation(PreferencesStore.class)
 		);
 	}
 }

@@ -26,11 +26,13 @@ public class SimpleMapping implements Mapping {
 	@Override
 	public void setMapping(Map<String, String> mapping) {
 		SimpleMapping.mapping = mapping;
+		persistMapping();
 	}
 
 	@Override
 	public void deleteMapping() {
 		mapping = new HashMap<String, String>();
+		persistMapping();
 	}
 	
 	@Override
@@ -41,6 +43,6 @@ public class SimpleMapping implements Mapping {
 	public void persistMapping() { 
 		store.putMap("mapping", mapping);
 		System.out.println("SimpleMapping# mapping persisted: ");
-		System.out.println(SimpleMapping.mapping);
+		System.out.println(mapping);
 	}
 }

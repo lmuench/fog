@@ -15,7 +15,6 @@ public class Activator extends DependencyActivatorBase {
 			createComponent()
 			.setInterface(Mapping.class.getName(), null)
 			.setImplementation(SimpleMapping.class)
-			.setCallbacks("init", null, null, "persistMapping")
 			.add(
 				createServiceDependency()
 				.setService(Store.class)

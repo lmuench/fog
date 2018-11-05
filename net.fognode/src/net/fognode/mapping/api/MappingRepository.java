@@ -19,14 +19,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.mappingbuilder.api;
+package net.fognode.mapping.api;
 
-import java.util.List;
 import java.util.Map;
 
-public interface MappingBuilder {
-	public List<Map<String, Object>> getEndpoints();
+/**
+ * Holds the resource-to-resource mapping from the user-defined API (e.g. "/temperatures/1")
+ * to the resources (e.g. "temp1") on the physical endpoints (e.g. "http://localhost:5000").
+ * A mapping entry with the exemplary values from above would be
+ * <code>"/temperatures/1":"http://localhost:5000/temp1"<code/>
+ *
+ * @author Ludwig Muench
+ */
+public interface MappingRepository {
+	/**
+	 * Getter for the mapping
+	 * @return the mapping
+	 */
 	public Map<String, String> getMapping();
+	/**
+	 * Setter for the mapping
+	 * @param the new mapping which will replace the old mapping
+	 */
 	public void setMapping(Map<String, String> mapping);
+	/**
+	 * Deletes the current mapping
+	 */
 	public void deleteMapping();
+	/**
+	 * @param location the resource (path) of the user-defined API (e.g. "/temperatures/1") 
+	 * @return the url of the actual resource (e.g. "http://localhost:5000/temp1")
+	 */
+	public String getResourceLocation(String location);
 }

@@ -1,0 +1,2 @@
+Private-Package: net.fognode.rd.rest
+Bundle-Activator: net.fognode.rd.rest.Activator

@@ -26,7 +26,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Response.Status;
 
-import net.fognode.mapping.api.Mapping;
+import net.fognode.mapping.api.MappingRepository;
 import net.fognode.middleware.api.Middleware;
 import net.fognode.request.api.Request;
 import net.fognode.requesthandler.api.RequestHandler;
@@ -35,7 +35,7 @@ import net.fognode.shadow.api.Shadow;
 import net.fognode.shadow.api.ShadowFactory;
 
 public class SimpleRequestHandler implements RequestHandler {
-	private volatile Mapping mapping;
+	private volatile MappingRepository mapping;
 	private volatile List<Middleware> activeMiddleware = new ArrayList<Middleware>();
 	private volatile ShadowFactory shadowFactory;	
 	

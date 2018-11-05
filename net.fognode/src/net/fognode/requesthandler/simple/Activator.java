@@ -25,7 +25,7 @@ import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
 
-import net.fognode.mapping.api.Mapping;
+import net.fognode.mapping.api.MappingRepository;
 import net.fognode.middleware.api.Middleware;
 import net.fognode.requesthandler.api.RequestHandler;
 import net.fognode.shadow.api.ShadowFactory;
@@ -40,7 +40,7 @@ public class Activator extends DependencyActivatorBase {
 			.setImplementation(SimpleRequestHandler.class)
 			.add(
 				createServiceDependency()
-				.setService(Mapping.class)
+				.setService(MappingRepository.class)
 				.setRequired(true)
 			).add(
 				createServiceDependency()

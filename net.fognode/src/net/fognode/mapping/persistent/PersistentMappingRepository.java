@@ -19,38 +19,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.mappingbuilder.rd;
+package net.fognode.mapping.persistent;
 
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.felix.dm.DependencyActivatorBase;
-import org.apache.felix.dm.DependencyManager;
-import org.osgi.framework.BundleContext;
+import net.fognode.mapping.api.MappingRepository;
+import net.fognode.store.api.Store;
 
-import net.fognode.mapping.api.Mapping;
-import net.fognode.mappingbuilder.api.MappingBuilder;
-import net.fognode.rd.api.RD;
-
-public class Activator extends DependencyActivatorBase {
+public class PersistentMappingRepository implements MappingRepository {
+	private volatile Store store;
+	private static Map<String, String> mapping = new HashMap<String, String>();
+	
+	public void init() {
+		Map<String, String> mapping = store.getMap("mapping");
+		if (mapping == null) return;
+		PersistentMappingRepository.mapping = mapping;
+//		System.out.println("PersistentMappingRepository# mapping restored: ");
+//		System.out.println(PersistentMappingRepository.mapping);
+	}
 
 	@Override
-	public void init(BundleContext context, DependencyManager manager) throws Exception {
-		Properties properties = new Properties();
-		properties.put("source", "RD");
+	public Map<String, String> getMapping() {
+		return mapping;
+	}
+
+	@Override
+	public void setMapping(Map<String, String> mapping) {
+		PersistentMappingRepository.mapping = mapping;
+		persistMapping();
+	}
+
+	@Override
+	public void deleteMapping() {
+		mapping = new HashMap<String, String>();
+		persistMapping();
+	}
+	
+	@Override
+	public String getResourceLocation(String location) {
+		return mapping.get(location);
+	}
 		
-		manager.add(
-			createComponent()
-			.setInterface(MappingBuilder.class.getName(), properties)
-			.setImplementation(RDMappingBuilder.class)
-			.add(
-				createServiceDependency()
-				.setService(RD.class)
-				.setRequired(true)
-			).add(
-				createServiceDependency()
-				.setService(Mapping.class)
-				.setRequired(true)
-			)
-		);
+	public void persistMapping() { 
+		store.putMap("mapping", mapping);
+//		System.out.println("PersistentMappingRepository# mapping persisted: ");
+//		System.out.println(mapping);
 	}
 }

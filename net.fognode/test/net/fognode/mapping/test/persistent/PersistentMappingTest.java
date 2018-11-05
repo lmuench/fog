@@ -1,4 +1,4 @@
-package net.fognode.mapping.test.simple;
+package net.fognode.mapping.test.persistent;
 
 import static org.junit.Assert.*;
 
@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.fognode.mapping.api.Mapping;
-import net.fognode.mapping.simple.SimpleMapping;
+import net.fognode.mapping.persistent.PersistentMapping;
 
-public class SimpleMappingTest {
+public class PersistentMappingTest {
 	String key1 = "http://192.168.1.50:8080/temperature/room1";
 	String key2 = "http://192.168.1.50:8080/light/room1/left";
 	String val1 = "http://192.168.1.16:1883/temp1";
@@ -24,7 +24,7 @@ public class SimpleMappingTest {
 		mapping = new HashMap<String, String>();
 		mapping.put(key1, val1);
 		mapping.put(key2, val2);
-		cut = new SimpleMapping();
+		cut = new PersistentMapping();
 	}
 
 	@Test

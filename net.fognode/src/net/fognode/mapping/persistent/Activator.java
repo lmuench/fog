@@ -1,4 +1,4 @@
-package net.fognode.mapping.simple;
+package net.fognode.mapping.persistent;
 
 import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
@@ -14,7 +14,7 @@ public class Activator extends DependencyActivatorBase {
 		manager.add(
 			createComponent()
 			.setInterface(Mapping.class.getName(), null)
-			.setImplementation(SimpleMapping.class)
+			.setImplementation(PersistentMapping.class)
 			.add(
 				createServiceDependency()
 				.setService(Store.class)

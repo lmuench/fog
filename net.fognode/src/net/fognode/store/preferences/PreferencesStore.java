@@ -17,15 +17,24 @@ public class PreferencesStore implements Store {
 	@Override
 	public void put(String node, String key, String value) {
 		Preferences preferences = Preferences.userRoot().node(node);
-		preferences.put(key, (String) value);
+		try {
+			preferences.clear();
+			preferences.put(key, (String) value);
+		} catch (BackingStoreException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	public void putMap(String node, Map<String, String> value) {
 		Preferences preferences = Preferences.userRoot().node(node);
-		
-		for (Map.Entry<String, String> entry : value.entrySet()) {
-			preferences.put(entry.getKey(), entry.getValue());
+		try {
+			preferences.clear();
+			for (Map.Entry<String, String> entry : value.entrySet()) {
+				preferences.put(entry.getKey(), entry.getValue());
+			}
+		} catch (BackingStoreException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -39,7 +48,6 @@ public class PreferencesStore implements Store {
 	public Map<String, String> getMap(String node) {
 		Preferences preferences = Preferences.userRoot().node(node);
 		Map<String, String> map = new HashMap<>();
-
 		try {
 			for (String key : preferences.keys()) {
 				map.put(key, preferences.get(key, ""));
@@ -47,13 +55,12 @@ public class PreferencesStore implements Store {
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
 		}
-	
 		return map;
 	}
 	
 	@Override
-	public void delete(String node, String key) {}
+	public void delete(String node) {}
 
 	@Override
-	public void delete(String node) {}
+	public void delete(String node, String key) {}
 }

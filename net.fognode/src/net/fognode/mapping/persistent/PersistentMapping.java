@@ -1,4 +1,4 @@
-package net.fognode.mapping.simple;
+package net.fognode.mapping.persistent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,16 +6,16 @@ import java.util.Map;
 import net.fognode.mapping.api.Mapping;
 import net.fognode.store.api.Store;
 
-public class SimpleMapping implements Mapping {
+public class PersistentMapping implements Mapping {
 	private volatile Store store;
 	private static Map<String, String> mapping = new HashMap<String, String>();
 	
 	public void init() {
 		Map<String, String> mapping = store.getMap("mapping");
 		if (mapping == null) return;
-		SimpleMapping.mapping = mapping;
-		System.out.println("SimpleMapping# mapping restored: ");
-		System.out.println(SimpleMapping.mapping);
+		PersistentMapping.mapping = mapping;
+//		System.out.println("PersistentMapping# mapping restored: ");
+//		System.out.println(PersistentMapping.mapping);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class SimpleMapping implements Mapping {
 
 	@Override
 	public void setMapping(Map<String, String> mapping) {
-		SimpleMapping.mapping = mapping;
+		PersistentMapping.mapping = mapping;
 		persistMapping();
 	}
 
@@ -42,7 +42,7 @@ public class SimpleMapping implements Mapping {
 		
 	public void persistMapping() { 
 		store.putMap("mapping", mapping);
-		System.out.println("SimpleMapping# mapping persisted: ");
-		System.out.println(mapping);
+//		System.out.println("PersistentMapping# mapping persisted: ");
+//		System.out.println(mapping);
 	}
 }

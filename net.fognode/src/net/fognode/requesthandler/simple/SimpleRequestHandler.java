@@ -47,7 +47,8 @@ public class SimpleRequestHandler implements RequestHandler {
 			
 		} catch (UnsupportedOperationException e) {
 			throw new UnsupportedOperationException(
-				"No client available for protocol: " + req.getProtocol()
+				"SimpleRequestHandler# No client available for protocol: " +
+				req.getProtocol()
 			);
 		}
 	}

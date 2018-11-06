@@ -23,7 +23,23 @@ package net.fognode.middlewareutils.api;
 
 import net.fognode.response.api.Response;
 
+/**
+ * MiddlewareUtils provide helper-methods for writing Middleware.
+ * 
+ * @author Ludwig Muench
+ */
 public interface MiddlewareUtils {
+	/**
+	 * Adds a key-value pair to the response's payload. The method works
+	 * for both Map<String, Object> (e.g. JSON-object) and List<Object>
+	 * (e.g. JSON-array) payloads.
+	 * @param key the to-be-added key-value pair's key
+	 * @param value the to-be-added key-value pair's value
+	 * @return false if the response's payload is neither an instance of List
+	 * nor an instance Map, which should only occur if the response doesn't
+	 * doesn't have any payload (e.g. an HTTP response with an empty message
+	 * body).
+	 */
 	public boolean addToPayload(
 		Response res,
 		String key,

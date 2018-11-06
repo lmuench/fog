@@ -26,14 +26,12 @@ import java.util.List;
 import java.util.Map;
 
 import net.fognode.middlewareutils.api.MiddlewareUtils;
-import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
 public class SimpleMiddlewareUtils implements MiddlewareUtils {
 
 	@Override
 	public boolean addToPayload(
-		Request req,
 		Response res,
 		String key,
 		String value

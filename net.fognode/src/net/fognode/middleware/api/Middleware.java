@@ -24,7 +24,35 @@ package net.fognode.middleware.api;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
+/**
+ * Middleware can manipulate the Request and a Response object of any request
+ * handled by the RequestHandler and create side-effects as well.
+ * The default RequestHandler implementation
+ * (@see net.fognode.requesthandler.simple.SimpleRequestHandler) passes the
+ * Request and Response objects to all Middleware implementations in ACTIVE
+ * state, in the same order as the implementations were started.
+ *  
+ * @author Ludwig Muench
+ */
 public interface Middleware {
+	/**
+	 * This method gets called by the RequestHandler before forwarding the
+	 * request to the actual resource (e.g. a sensor).
+	 * @param req the request
+	 * @param res the response (which, unless manipulated by middleware, should
+	 * still be empty at the point of time processRequest() is called)
+	 * @return a boolean which halts the requests and triggers an immediate
+	 * response if it equals false
+	 */
 	public boolean processRequest(Request req, Response res);
+	/**
+	 * This method gets called by the RequestHandler before after forwarding the
+	 * request to the actual resource (e.g. a sensor).
+	 * @param req the request
+	 * @param res the response (which should contain a status and possibly a
+	 * payload at the point of point of time processResponse() is called)
+	 * @return a boolean which triggers an immediate response, skipping
+	 * remaining middleware if it equals false
+	 */
 	public boolean processResponse(Request req, Response res);
 }

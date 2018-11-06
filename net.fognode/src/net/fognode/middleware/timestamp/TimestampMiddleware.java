@@ -39,7 +39,7 @@ public class TimestampMiddleware implements Middleware {
 	@Override
 	public boolean processResponse(Request req, Response res) {
 		String timestamp = Instant.now().toString();
-		utils.addToPayload(req, res, "timestamp", timestamp);
+		utils.addToPayload(res, "timestamp", timestamp);
 		return true;
 	}
 }

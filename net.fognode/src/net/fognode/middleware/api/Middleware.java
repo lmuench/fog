@@ -31,6 +31,12 @@ import net.fognode.response.api.Response;
  * (@see net.fognode.requesthandler.simple.SimpleRequestHandler) passes the
  * Request and Response objects to all Middleware implementations in ACTIVE
  * state, in the same order as the implementations were started.
+ * 
+ * Writing and/or installing custom middleware should be considered first,
+ * when extensions to the gateway's functionality are required.
+ * Each single Middleware implementation should reside in its own bundle.
+ * This way Middleware can be installed, started and stopped during runtime
+ * over the gateway's web UI or alternatively via the Felix Gogo shell.
  *  
  * @author Ludwig Muench
  */

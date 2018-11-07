@@ -24,6 +24,24 @@ package net.fognode.shadow.api;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
+/**
+ * If required, apply the "Device Shadow" IoT pattern
+ * (see <a href="http://www.internetofthingspatterns.com/patterns/communication/device-shadow/">
+ * Device Shadow IoT Pattern</a>) in a custom implementation of the Shadow
+ * interface.
+ * The StatelessDeviceShadow (@see net.fognode.shadow.stateless.StatelessDeviceShadow)
+ * does not implement said pattern and simply forwards requests to its assigned
+ * clients.
+ * Shadow objects should be created by a ShadowFactory.
+ *  
+ * @author Ludwig Muench
+ *
+ */
 public interface Shadow {
+	/**
+	 * Handles a request.
+	 * @param req
+	 * @param res
+	 */
 	public void handle(Request req, Response res);
 }

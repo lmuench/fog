@@ -21,9 +21,29 @@
  ******************************************************************************/
 package net.fognode.response.api;
 
+/**
+ * A generic protocol-independent response, used by the gateway internally. 
+ * A Response object is created on the ingoing edge of the gateway, for every
+ * ingoing request to the user-defined API.
+ * The Response object should be created by a ResponseFactory
+ * (@see net.fognode.response.api.ResponseFactory).
+ * At the outgoing edge, a client sets the Response object's properties based
+ * on the protocol-specific response it receives after forwarding a request.
+ * In between both edges, middleware can read and manipulate those properties.
+ * 
+ * @author Ludwig Muench
+ */
 public interface Response {
 	public int getStatus();
 	public void setStatus(int status);
+	/**
+	 * Payload (e.g. HTTP response body) getter.
+	 * @return the response's payload
+	 */
 	public Object getPayload();
+	/**
+	 * Payload setter.
+	 * @param payload the response's payload
+	 */
 	public void setPayload(Object payload);
 }

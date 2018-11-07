@@ -21,6 +21,15 @@
  ******************************************************************************/
 package net.fognode.response.api;
 
+/**
+ * A Response (@see net.fognode.response.api.Response) factory.
+ * @author Ludwig Muench
+ *
+ */
 public interface ResponseFactory {
+	/**
+	 * Response factory method.
+	 * @return an empty Response object
+	 */
 	public Response createResponse();
 }

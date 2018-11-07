@@ -25,7 +25,7 @@ package net.fognode.request.api;
  * A generic protocol-independent request, used by the gateway internally. 
  * A Request object is created on the ingoing edge of the gateway, for every
  * ingoing request to the user-defined API.
- * The Request object must be created by the RequestFactory
+ * The Request object should be created by a RequestFactory
  * (@see net.fognode.request.api.RequestFactory).
  * At the outgoing edge, a specific client handling the request's protocol
  * (e.g. HTTP) creates a request based on the Request object's properties.

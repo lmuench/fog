@@ -45,9 +45,12 @@ import net.fognode.response.api.Response;
  */
 public interface RequestHandler {
 	/**
-	 * 
-	 * @param req
-	 * @param res
+	 * Handles a request. Both arguments, req and res, may be manipulated
+	 * inside this method, by processing them with middleware.
+	 * @param req The received protocol-independent Request object built from
+	 * the ingoing protocol-specifc (e.g. HTTP) request 
+	 * @param res The empty Response object, meant to be filled by the
+	 * appropriate (e.g. HTTP-) client. 
 	 */
 	public void handleRequest(Request req, Response res);
 }

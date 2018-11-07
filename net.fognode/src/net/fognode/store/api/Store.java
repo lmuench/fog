@@ -25,22 +25,53 @@ import java.util.Map;
 
 /**
  * Key-value store for persisting data, accessible by any component,
- * specifically: Mapping (@see net.fognode.mapping.api.Mapping),
+ * specifically: Mapping (@see net.fognode.mapping.api.Mapping),the key-value pair's key
  * Middleware (@see net.fognode.middleware.api.Middleware),
  * Shadow (@see net.fognode.shadow.api.Shadow)
+ * The store's content is organized in nodes, with the nodes at the top level
+ * identifying the different components. For example should a persistent
+ * MappingRepository (@see net.fognode.mapping.api.MappingRepository)
+ * implementation store the user-defined mapping under the "mapping" node.
+ * Any component can freely access the data stored under nodes used by other
+ * components.
  * @author Ludwig Muench
  */
 public interface Store {
 	/**
-	 * 
-	 * @param node
-	 * @param key
-	 * @param value
+	 * Stores a key-value pair under a given top-level node.
+	 * @param node the top-level node (e.g. "mapping")
+	 * @param key the key-value pair's key
+	 * @param value the key-value pair's value
 	 */
 	public void put(String node, String key, String value);
+	/**
+	 * Stores all entries of a Map<String, String> under a given top-level node.
+	 * @param node the top-level node (e.g. "mapping")
+	 * @param value the Map
+	 */
 	public void putMap(String node, Map<String, String> value);
+	/**
+	 * Returns the value for a given key of a key-value pair under a given node.
+	 * @param node the top-level node (e.g. "mapping")
+	 * @param key the key-value pair's key
+	 * @return the key-value pair's value
+	 */
 	public String get(String node, String key);
+	/**
+	 * Returns all key-value pairs under a given node as a Map<String, String>.
+	 * @param node the top-level node (e.g. "mapping")
+	 * @return the Map containing all key-value pairs under the given node
+	 */
 	public Map<String, String> getMap(String node);
+	/**
+	 * Deletes a key-value pair under a given node.
+	 * @param node the top-level node (e.g. "mapping")
+	 * @param key the to-be-deleted key-value pair's key 
+	 */
 	public void delete(String node, String key);
+	/**
+	 * Deletes all key-value pairs under a given node.
+	 * @param node the top-level node (e.g. "mapping") 
+	 */
 	public void delete(String node);
 }

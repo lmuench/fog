@@ -31,7 +31,7 @@ import net.fognode.response.api.Response;
  * interface.
  * The StatelessDeviceShadow (@see net.fognode.shadow.stateless.StatelessDeviceShadow)
  * does not implement said pattern and simply forwards requests to its assigned
- * clients.
+ * client.
  * Shadow objects should be created by a ShadowFactory.
  *  
  * @author Ludwig Muench
@@ -39,9 +39,10 @@ import net.fognode.response.api.Response;
  */
 public interface Shadow {
 	/**
-	 * Handles a request.
-	 * @param req
-	 * @param res
+	 * Handles a request. When the "Device Shadow" IoT pattern is not applied,
+	 * this method simpy forwards the request to its  assigned client.
+	 * @param req protocol-independent request (@see net.fognode.request.api.Request)
+	 * @param res protocol-independent response (@see net.fognode.response.api.Response)
 	 */
 	public void handle(Request req, Response res);
 }

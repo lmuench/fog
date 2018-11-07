@@ -23,7 +23,20 @@ package net.fognode.store.api;
 
 import java.util.Map;
 
+/**
+ * Key-value store for persisting data, accessible by any component,
+ * specifically: Mapping (@see net.fognode.mapping.api.Mapping),
+ * Middleware (@see net.fognode.middleware.api.Middleware),
+ * Shadow (@see net.fognode.shadow.api.Shadow)
+ * @author Ludwig Muench
+ */
 public interface Store {
+	/**
+	 * 
+	 * @param node
+	 * @param key
+	 * @param value
+	 */
 	public void put(String node, String key, String value);
 	public void putMap(String node, Map<String, String> value);
 	public String get(String node, String key);

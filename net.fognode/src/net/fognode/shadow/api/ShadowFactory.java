@@ -21,6 +21,15 @@
  ******************************************************************************/
 package net.fognode.shadow.api;
 
+/**
+ * A Shadow (@see net.fognode.shadow.api.Shadow) factory.
+ * @author Ludwig Muench
+ */
 public interface ShadowFactory {
+	/**
+	 * Shadow factory method.
+	 * @param protocol current request's protocol (e.g. "HTTP")
+	 * @return a device shadow implementation to handle the current request
+	 */
 	public Shadow createShadow(String protocol);
 }

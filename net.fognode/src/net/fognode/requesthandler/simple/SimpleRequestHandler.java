@@ -83,13 +83,12 @@ public class SimpleRequestHandler implements RequestHandler {
 		return true;
 	}
 	
-	private boolean processResponse(Request req, Response res) {
+	private void processResponse(Request req, Response res) {
 		for (Middleware middleware : activeMiddleware) {
 			if(!middleware.processResponse(req, res)) {
-				return false;
+				return;
 			};
 		}
-		return true;
 	}
 	
 	private void addResourceLocationToRequest(Request req) {

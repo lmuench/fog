@@ -23,13 +23,35 @@ package net.fognode.request.api;
 
 import java.util.Map;
 
+/**
+ * A Request (@see net.fognode.request.api.Request) factory.
+ * @author Ludwig Muench
+ *
+ */
 public interface RequestFactory {
+	/**
+	 * Request factory method.
+	 * @param protocol the protocol (e.g. "HTTP")
+	 * @param method the method (e.g. "POST")
+	 * @param location the path of the user-defined gateway API's resource
+	 * (e.g. "/temperatures/1") which was called
+	 * @param payload the payload (e.g. HTTP request body)
+	 * @return a Request object
+	 */
 	public Request createRequest(
 		String protocol,
 		String method,
 		String location,
 		Map<String, Object> payload
 	);
+	/**
+	 * Request factory method.
+	 * @param protocol the protocol (e.g. "HTTP")
+	 * @param method the method (e.g. "POST")
+	 * @param location the path of the user-defined gateway API's resource
+	 * (e.g. "/temperatures/1") which was called
+	 * @return a Request object without a payload
+	 */
 	public Request createRequest(
 		String protocol,
 		String method,

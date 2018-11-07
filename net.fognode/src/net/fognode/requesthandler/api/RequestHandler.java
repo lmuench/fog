@@ -24,6 +24,13 @@ package net.fognode.requesthandler.api;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
+/**
+ * The RequestHandler is the heart of the gateway. It has outgoing dependencies
+ * to most of the main components of the gateway.
+ * 
+ * @author Ludwig Muench
+ *
+ */
 public interface RequestHandler {
 	public void handleRequest(Request req, Response res);
 }

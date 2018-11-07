@@ -39,7 +39,7 @@ public interface MappingRepository {
 	public Map<String, String> getMapping();
 	/**
 	 * Setter for the mapping
-	 * @param the new mapping which will replace the old mapping
+	 * @param mapping the new mapping which will replace the old mapping
 	 */
 	public void setMapping(Map<String, String> mapping);
 	/**

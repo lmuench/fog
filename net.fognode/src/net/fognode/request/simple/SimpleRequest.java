@@ -39,14 +39,10 @@ public class SimpleRequest implements Request {
 	private String resourceLocation;
 	private Object payload;
 	
-	/**
+	/*
 	 * Constructor.
 	 * For increased security, create a new implementation populating the
 	 * payload attribute with a defensive deep copy of the payload argument. 
-	 * 
-	 * @param protocol
-	 * @param method
-	 * @param payload
 	 */
 	public SimpleRequest(
 		String protocol,
@@ -96,12 +92,10 @@ public class SimpleRequest implements Request {
 		this.resourceLocation = resourceLocation;
 	}
 	
-	/**
+	/*
 	 * Payload getter.
 	 * For increased security, create a new implementation returning a
 	 * defensive deep copy of the payload.
-	 * 
-	 * @return
 	 */
 	@Override
 	public Object getPayload() {

@@ -28,6 +28,11 @@ import java.util.Map;
 import net.fognode.middlewareutils.api.MiddlewareUtils;
 import net.fognode.response.api.Response;
 
+/**
+ * MiddlewareUtils implementation.
+ * 
+ * @author Ludwig Muench
+ */
 public class SimpleMiddlewareUtils implements MiddlewareUtils {
 
 	@Override

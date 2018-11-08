@@ -27,6 +27,12 @@ import org.osgi.framework.BundleContext;
 
 import net.fognode.request.api.RequestFactory;
 
+/**
+ * Registers SimpleRequestFactory as a RequestFactory
+ * (@see net.fognode.request.api.RequestFactory) OSGi service.
+ * 
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

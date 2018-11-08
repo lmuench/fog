@@ -31,6 +31,13 @@ import org.yaml.snakeyaml.Yaml;
 
 import net.fognode.rd.api.RD;
 
+/**
+ * Mock RD (@see net.fognode.rd.api.RD) implementation.
+ * It returns a List of endpoints, as they're defined in
+ * /net/fognode/rd/mock/endpoints.yaml inside the bundle's jar file.
+ * 
+ * @author Ludwig Muench
+ */
 public class MockRD implements RD {
 	private String yamlPath;
 	private Yaml yaml;

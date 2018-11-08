@@ -27,6 +27,12 @@ import org.osgi.framework.BundleContext;
 
 import net.fognode.rd.api.RD;
 
+/**
+ * Registers MockRD as an RD (@see net.fognode.rd.api.RD) OSGi service.
+ *   
+ * @author Ludwig Muench
+ */
+
 public class Activator extends DependencyActivatorBase {
 
 	@Override

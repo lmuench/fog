@@ -27,13 +27,19 @@ import net.fognode.response.api.Response;
 /**
  * Middleware can manipulate the Request and a Response object of any request
  * handled by the RequestHandler and create side-effects as well.
- * The default RequestHandler implementation
+ * Since Middleware implementations have to be registered as OSGi services,
+ * middleware can hold state for its bundle's lifetime. On top of that it can
+ * persist data, as long as there is an action Store
+ * (@see net.fognode.store.api.Store) service. As a matter of convention, it
+ * should store its data under the "middleware" node.
+ * 
+ * Note: The default RequestHandler implementation
  * (@see net.fognode.requesthandler.simple.SimpleRequestHandler) passes the
  * Request and Response objects to all Middleware implementations in ACTIVE
  * state, in the same order as the implementations were started.
  * 
- * Writing and/or installing custom middleware should be considered first,
- * when extensions to the gateway's functionality are required.
+ * Writing and/or installing custom middleware should be the first thing to
+ * consider when extensions to the gateway's functionality are required.
  * Each single Middleware implementation should reside in its own bundle.
  * This way Middleware can be installed, started and stopped during runtime
  * over the gateway's web UI or alternatively via the Felix Gogo shell.

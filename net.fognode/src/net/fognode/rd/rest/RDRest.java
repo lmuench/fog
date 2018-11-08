@@ -31,6 +31,15 @@ import javax.ws.rs.core.MediaType;
 
 import net.fognode.rd.api.RD;
 
+/**
+ * RD (@see net.fognode.rd.api.RD) REST API returning JSON.
+ * Offers an "/endpoint" resource, representing endpoints registered in an RD.
+ * Accepts GET requests to "/endpoints", parses endpoints between
+ * List<Map<String, Object>> and JSON arrays and forwards requests to an active
+ * RD OSGi service.
+ * 
+ * @author Ludwig Muench
+ */
 @Path("/rd")
 public class RDRest {
 	private volatile RD rd;

@@ -35,11 +35,11 @@ import net.fognode.mapping.api.MappingRepository;
 
 /**
  * MappingRepository (@see net.fognode.mapping.api.MappingRepository) REST API
- * accepting JSON.
+ * accepting and returning JSON.
  * Offers a "/mapping" resource, representing the mapping stored in a
  * MappingRepository.
- * Offers GET, PUT and DELETE requests to "/mapping", parses mappings between
- * Map<String, String> and JSON and forwards requests to an active
+ * Accepts GET, PUT and DELETE requests to "/mapping", parses mappings between
+ * Map<String, String> and JSON objects and forwards requests to an active
  * MappingRepository OSGi service.
  * 
  * @author Ludwig Muench

@@ -36,8 +36,8 @@ import net.fognode.response.api.Response;
  * success statusses for any POST, GET, PUT and DELETE request.
  * For any other request type (e.g. PATCH) it returns status 405 ("Method Not
  * Allowed").    
+ * 
  * @author Ludwig Muench
- *
  */
 public class HttpClientStub implements Client {
 	

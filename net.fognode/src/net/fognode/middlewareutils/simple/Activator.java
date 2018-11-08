@@ -27,6 +27,12 @@ import org.osgi.framework.BundleContext;
 
 import net.fognode.middlewareutils.api.MiddlewareUtils;
 
+/**
+ * Registers SimpleMiddlewareUtils as a MiddlewareUtils 
+ * (@see net.fognode.middlewareutils.api.MiddlewareUtils) OSGi service.
+ *   
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

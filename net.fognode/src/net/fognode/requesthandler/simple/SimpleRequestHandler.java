@@ -34,6 +34,22 @@ import net.fognode.response.api.Response;
 import net.fognode.shadow.api.Shadow;
 import net.fognode.shadow.api.ShadowFactory;
 
+/**
+ * RequestHandler (@see net.fognode.requesthandler.api.RequestHandler)
+ * implementation.
+ * 
+ * Request handling (@see SimpleRequestHandler#handleRequest(Request, Response)})
+ * sequence of actions:
+ * 1. Get resource location from MappingRepository
+ * (@see net.fognode.mapping.api.MappingRepository) service and stop processing
+ * the request if no matching resource location is found. 
+ * 2. Apply all active middleware (@see net.fognode.middleware.api.Middleware)
+ * in the order the middleware services were started, and stop processing the
+ * request if and as soon as any middleware service returns <code>false</code>.
+ * 3.
+ * 
+ * @author Ludwig Muench
+ */
 public class SimpleRequestHandler implements RequestHandler {
 	private volatile MappingRepository mapping;
 	private volatile List<Middleware> activeMiddleware = new ArrayList<Middleware>();

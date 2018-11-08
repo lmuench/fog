@@ -26,6 +26,14 @@ import java.util.Map;
 import net.fognode.request.api.Request;
 import net.fognode.request.api.RequestFactory;
 
+/**
+ * RequestFactory (@see net.fognode.request.api.RequestFactory) implementation,
+ * creating SimpleRequest (@see net.fognode.request.simple.SimpleRequest)
+ * objects.
+ * 
+ * @author Ludwig Muench
+ *
+ */
 public class SimpleRequestFactory implements RequestFactory {
 
 	@Override

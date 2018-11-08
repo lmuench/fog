@@ -27,6 +27,13 @@ import org.osgi.framework.BundleContext;
 
 import net.fognode.rd.api.RD;
 
+/**
+ * Registers RDRest as an OSGi service with a dependency to an RD
+ * (@see net.fognode.rd.api.RD) service.
+ *   
+ * @author Ludwig Muench
+ */
+
 public class Activator extends DependencyActivatorBase {
 
 	@Override

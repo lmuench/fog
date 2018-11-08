@@ -40,7 +40,26 @@ import net.fognode.requesthandler.api.RequestHandler;
 import net.fognode.response.api.Response;
 import net.fognode.response.api.ResponseFactory;
 
-
+/**
+ * RequestHandler (@see net.fognode.requesthandler.api.RequestHandler) REST API
+ * accepting and returning JSON.
+ * Offers a "/gateway" resource which forwards ingoing requests to an active
+ * RequestHandler. 
+ * Accepts POST, GET and PUT requests to "/gateway", parses between Maps / List
+ * and JSON objects / arrays, creates Request (@see net.fognode.request.api.Request)
+ * and Response (@see net.fognode.response.api.Response) objects, and passes them to
+ * an active RequestHandler OSGi service.
+ * The path segments following "/gateway" become the Request object's location
+ * property. Example: a call to http://localhost:8080/services/gateway/temperatures/1
+ * causes a Request object to be created with the location property "/temperatures/1".
+ * 
+ * If the RequestHandler throws an <code>UnsupportetOperationException</code>, which
+ * the SimpleRequestHandler (@see net.fognode.requesthandler.api.simple) does when no
+ * active HTTP client service is available, the HTTP response status becomes 501
+ * ("Not Implemented").
+ * 
+ * @author Ludwig Muench
+ */
 @Path("/gateway")
 public class RequestHandlerRest {
 	private volatile RequestFactory requestFactory;

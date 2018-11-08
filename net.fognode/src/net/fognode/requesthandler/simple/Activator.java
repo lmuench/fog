@@ -32,6 +32,17 @@ import net.fognode.shadow.api.ShadowFactory;
 
 public class Activator extends DependencyActivatorBase {
 
+	/**
+	 * Registers SimpleRequestHandler as a RequestHandler
+	 * (@see net.fognode.requesthandler.api.RequestHandler) OSGi service with
+	 * dependencies to a MappingRepository service, a ShadowFactory service, as
+	 * well as all active Middlewareservices. To keep track of all active
+	 * middleware, the SimpleRequestHandler observes the service registry
+	 * withhelp of its "added()" and "removed() methods registered as callbacks
+	 * below.
+	 * 
+	 * @author Ludwig Muench
+	 */
 	@Override
 	public void init(BundleContext context, DependencyManager manager) throws Exception {
 		manager.add(

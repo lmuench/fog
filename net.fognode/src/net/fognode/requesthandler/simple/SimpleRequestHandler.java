@@ -38,6 +38,10 @@ import net.fognode.shadow.api.ShadowFactory;
  * RequestHandler (@see net.fognode.requesthandler.api.RequestHandler)
  * implementation.
  * 
+ * The SimpleRequestHandler has outgoing dependencies to a MappingRepository
+ * OSGi service, a ShadowFactory service, as well as all active Middleware
+ * services (@see net.fognode.requesthandler.simple.Activator). 
+ * 
  * Request handling (@see SimpleRequestHandler#handleRequest(Request, Response)})
  * sequence of actions:
  * 1. Get resource location from MappingRepository
@@ -46,7 +50,12 @@ import net.fognode.shadow.api.ShadowFactory;
  * 2. Apply all active middleware (@see net.fognode.middleware.api.Middleware)
  * in the order the middleware services were started, and stop processing the
  * request if and as soon as any middleware service returns <code>false</code>.
- * 3.
+ * 3. Try to create a device shadow (@see net.fognode.shadow.api.Shadow) suitable
+ * for the current request's protocol (e.g. HTTP). Then either pass on the
+ * request to the device shadow, or throw and exception if no device shadow
+ * implementation for said protocol is available.
+ * 4. As soon as the device shadow has handled the request, apply all active
+ * middleware once again, processing the response this time.
  * 
  * @author Ludwig Muench
  */

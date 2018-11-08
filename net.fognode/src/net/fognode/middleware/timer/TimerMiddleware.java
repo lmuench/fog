@@ -27,6 +27,17 @@ import net.fognode.middleware.api.Middleware;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
+/**
+ * Middleware for measuring the time between request and response. This
+ * measurement is not accurate, since it doesn't measure at the ingoing edge,
+ * but useful for determining the chronological order of multiple requests and
+ * responses.
+ * It prints a timestamp when the RequestHandler
+ * (@see net.fognode.requesthandler.api.RequestHandler) applies the TimerMiddleware to
+ * a request, and again when it applies TimerMiddleware to its response.
+ * 
+ * @author Ludwig Muench
+ */
 public class TimerMiddleware implements Middleware {
 
 	@Override

@@ -28,6 +28,12 @@ import net.fognode.middlewareutils.api.MiddlewareUtils;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
+/**
+ * Middleware that adds a timestamp to every Response
+ * (@see net.fognode.response.api.Response).
+ * 
+ * @author Ludwig Muench
+ */
 public class TimestampMiddleware implements Middleware {
 	private volatile MiddlewareUtils utils;
 

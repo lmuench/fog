@@ -28,6 +28,13 @@ import org.osgi.framework.BundleContext;
 import net.fognode.mapping.api.MappingRepository;
 import net.fognode.store.api.Store;
 
+/**
+ * Registers PersistentMappingRepository as a MappingRepository 
+ * (@see net.fognode.mapping.api.MappingRepository) OSGi service with a
+ * dependency to a Store (@see net.fognode.store.api.Store) service.
+ *   
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

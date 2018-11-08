@@ -27,6 +27,12 @@ import org.osgi.framework.BundleContext;
 
 import net.fognode.mapping.api.MappingRepository;
 
+/**
+ * Registers MappingRest as an OSGi service with a dependency to a
+ * MappingRepository (@see net.fognode.store.api.Store) service.
+ *   
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

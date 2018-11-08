@@ -29,6 +29,12 @@ import org.osgi.framework.BundleContext;
 
 import net.fognode.client.api.Client;
 
+/**
+ * Registers HttpClientStub as a Client (@see net.fognode.client.api.Client) OSGi
+ * service with a protocol=HTTP property.
+ *   
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

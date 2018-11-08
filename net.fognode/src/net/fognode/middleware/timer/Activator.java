@@ -27,6 +27,12 @@ import org.osgi.framework.BundleContext;
 
 import net.fognode.middleware.api.Middleware;
 
+/**
+ * Registers TimerMiddleware as a Middleware 
+ * (@see net.fognode.middleware.api.Middleware) OSGi service.
+ *   
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 	
 	@Override

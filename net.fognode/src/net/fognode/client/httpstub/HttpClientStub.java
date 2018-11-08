@@ -30,6 +30,15 @@ import net.fognode.client.api.Client;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
+/**
+ * Client (@see net.fognode.client.api.Client) stub implementation.
+ * It returns random values for any POST and GET HTTP request, as well as
+ * success statusses for any POST, GET, PUT and DELETE request.
+ * For any other request type (e.g. PATCH) it returns status 405 ("Method Not
+ * Allowed").    
+ * @author Ludwig Muench
+ *
+ */
 public class HttpClientStub implements Client {
 	
 	@Override

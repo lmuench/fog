@@ -27,6 +27,17 @@ import java.util.Map;
 import net.fognode.mapping.api.MappingRepository;
 import net.fognode.store.api.Store;
 
+/**
+ * Persistent MappingRepository (@see net.fognode.mapping.api.MappingRepository)
+ * implementation. This implementation uses a currently active Store
+ * (@see net.fognode.store.api.Store) service to persist its mapping data
+ * immediatly, each time it receives a new mapping.
+ * When the bundle gets initialized, it restores the persisted mapping from an
+ * active Store. 
+ * 
+ * @author Ludwig Muench
+ *
+ */
 public class PersistentMappingRepository implements MappingRepository {
 	private volatile Store store;
 	private static Map<String, String> mapping = new HashMap<String, String>();

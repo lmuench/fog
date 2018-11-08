@@ -28,6 +28,12 @@ import org.osgi.framework.BundleContext;
 import net.fognode.middleware.api.Middleware;
 import net.fognode.middlewareutils.api.MiddlewareUtils;
 
+/**
+ * Registers TimestampMiddleware as a Middleware 
+ * (@see net.fognode.middleware.api.Middleware) OSGi service.
+ *   
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

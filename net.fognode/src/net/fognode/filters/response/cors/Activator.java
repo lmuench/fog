@@ -25,6 +25,11 @@ import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
 
+/**
+ * Registers CorsResponseFilter as an OSGi service.
+ *   
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

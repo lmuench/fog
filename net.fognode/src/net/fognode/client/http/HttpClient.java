@@ -34,6 +34,18 @@ import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 import okhttp3.OkHttpClient;
 
+/**
+ * HTTP Client (@see net.fognode.client.api.Client) implementation usig okhttp3
+ * (see <a href="http://square.github.io/okhttp">square.github.io/okhttp</a>).
+ * This implementation only supports POST, GET and PUT requests.
+ * For any other request type (e.g. PATCH) it returns status 405 ("Method Not
+ * Allowed").
+ * If the request execution fails, it returns 502 ("Bad Gateway").
+ * If the HTTP response body cannot be parsed as JSON, it returns 500
+ * ("Internal Server Error").
+ *  
+ * @author Ludwig Muench
+ */
 public class HttpClient implements Client {
 	public static final okhttp3.MediaType JSON = (
 		okhttp3.MediaType.parse("application/json; charset=utf-8")

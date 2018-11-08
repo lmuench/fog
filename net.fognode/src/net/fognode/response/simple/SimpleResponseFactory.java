@@ -24,6 +24,13 @@ package net.fognode.response.simple;
 import net.fognode.response.api.Response;
 import net.fognode.response.api.ResponseFactory;
 
+/**
+ * ResponseFactory (@see net.fognode.response.api.ResponseFactory)
+ * implementation, creating SimpleResponse
+ * (@see net.fognode.response.simple.SimpleResponse) objects.
+ * 
+ * @author Ludwig Muench
+ */
 public class SimpleResponseFactory implements ResponseFactory {
 	
 	@Override

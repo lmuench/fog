@@ -28,6 +28,16 @@ import org.osgi.framework.BundleContext;
 import net.fognode.client.api.Client;
 import net.fognode.shadow.api.ShadowFactory;
 
+/**
+ * Registers StatelessShadowFactory as a ShadowFactory
+ * (@see net.fognode.shadow.api.ShadowFactory) OSGi service with dependencies
+ * to all active Client (@see net.fognode.client.api.Client) services. To keep
+ * track of all active clients, the StatelessShadowFactory observes the service
+ * registry withhelp of its "added()" and "removed() methods registered as
+ * callbacks below.
+ * 
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

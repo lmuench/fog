@@ -38,8 +38,8 @@ import net.fognode.shadow.api.ShadowFactory;
  * RequestHandler (@see net.fognode.requesthandler.api.RequestHandler)
  * implementation.
  * 
- * The SimpleRequestHandler has outgoing dependencies to a MappingRepository
- * OSGi service, a ShadowFactory service, as well as all active Middleware
+ * The SimpleRequestHandler keeps references to a MappingRepository OSGi
+ * service, a ShadowFactory service, as well as all active Middleware
  * services (@see net.fognode.requesthandler.simple.Activator). 
  * 
  * Request handling (@see SimpleRequestHandler#handleRequest(Request, Response)})

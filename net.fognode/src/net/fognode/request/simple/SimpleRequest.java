@@ -24,13 +24,12 @@ package net.fognode.request.simple;
 import net.fognode.request.api.Request;
 
 /**
- * HTTP Request implementation.
+ * Request (@see net.fognode.request.api.Request) implementation.
  * For increased security (but decreased performance), create a new Request
  * implementation using defensive deep copies inside the constructor and
  * payload getter.
  * 
  * @author Ludwig Muench
- *
  */
 public class SimpleRequest implements Request {
 	private String protocol;

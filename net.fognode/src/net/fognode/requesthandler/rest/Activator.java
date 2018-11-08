@@ -29,6 +29,15 @@ import net.fognode.request.api.RequestFactory;
 import net.fognode.requesthandler.api.RequestHandler;
 import net.fognode.response.api.ResponseFactory;
 
+/**
+ * Registers RequestHandlerRest as an OSGi service with a dependencies to a
+ * RequestFactory (@see net.fognode.request.api.RequestFactory) service, a
+ * ResponseFactory (@see net.fognode.response.api.ResponseFactory) service and
+ * a RequestHandler (@see net.fognode.requesthandler.api.RequestHandler)
+ * service.
+ *   
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

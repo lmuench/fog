@@ -23,6 +23,11 @@ package net.fognode.response.simple;
 
 import net.fognode.response.api.Response;
 
+/**
+ * Response (@see net.fognode.response.api.Response) implementation.
+ * 
+ * @author Ludwig Muench
+ */
 public class SimpleResponse implements Response {
 	private int status;
 	private Object payload;

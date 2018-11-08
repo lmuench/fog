@@ -23,8 +23,8 @@ package net.fognode.response.api;
 
 /**
  * A Response (@see net.fognode.response.api.Response) factory.
+ * 
  * @author Ludwig Muench
- *
  */
 public interface ResponseFactory {
 	/**

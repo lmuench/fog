@@ -32,7 +32,6 @@ import net.fognode.request.api.RequestFactory;
  * objects.
  * 
  * @author Ludwig Muench
- *
  */
 public class SimpleRequestFactory implements RequestFactory {
 

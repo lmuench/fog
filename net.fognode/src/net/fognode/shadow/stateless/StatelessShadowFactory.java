@@ -28,6 +28,16 @@ import net.fognode.client.api.Client;
 import net.fognode.shadow.api.Shadow;
 import net.fognode.shadow.api.ShadowFactory;
 
+/**
+ * ShadowFactory (@see net.fognode.shadow.api.ShadowFactory)
+ * implementation, creating StatelessShadow
+ * (@see net.fognode.shadow.stateless.StatelessShadow) objects.
+ * 
+ * It keeps references to all active Clients (@see net.fognode.client.api.Client)
+ * (@see net.fognode.requesthandler.simple.Activator).
+ * 
+ * @author Ludwig Muench
+ */
 public class StatelessShadowFactory implements ShadowFactory {
 	private volatile List<Client> clients = new ArrayList<Client>();
 	
@@ -39,9 +49,10 @@ public class StatelessShadowFactory implements ShadowFactory {
 		clients.remove(client);
 	}
 
-	/**
+	/*
 	 * Creates a shadow and injects a matching client.
-	 * Throws IllegalArgumentException, if no matching client is available.
+	 * Throws IllegalArgumentException, if no client matching the protocol
+	 * argument (e.g. "HTTP") is available.
 	 */
 	@Override
 	public Shadow createShadow(String protocol) throws IllegalArgumentException {

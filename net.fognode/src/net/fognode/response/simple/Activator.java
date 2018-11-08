@@ -27,6 +27,12 @@ import org.osgi.framework.BundleContext;
 
 import net.fognode.response.api.ResponseFactory;
 
+/**
+ * Registers SimpleResponseFactory as a ResponseFactory
+ * (@see net.fognode.request.api.ResponseFactory) OSGi service.
+ * 
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

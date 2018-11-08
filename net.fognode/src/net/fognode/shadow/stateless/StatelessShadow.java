@@ -27,9 +27,10 @@ import net.fognode.response.api.Response;
 import net.fognode.shadow.api.Shadow;
 
 /**
- * Stateless Shadow implementation, simply forwarding requests and returning
- * responses.
- * When a request times out because a device is temporarely offline, this
+ * Stateless Shadow (@see net.fognode.shadow.api.Shadow) implementation, simply
+ * forwarding requests and returningresponses.
+ * 
+ * If a request times out because a device is temporarely offline, this
  * implementation will not wait until it comes back online to synchronize
  * states.
  * 

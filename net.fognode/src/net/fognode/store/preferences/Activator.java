@@ -26,6 +26,12 @@ import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
 import net.fognode.store.api.Store;
 
+/**
+ * Registers PreferencesStore as a Store (@see net.fognode.store.api.store)
+ * OSGi service.
+ * 
+ * @author Ludwig Muench
+ */
 public class Activator extends DependencyActivatorBase {
 
 	@Override

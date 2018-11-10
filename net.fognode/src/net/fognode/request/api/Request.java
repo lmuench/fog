@@ -45,21 +45,22 @@ public interface Request {
 	 */
 	public String getMethod();
 	/**
-	 * Location getter. The location is only the path of a REST resource of the
-	 * user-defined API, which was called (e.g. "/humidity/1") and has
-	 * triggered the creation of the current request.
-	 * @return the request's location
+	 * Ingoing path getter. Ingoing path = the path of the user-defined REST
+	 * resource (e.g. "/humidity/1") which, after receiving a protocol-specifie
+	 * (e.g. HTTP) request, has triggered the creation of this protocol-independent
+	 * request.
+	 * @return the request's ingoing path
 	 */
-	public String getLocation();
+	public String getIngoingPath();
 	/**
-	 * Resource location getter. The resource location is the complete URL
-	 * (e.g. "http://127.0.0.1:5000/humid1") of the targeted resource, as it
+	 * Outgoing URL getter. Outgoing URL = the complete URL (e.g.
+	 * "http://127.0.0.1:5000/humid1") of the targeted resource, as it
 	 * was registered in the Resource Directory when the mapping was created.
 	 * The client (@see net.fognode.client.api.Client) at the outgoing edge of
 	 * the gateway will send a protocol-specific request to this URL.
 	 * @return the request's location
 	 */
-	public String getResourceLocation();
+	public String getOutgoingURL();
 	/**
 	 * Resource location setter. 
 	 * @param resourceLocation the resource location

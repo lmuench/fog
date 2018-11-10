@@ -68,8 +68,8 @@ public class PersistentMappingRepository implements MappingRepository {
 	}
 	
 	@Override
-	public String getResourceLocation(String location) {
-		return mapping.get(location);
+	public String getOutgoingURL(String ingoingPath) {
+		return mapping.get(ingoingPath);
 	}
 		
 	public void persistMapping() { 

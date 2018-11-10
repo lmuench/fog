@@ -78,7 +78,7 @@ public class HttpClient implements Client {
 		okhttp3.RequestBody body = okhttp3.RequestBody.create(JSON, json);
 		okhttp3.Request httpReq = (
 			new okhttp3.Request.Builder()
-			.url(req.getResourceLocation())
+			.url(req.getOutgoingURL())
 			.post(body)
 			.build()
 		);
@@ -88,7 +88,7 @@ public class HttpClient implements Client {
 	private void get(Request req, Response res) {
 		okhttp3.Request httpReq = (
 			new okhttp3.Request.Builder()
-			.url(req.getResourceLocation())
+			.url(req.getOutgoingURL())
 			.build()
 		);
 		executeRequest(httpReq, res);
@@ -100,7 +100,7 @@ public class HttpClient implements Client {
 		okhttp3.RequestBody body = okhttp3.RequestBody.create(JSON, json);
 		okhttp3.Request httpReq = (
 			new okhttp3.Request.Builder()
-			.url(req.getResourceLocation())
+			.url(req.getOutgoingURL())
 			.put(body)
 			.build()
 		);

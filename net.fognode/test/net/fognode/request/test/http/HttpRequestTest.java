@@ -55,7 +55,7 @@ public class HttpRequestTest {
 	public void testHttpRequest() {
 		assertEquals(cut.getProtocol(), protocol);
 		assertEquals(cut.getMethod(), method);
-		assertEquals(cut.getLocation(), location);
+		assertEquals(cut.getIngoingPath(), location);
 		assertEquals(cut.getPayload(), payload);
 	}
 	

@@ -47,8 +47,9 @@ public interface MappingRepository {
 	 */
 	public void deleteMapping();
 	/**
-	 * @param location the resource (path) of the user-defined API (e.g. "/temperatures/1") 
-	 * @return the url of the actual resource (e.g. "http://localhost:5000/temp1")
+	 * @param ingoingPath the ingoing path of the user-defined API (e.g. "/temperatures/1") 
+	 * @return the URL of the resource the request should be forwarded to (e.g.
+	 * "http://localhost:5000/temp1")
 	 */
-	public String getResourceLocation(String location);
+	public String getOutgoingURL(String ingoingPath);
 }

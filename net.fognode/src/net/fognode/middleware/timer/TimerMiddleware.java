@@ -44,7 +44,7 @@ public class TimerMiddleware implements Middleware {
 	public boolean processRequest(Request req, Response res) {
 		System.out.println(
 			"TimerMiddleware# " +
-			req.getLocation() +
+			req.getIngoingPath() +
 			" requested @ " +
 			Instant.now().toString()
 		);
@@ -55,7 +55,7 @@ public class TimerMiddleware implements Middleware {
 	public boolean processResponse(Request req, Response res) {
 		System.out.println(
 			"TimerMiddleware# " +
-			req.getLocation() +
+			req.getIngoingPath() +
 			" responded @ " +
 			Instant.now().toString()
 		);

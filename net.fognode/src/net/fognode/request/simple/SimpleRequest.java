@@ -34,8 +34,8 @@ import net.fognode.request.api.Request;
 public class SimpleRequest implements Request {
 	private String protocol;
 	private String method;
-	private String location;
-	private String resourceLocation;
+	private String ingoingPath;
+	private String outgoingURL;
 	private Object payload;
 	
 	/*
@@ -51,7 +51,7 @@ public class SimpleRequest implements Request {
 	) {
 		this.protocol = protocol;
 		this.method = method;
-		this.location = location;
+		this.ingoingPath = location;
 		this.payload = payload;
 	}
 	
@@ -62,7 +62,7 @@ public class SimpleRequest implements Request {
 	) {
 		this.protocol = protocol;
 		this.method = method;
-		this.location = location;
+		this.ingoingPath = location;
 		this.payload = null;
 	}
 
@@ -77,18 +77,18 @@ public class SimpleRequest implements Request {
 	}
 	
 	@Override
-	public String getLocation() {
-		return location;
+	public String getIngoingPath() {
+		return ingoingPath;
 	}
 
 	@Override
-	public String getResourceLocation() {
-		return resourceLocation;
+	public String getOutgoingURL() {
+		return outgoingURL;
 	}
 	
 	@Override
 	public void setResourceLocation(String resourceLocation) {
-		this.resourceLocation = resourceLocation;
+		this.outgoingURL = resourceLocation;
 	}
 	
 	/*

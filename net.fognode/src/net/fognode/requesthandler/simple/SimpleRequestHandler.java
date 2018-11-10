@@ -44,9 +44,9 @@ import net.fognode.shadow.api.ShadowFactory;
  * 
  * Request handling (@see SimpleRequestHandler#handleRequest(Request, Response)})
  * sequence of actions:
- * 1. Get resource location from MappingRepository
+ * 1. Get outgoing URL from MappingRepository
  * (@see net.fognode.mapping.api.MappingRepository) service and stop processing
- * the request if no matching resource location is found. 
+ * the request if no matching outgoing URL is found. 
  * 2. Apply all active middleware (@see net.fognode.middleware.api.Middleware)
  * in the order the middleware services were started, and stop processing the
  * request if and as soon as any middleware service returns <code>false</code>.
@@ -74,8 +74,8 @@ public class SimpleRequestHandler implements RequestHandler {
 
 	@Override
 	public void handleRequest(Request req, Response res) throws UnsupportedOperationException {
-		addResourceLocationToRequest(req);
-		if(null == req.getResourceLocation()) {
+		addOutgoingUrlToRequest(req);
+		if(null == req.getOutgoingURL()) {
 			res.setStatus(Status.NOT_FOUND.getStatusCode());
 			return;
 		}
@@ -116,9 +116,9 @@ public class SimpleRequestHandler implements RequestHandler {
 		}
 	}
 	
-	private void addResourceLocationToRequest(Request req) {
+	private void addOutgoingUrlToRequest(Request req) {
 		req.setResourceLocation(
-			mapping.getResourceLocation(req.getLocation())
+			mapping.getOutgoingURL(req.getIngoingPath())
 		); 
 	}
 }

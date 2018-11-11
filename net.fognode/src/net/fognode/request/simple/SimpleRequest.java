@@ -44,25 +44,25 @@ public class SimpleRequest implements Request {
 	 * payload attribute with a defensive deep copy of the payload argument. 
 	 */
 	public SimpleRequest(
-		String protocol,
+		String protocol,  // TODO set protocol later; needs to be gotten from Mapping (just like outgoing URL)!!!
 		String method,
-		String location,
+		String ingoingPath,
 		Object payload
 	) {
 		this.protocol = protocol;
 		this.method = method;
-		this.ingoingPath = location;
+		this.ingoingPath = ingoingPath;
 		this.payload = payload;
 	}
 	
 	public SimpleRequest(
 		String protocol,
 		String method,
-		String location
+		String inqoingPath
 	) {
 		this.protocol = protocol;
 		this.method = method;
-		this.ingoingPath = location;
+		this.ingoingPath = inqoingPath;
 		this.payload = null;
 	}
 

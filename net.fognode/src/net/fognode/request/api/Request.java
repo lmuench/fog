@@ -40,6 +40,11 @@ public interface Request {
 	 */
 	public String getProtocol();
 	/**
+	 * Protocol (e.g. "HTTP") setter.
+	 * @param protocol the request's protocol
+	 */
+	public void setProtocol(String protocol);
+	/**
 	 * Method (e.g. "POST") getter.
 	 * @return the request's method
 	 */

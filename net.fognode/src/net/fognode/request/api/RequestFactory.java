@@ -33,28 +33,28 @@ public interface RequestFactory {
 	 * Request factory method.
 	 * @param protocol the protocol (e.g. "HTTP")
 	 * @param method the method (e.g. "POST")
-	 * @param location the path of the user-defined gateway API's resource
+	 * @param ingoingPath the path of the user-defined gateway API's resource
 	 * (e.g. "/temperatures/1") which was called
 	 * @param payload the payload (e.g. HTTP request body)
 	 * @return a Request object
 	 */
 	public Request createRequest(
-		String protocol,
+		String protocol,  // TODO set protocol later; needs to be gotten from Mapping (just like outgoing URL)!!!
 		String method,
-		String location,
+		String ingoingPath,
 		Map<String, Object> payload
 	);
 	/**
 	 * Request factory method.
 	 * @param protocol the protocol (e.g. "HTTP")
 	 * @param method the method (e.g. "POST")
-	 * @param location the path of the user-defined gateway API's resource
+	 * @param ingoingPath the path of the user-defined gateway API's resource
 	 * (e.g. "/temperatures/1") which was called
 	 * @return a Request object without a payload
 	 */
 	public Request createRequest(
-		String protocol,
+		String protocol,  // TODO set protocol later; needs to be gotten from Mapping (just like outgoing URL)!!!
 		String method,
-		String location
+		String ingoingPath
 	);
 }

@@ -44,23 +44,19 @@ public class SimpleRequest implements Request {
 	 * payload attribute with a defensive deep copy of the payload argument. 
 	 */
 	public SimpleRequest(
-		String protocol,  // TODO set protocol later; needs to be gotten from Mapping (just like outgoing URL)!!!
 		String method,
 		String ingoingPath,
 		Object payload
 	) {
-		this.protocol = protocol;
 		this.method = method;
 		this.ingoingPath = ingoingPath;
 		this.payload = payload;
 	}
 	
 	public SimpleRequest(
-		String protocol,
 		String method,
 		String inqoingPath
 	) {
-		this.protocol = protocol;
 		this.method = method;
 		this.ingoingPath = inqoingPath;
 		this.payload = null;
@@ -69,6 +65,11 @@ public class SimpleRequest implements Request {
 	@Override
 	public String getProtocol() {
 		return protocol;
+	}
+	
+	@Override
+	public void setProtocol(String protocol) {
+		this.protocol = protocol;
 	}
 
 	@Override
@@ -87,7 +88,7 @@ public class SimpleRequest implements Request {
 	}
 	
 	@Override
-	public void setResourceLocation(String resourceLocation) {
+	public void setOutgoingURL(String resourceLocation) {
 		this.outgoingURL = resourceLocation;
 	}
 	

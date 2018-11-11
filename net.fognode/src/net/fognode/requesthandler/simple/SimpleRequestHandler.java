@@ -80,6 +80,12 @@ public class SimpleRequestHandler implements RequestHandler {
 			return;
 		}
 		
+		boolean urlContainsProtocol = addProtocolToRequest(req);
+		if (!urlContainsProtocol) {
+			res.setStatus(Status.INTERNAL_SERVER_ERROR.getStatusCode());
+			return;
+		}
+		
 		boolean rejected = !processRequest(req, res);
 		if (rejected) return;
 		
@@ -117,8 +123,22 @@ public class SimpleRequestHandler implements RequestHandler {
 	}
 	
 	private void addOutgoingUrlToRequest(Request req) {
-		req.setResourceLocation(
+		req.setOutgoingURL(
 			mapping.getOutgoingURL(req.getIngoingPath())
 		); 
+	}
+	
+	private boolean addProtocolToRequest(Request req) {
+		String outgoingURL = req.getOutgoingURL();
+		try {
+			String protocol = outgoingURL.split(":")[0];
+			if (protocol.length() >= 0) {
+				req.setProtocol(protocol);
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

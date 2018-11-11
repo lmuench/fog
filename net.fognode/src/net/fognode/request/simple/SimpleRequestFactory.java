@@ -37,20 +37,18 @@ public class SimpleRequestFactory implements RequestFactory {
 
 	@Override
 	public Request createRequest(
-		String protocol,
 		String method,
 		String location,
 		Map<String, Object> payload
 	) {
-		return new SimpleRequest(protocol, method, location, payload);
+		return new SimpleRequest(method, location, payload);
 	}
 
 	@Override
 	public Request createRequest(
-		String protocol,
 		String method,
 		String location
 	) {
-		return new SimpleRequest(protocol, method, location);
+		return new SimpleRequest(method, location);
 	}
 }

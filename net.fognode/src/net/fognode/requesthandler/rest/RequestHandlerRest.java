@@ -92,7 +92,7 @@ public class RequestHandlerRest {
 	private Map<String, Object> handleRequest(String method, String path, Object httpBody) {
 		path = "/" + path;
 //		System.out.println("RequestHandlerRest# " + method + " " + path);
-		Request req = requestFactory.createRequest("HTTP", method, path);
+		Request req = requestFactory.createRequest(method, path);
 		req.setPayload(httpBody);
 	
 		Response res = responseFactory.createResponse();

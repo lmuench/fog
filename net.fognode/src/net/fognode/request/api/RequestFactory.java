@@ -39,7 +39,6 @@ public interface RequestFactory {
 	 * @return a Request object
 	 */
 	public Request createRequest(
-		String protocol,  // TODO set protocol later; needs to be gotten from Mapping (just like outgoing URL)!!!
 		String method,
 		String ingoingPath,
 		Map<String, Object> payload
@@ -53,7 +52,6 @@ public interface RequestFactory {
 	 * @return a Request object without a payload
 	 */
 	public Request createRequest(
-		String protocol,  // TODO set protocol later; needs to be gotten from Mapping (just like outgoing URL)!!!
 		String method,
 		String ingoingPath
 	);

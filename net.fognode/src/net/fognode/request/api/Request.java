@@ -67,10 +67,10 @@ public interface Request {
 	 */
 	public String getOutgoingURL();
 	/**
-	 * Resource location setter. 
-	 * @param resourceLocation the resource location
+	 * Outgoing URL setter. 
+	 * @param outgoingURL the outgoing URL
 	 */
-	public void setResourceLocation(String resourceLocation);
+	public void setOutgoingURL(String outgoingURL);
 	/**
 	 * Payload (e.g. HTTP request body) getter.
 	 * @return the request's payload

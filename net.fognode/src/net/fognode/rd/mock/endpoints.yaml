@@ -8,15 +8,15 @@ resources:
   - protocol: HTTP                # protocol
     if: sensor                    # interface description
     rt: temperature               # resource type
-    path: /temp1                  # resource path
+    path: /temp                   # resource path
   - protocol: HTTP                # protocol
     if: sensor                    # interface description
     rt: humidity                  # resource type
-    path: /humid1                 # resource path
+    path: /humid                  # resource path
   - protocol: HTTP                # protocol
     if: actuator                  # interface description
     rt: light                     # resource type
-    path: /light1                 # resource path
+    path: /light                  # resource path
 ---
 ep: endpoint2                     # endpoint name
 d: THK/F07/ZW717                  # sector
@@ -27,13 +27,5 @@ resources:
   - protocol: HTTP                # protocol
     if: actuator                  # interface description
     rt: light                     # resource type
-    path: /light2                 # resource path
-  - protocol: HTTP                # protocol
-    if: actuator                  # interface description
-    rt: light-on                  # resource type
-    path: /light2/on              # resource path
-  - protocol: HTTP                # protocol
-    if: actuator                  # interface description
-    rt: light-off                 # resource type
-    path: /light2/off             # resource path
+    path: /light                  # resource path
 

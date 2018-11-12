@@ -84,6 +84,10 @@ public class SimpleRequestHandler implements RequestHandler {
 		
 		boolean urlContainsProtocol = addProtocolToRequest(req);
 		if (!urlContainsProtocol) {
+			System.out.println(
+				"SimpleRequestHandler# INTERNAL SERVER ERRROR (500): URL " +
+				req.getOutgoingURL() + " is missing scheme!"
+			);
 			res.setStatus(Status.INTERNAL_SERVER_ERROR.getStatusCode());
 			return;
 		}

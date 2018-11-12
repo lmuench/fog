@@ -1,2 +1,0 @@
-Private-Package: net.fognode.client.httpstub
-Bundle-Activator: net.fognode.client.httpstub.Activator

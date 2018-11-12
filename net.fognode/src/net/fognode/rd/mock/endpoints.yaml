@@ -11,7 +11,7 @@ resources:
     path: /temp1                  # resource path
   - protocol: HTTP                # protocol
     if: sensor                    # interface description
-    rt: humidit                   # resource type
+    rt: humidity                  # resource type
     path: /humid1                 # resource path
   - protocol: HTTP                # protocol
     if: actuator                  # interface description

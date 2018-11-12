@@ -47,14 +47,16 @@ import net.fognode.shadow.api.ShadowFactory;
  * 1. Get outgoing URL from MappingRepository
  * (@see net.fognode.mapping.api.MappingRepository) service and stop processing
  * the request if no matching outgoing URL is found. 
- * 2. Apply all active middleware (@see net.fognode.middleware.api.Middleware)
+ * 2. Extract the protocol from the URL scheme and stop processing the request
+ * if the URL string (wrongly) does not contain a scheme.
+ * 3. Apply all active middleware (@see net.fognode.middleware.api.Middleware)
  * in the order the middleware services were started, and stop processing the
  * request if and as soon as any middleware service returns <code>false</code>.
- * 3. Try to create a device shadow (@see net.fognode.shadow.api.Shadow) suitable
+ * 4. Try to create a device shadow (@see net.fognode.shadow.api.Shadow) suitable
  * for the current request's protocol (e.g. HTTP). Then either pass on the
  * request to the device shadow, or throw and exception if no device shadow
  * implementation for said protocol is available.
- * 4. As soon as the device shadow has handled the request, apply all active
+ * 5. As soon as the device shadow has handled the request, apply all active
  * middleware once again, processing the response this time.
  * 
  * @author Ludwig Muench
@@ -92,16 +94,12 @@ public class SimpleRequestHandler implements RequestHandler {
 		try {
 			Shadow shadow;
 			shadow = shadowFactory.createShadow(req.getProtocol());
-			
 			shadow.handle(req, res);
 			
 			processResponse(req, res);
 			
 		} catch (UnsupportedOperationException e) {
-			throw new UnsupportedOperationException(
-				"SimpleRequestHandler# No client available for protocol: " +
-				req.getProtocol()
-			);
+			res.setStatus(Status.NOT_IMPLEMENTED.getStatusCode());
 		}
 	}
 	

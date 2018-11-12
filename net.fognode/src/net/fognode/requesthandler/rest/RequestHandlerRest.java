@@ -32,7 +32,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response.Status;
 
 import net.fognode.request.api.Request;
 import net.fognode.request.api.RequestFactory;
@@ -98,13 +97,9 @@ public class RequestHandlerRest {
 		Response res = responseFactory.createResponse();
 		Map<String, Object> json = new HashMap<>();
 
-		try {
-			requestHandler.handleRequest(req, res);
-			json.put("status", res.getStatus());
-			json.put("payload", res.getPayload());
-		} catch (UnsupportedOperationException e) {
-			json.put("status", Status.NOT_IMPLEMENTED.getStatusCode());
-		}
+		requestHandler.handleRequest(req, res);
+		json.put("status", res.getStatus());
+		json.put("payload", res.getPayload());
 
 		return json;
 	}

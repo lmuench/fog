@@ -50,7 +50,7 @@ public class PersistentMappingTest {
 
 	@Test
 	public void test() {
-		cut.setMapping(mapping);
+		cut.setMappings(mapping);
 		assertEquals(val1, cut.getOutgoingURL(key1));
 		assertEquals(val2, cut.getOutgoingURL(key2));
 		assertNotEquals(val1, cut.getOutgoingURL(key2));

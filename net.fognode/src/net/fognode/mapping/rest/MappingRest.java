@@ -51,18 +51,18 @@ public class MappingRest {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Map<String, String> getMappings() {
-		return mappingRepository.getMapping();
+		return mappingRepository.getMappings();
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void setMappings(Map<String, String> mappings) {
-		mappingRepository.setMapping(mappings);
+		mappingRepository.setMappings(mappings);
 	}
 	
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void deleteMapping() {
-		mappingRepository.deleteMapping();
+		mappingRepository.deleteMappings();
 	}
 }

@@ -40,40 +40,40 @@ import net.fognode.store.api.Store;
  */
 public class PersistentMappingRepository implements MappingRepository {
 	private volatile Store store;
-	private static Map<String, String> mapping = new HashMap<String, String>();
+	private static Map<String, String> mappings = new HashMap<String, String>();
 	
 	public void init() {
-		Map<String, String> mapping = store.getMap("mapping");
-		if (mapping == null) return;
-		PersistentMappingRepository.mapping = mapping;
+		Map<String, String> mappings = store.getMap("mappings");
+		if (mappings == null) return;
+		PersistentMappingRepository.mappings = mappings;
 //		System.out.println("PersistentMappingRepository# mapping restored: ");
 //		System.out.println(PersistentMappingRepository.mapping);
 	}
 
 	@Override
-	public Map<String, String> getMapping() {
-		return mapping;
+	public Map<String, String> getMappings() {
+		return mappings;
 	}
 
 	@Override
-	public void setMapping(Map<String, String> mapping) {
-		PersistentMappingRepository.mapping = mapping;
+	public void setMappings(Map<String, String> mappings) {
+		PersistentMappingRepository.mappings = mappings;
 		persistMapping();
 	}
 
 	@Override
-	public void deleteMapping() {
-		mapping = new HashMap<String, String>();
+	public void deleteMappings() {
+		mappings = new HashMap<String, String>();
 		persistMapping();
 	}
 	
 	@Override
 	public String getOutgoingURL(String ingoingPath) {
-		return mapping.get(ingoingPath);
+		return mappings.get(ingoingPath);
 	}
 		
 	public void persistMapping() { 
-		store.putMap("mapping", mapping);
+		store.putMap("mappings", mappings);
 //		System.out.println("PersistentMappingRepository# mapping persisted: ");
 //		System.out.println(mapping);
 	}

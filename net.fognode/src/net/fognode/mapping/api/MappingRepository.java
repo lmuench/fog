@@ -36,16 +36,16 @@ public interface MappingRepository {
 	 * Getter for the mapping
 	 * @return the mapping
 	 */
-	public Map<String, String> getMapping();
+	public Map<String, String> getMappings();
 	/**
 	 * Setter for the mapping
-	 * @param mapping the new mapping which will replace the old mapping
+	 * @param mappings the new mapping which will replace the old mapping
 	 */
-	public void setMapping(Map<String, String> mapping);
+	public void setMappings(Map<String, String> mappings);
 	/**
 	 * Deletes the current mapping
 	 */
-	public void deleteMapping();
+	public void deleteMappings();
 	/**
 	 * @param ingoingPath the ingoing path of the user-defined API (e.g. "/temperatures/1") 
 	 * @return the URL of the resource the request should be forwarded to (e.g.

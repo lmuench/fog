@@ -44,20 +44,20 @@ import net.fognode.mapping.api.MappingRepository;
  * 
  * @author Ludwig Muench
  */
-@Path("/mapping")
+@Path("/mappings")
 public class MappingRest {
 	private volatile MappingRepository mappingRepository;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Map<String, String> getMaping() {
+	public Map<String, String> getMappings() {
 		return mappingRepository.getMapping();
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void setMapping(Map<String, String> mapping) {
-		mappingRepository.setMapping(mapping);
+	public void setMappings(Map<String, String> mappings) {
+		mappingRepository.setMapping(mappings);
 	}
 	
 	@DELETE

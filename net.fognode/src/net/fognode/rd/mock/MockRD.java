@@ -36,6 +36,40 @@ import net.fognode.rd.api.RD;
  * It returns a List of endpoints, as they're defined in
  * /net/fognode/rd/mock/endpoints.yaml inside the bundle's jar file.
  * 
+ * Example endpoints.yaml:
+ * <code>
+ * ---
+ * ep: endpoint1                     # endpoint name
+ * d: THK/F07/ZW717                  # sector
+ * lt: 43200                         # lifetime in seconds
+ * base: 'http://localhost:5000'     # base URI "scheme://authority"
+ * gp: null                          # group name                           
+ * resources:
+ *   - protocol: HTTP                # protocol
+ *     if: sensor                    # interface description
+ *     rt: temperature               # resource type
+ *     path: /temp                   # resource path
+ *   - protocol: HTTP                # protocol
+ *     if: sensor                    # interface description
+ *     rt: humidity                  # resource type
+ *     path: /humid                  # resource path
+ *   - protocol: HTTP                # protocol
+ *     if: actuator                  # interface description
+ *     rt: light                     # resource type
+ *     path: /light                  # resource path
+ * ---
+ * ep: endpoint2                     # endpoint name
+ * d: THK/F07/ZW717                  # sector
+ * lt: 43200                         # lifetime in seconds
+ * base: 'http://localhost:5001'     # base URI "scheme://authority"
+ * gp: null                          # group name                           
+ * resources:
+ *   - protocol: HTTP                # protocol
+ *     if: actuator                  # interface description
+ *     rt: light                     # resource type
+ *     path: /light                  # resource path
+ * </code>
+ * 
  * @author Ludwig Muench
  */
 public class MockRD implements RD {
@@ -67,5 +101,32 @@ public class MockRD implements RD {
 		for (Object data : yaml.loadAll(input)) {
 			endpoints.add((Map<String, Object>) data);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Map<String, String>> getResources() {
+		List<Map<String, Object>> endpoints = getEndpoints();
+		List<Map<String, String>> resources = new ArrayList<>();
+		
+		try {
+			endpoints.forEach(endpoint -> {
+				((List<Map<String, String>>) endpoint.get("resources")).forEach(resource -> {
+					endpoint.forEach((key, value) -> {
+						if (value instanceof String) {
+							resource.put(key, (String) value);
+						}
+					});
+					resources.add(resource);
+				});
+			});
+		} catch (Exception e) {
+			System.out.println(
+				"MockRD#getResources() Exception: " + 
+				"Could not extract all resources. " +
+				"Possible cause: syntax error in endpoints.yaml file."
+			);
+		}
+		return resources;
 	}
 }

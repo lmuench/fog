@@ -39,4 +39,5 @@ public interface RD {
 	 * draft-ietf-core-resource-directory</a>).
 	 */
 	public List<Map<String, Object>> getEndpoints();
+	public List<Map<String, String>> getResources();
 }

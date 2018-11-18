@@ -49,4 +49,10 @@ public class RDRest {
 	public List<Map<String, Object>> getEndpoints() {
 		return rd.getEndpoints();
 	}
+	
+	@GET @Path("/resources")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Map<String, String>> getResources() {
+		return rd.getResources();
+	}
 }

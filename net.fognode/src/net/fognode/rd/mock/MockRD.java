@@ -93,6 +93,7 @@ public class MockRD implements RD {
 			}
 			return endpoints;
 		} catch (Exception e) {
+			System.out.println("MockRD# Could not load file: " + yamlPath);
 			return new ArrayList<Map<String, Object>>();
 		}
 	}
@@ -105,7 +106,8 @@ public class MockRD implements RD {
 		
 		try {
 			endpoints.forEach(endpoint -> {
-				((List<Map<String, String>>) endpoint.get("resources")).forEach(resource -> {
+				((List<Map<String, String>>) endpoint.get("resources"))
+				.forEach(resource -> {
 					endpoint.forEach((key, value) -> {
 						if (value instanceof String) {
 							resource.put(key, (String) value);

@@ -25,19 +25,21 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Provider for a CoRE Resource Directory as specified by the IETF.
- * 
+ * Provider for a CoRE Resource Directory as specified by the IETF
+ * (see <a href="https://datatracker.ietf.org/doc/draft-ietf-core-resource-directory/">
+ * draft-ietf-core-resource-directory</a>).
  * @author Ludwig Muench
  */
 public interface RD {
 	/**
-	 * Method for fetching all "endpoints" and their "resources" registered in
-	 * a CoRE Resource Directory.
-	 * @return list of "endpoints", as specified in the CoRE Resource Directory
-	 * drafts. Each "endpoint" is represented as a Map entry with one or more
-	 * "resources" (see <a href="https://datatracker.ietf.org/doc/draft-ietf-core-resource-directory/">
-	 * draft-ietf-core-resource-directory</a>).
+	 * Method for getting all "endpoints" registered in a CoRE Resource Directory.
+	 * Each "endpoint" can have multiple "resources".
+	 * @return list of "endpoints", as specified in the CoRE Resource Directory drafts
 	 */
 	public List<Map<String, Object>> getEndpoints();
+	/**
+	 * Method for getting all "resources" registered in a CoRE Resource Directory.
+	 * @return list of "resources"
+	 */
 	public List<Map<String, String>> getResources();
 }

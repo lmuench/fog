@@ -26,8 +26,8 @@ import net.fognode.request.api.Request;
 /**
  * Request (@see net.fognode.request.api.Request) implementation.
  * For increased security (but decreased performance), create a new Request
- * implementation using defensive deep copies inside the constructor and
- * payload getter.
+ * implementation creating defensive deep copies inside constructor, getters
+ * and setters.
  * 
  * @author Ludwig Muench
  */
@@ -37,21 +37,6 @@ public class SimpleRequest implements Request {
 	private String ingoingPath;
 	private String outgoingURL;
 	private Object payload;
-	
-	/*
-	 * Constructor.
-	 * For increased security, create a new implementation populating the
-	 * payload attribute with a defensive deep copy of the payload argument. 
-	 */
-	public SimpleRequest(
-		String method,
-		String ingoingPath,
-		Object payload
-	) {
-		this.method = method;
-		this.ingoingPath = ingoingPath;
-		this.payload = payload;
-	}
 	
 	public SimpleRequest(
 		String method,
@@ -92,11 +77,6 @@ public class SimpleRequest implements Request {
 		this.outgoingURL = resourceLocation;
 	}
 	
-	/*
-	 * Payload getter.
-	 * For increased security, create a new implementation returning a
-	 * defensive deep copy of the payload.
-	 */
 	@Override
 	public Object getPayload() {
 		return payload;

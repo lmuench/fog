@@ -92,8 +92,10 @@ public class RequestHandlerRest {
 		path = "/" + path;
 //		System.out.println("RequestHandlerRest# " + method + " " + path);
 		Request req = requestFactory.createRequest(method, path);
-		req.setPayload(httpBody);
-	
+		req.setPayload(
+			httpBody != null ? httpBody : new HashMap<String, Object>()
+		);
+
 		Response res = responseFactory.createResponse();
 		Map<String, Object> json = new HashMap<>();
 

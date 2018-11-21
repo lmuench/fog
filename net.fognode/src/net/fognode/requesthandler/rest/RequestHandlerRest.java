@@ -97,12 +97,11 @@ public class RequestHandlerRest {
 		);
 
 		Response res = responseFactory.createResponse();
-		Map<String, Object> json = new HashMap<>();
-
 		requestHandler.handleRequest(req, res);
+
+		Map<String, Object> json = new HashMap<>();
 		json.put("status", res.getStatus());
 		json.put("payload", res.getPayload());
-
 		return json;
 	}
 }

@@ -36,8 +36,7 @@ import net.fognode.request.api.RequestFactory;
 public class Activator extends DependencyActivatorBase {
 
 	@Override
-	public void init(BundleContext context, DependencyManager manager) throws Exception {
-		
+	public void init(BundleContext context, DependencyManager manager) throws Exception {		
 		manager.add(
 			createComponent()
 			.setInterface(RequestFactory.class.getName(), null)

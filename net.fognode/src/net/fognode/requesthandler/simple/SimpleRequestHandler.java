@@ -50,11 +50,11 @@ import net.fognode.shadow.api.ShadowFactory;
  * 2. Extract the protocol from the URL scheme and stop processing the request
  * if the URL string (wrongly) does not contain a scheme.
  * 3. Apply all active middleware (@see net.fognode.middleware.api.Middleware)
- * in the order the middleware services were started, and stop processing the
+ * in the order the middleware services were started and stop processing the
  * request if and as soon as any middleware service returns <code>false</code>.
  * 4. Try to create a device shadow (@see net.fognode.shadow.api.Shadow) suitable
  * for the current request's protocol (e.g. HTTP). Then either pass on the
- * request to the device shadow, or throw and exception if no device shadow
+ * request to the device shadow or throw an exception if no device shadow
  * implementation for said protocol is available.
  * 5. As soon as the device shadow has handled the request, apply all active
  * middleware once again, processing the response this time.

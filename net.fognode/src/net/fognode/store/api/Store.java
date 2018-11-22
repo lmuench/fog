@@ -25,13 +25,13 @@ import java.util.Map;
 
 /**
  * Key-value store for persisting data, accessible by any component,
- * specifically: Mapping (@see net.fognode.mapping.api.Mapping),the key-value pair's key
- * Middleware (@see net.fognode.middleware.api.Middleware),
- * Shadow (@see net.fognode.shadow.api.Shadow)
+ * particularly: Mapping (@see net.fognode.mapping.api.Mapping),
+ * Middleware (@see net.fognode.middleware.api.Middleware) and
+ * Shadow (@see net.fognode.shadow.api.Shadow).
  * The store's content is organized in nodes, with the nodes at the top level
- * identifying the different components. For example should a persistent
+ * identifying the different components. For example, should a persistent
  * MappingRepository (@see net.fognode.mapping.api.MappingRepository)
- * implementation store the user-defined mapping under the "mapping" node.
+ * implementation store the user-defined mapping under a "mapping" node.
  * Any component can freely access the data stored under nodes used by other
  * components.
  * @author Ludwig Muench

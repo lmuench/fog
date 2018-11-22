@@ -35,7 +35,7 @@ import net.fognode.response.api.Response;
 import okhttp3.OkHttpClient;
 
 /**
- * HTTP Client (@see net.fognode.client.api.Client) implementation usig okhttp3
+ * HTTP Client (@see net.fognode.client.api.Client) implementation using okhttp3
  * (see <a href="http://square.github.io/okhttp">square.github.io/okhttp</a>).
  * This implementation only supports POST, GET and PUT requests.
  * For any other request type (e.g. PATCH) it returns status 405 ("Method Not

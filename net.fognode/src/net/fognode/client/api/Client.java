@@ -25,7 +25,7 @@ import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
 /**
- * Protocol-independent interface for protocol-specific clients (e.g. HTTP).
+ * Universal interface for protocol-specific clients (e.g. HTTP).
  * Clients execute requests and return responses.
  * Each client supports one protocol.
  * For the gateway to support further protocols, additional clients can be implemented. 

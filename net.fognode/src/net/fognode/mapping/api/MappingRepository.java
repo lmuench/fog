@@ -52,7 +52,13 @@ public interface MappingRepository {
 	/**
 	 * @param ingoingPath the ingoing path of the user-defined API (e.g. "/temperatures/1") 
 	 * @return the URL of the resource the request should be forwarded to (e.g.
-	 * "http://localhost:5000/temp1")
+	 * "http://localhost:5000/temp1") or null if it doesn't exist
 	 */
 	public String getOutgoingURL(String ingoingPath);
+	/**
+	 * @param ingoingPath the ingoing path of the user-defined API (e.g. "/temperatures/1")
+	 * @param attribute the name of the attribute (e.g. "rt") 
+	 * @return the attribute's value or null if it doesn't exist
+	 */
+	public String getAttribute(String ingoingPath, String attribute);
 }

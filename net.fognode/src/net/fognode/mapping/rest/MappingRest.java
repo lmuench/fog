@@ -21,6 +21,8 @@
  ******************************************************************************/
 package net.fognode.mapping.rest;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.Consumes;
@@ -36,9 +38,9 @@ import net.fognode.mapping.api.MappingRepository;
 /**
  * MappingRepository (@see net.fognode.mapping.api.MappingRepository) REST API
  * accepting and returning JSON.
- * Offers a "/mapping" resource, representing the mapping stored in a
+ * Offers a "/mappings" resource, representing the mappings stored in a
  * MappingRepository.
- * Accepts GET, PUT and DELETE requests to "/mapping", parses mappings between
+ * Accepts GET, PUT and DELETE requests to "/mappings", parses mappings between
  * Map<String, String> and JSON objects and forwards requests to an active
  * MappingRepository OSGi service.
  * 
@@ -52,6 +54,18 @@ public class MappingRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Map<String, String> getMappings() {
 		return mappingRepository.getMappings();
+	}
+	
+	@GET @Path("/resources")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<String> getResources() {
+		List<String> api = new ArrayList<>();
+		mappingRepository.getMappings().keySet().forEach(key -> {
+			if (!key.contains(":")) {
+				api.add(key);
+			}
+		});
+		return api;
 	}
 	
 	@PUT

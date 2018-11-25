@@ -40,14 +40,14 @@ import net.fognode.store.api.Store;
  */
 public class PersistentMappingRepository implements MappingRepository {
 	private volatile Store store;
-	private static Map<String, String> mappings = new HashMap<String, String>();
+	private static Map<String, String> mappings = new HashMap<String, String>();  // TODO why is this static when services are singletons?
 	
 	public void init() {
-		Map<String, String> mappings = store.getMap("mappings");
+		Map<String, String> mappings = store.getMap("fognode:mappings");
 		if (mappings == null) return;
 		PersistentMappingRepository.mappings = mappings;
 //		System.out.println("PersistentMappingRepository# mapping restored: ");
-//		System.out.println(PersistentMappingRepository.mapping);
+//		System.out.println(PersistentMappingRepository.mapping);		
 	}
 
 	@Override
@@ -71,10 +71,15 @@ public class PersistentMappingRepository implements MappingRepository {
 	public String getOutgoingURL(String ingoingPath) {
 		return mappings.get(ingoingPath);
 	}
-		
-	public void persistMapping() { 
-		store.putMap("mappings", mappings);
+	
+	private void persistMapping() { 
+		store.putMap("fognode:mappings", mappings);
 //		System.out.println("PersistentMappingRepository# mapping persisted: ");
 //		System.out.println(mapping);
+	}
+	
+	@Override
+	public String getAttribute(String ingoingPath, String attribute) {
+		return mappings.get(ingoingPath + ":" + attribute);
 	}
 }

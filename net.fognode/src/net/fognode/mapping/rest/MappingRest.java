@@ -56,9 +56,9 @@ public class MappingRest {
 		return mappingRepository.getMappings();
 	}
 	
-	@GET @Path("/resources")
+	@GET @Path("/api")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<String> getResources() {
+	public List<String> getApi() {
 		List<String> api = new ArrayList<>();
 		mappingRepository.getMappings().keySet().forEach(key -> {
 			if (!key.contains(":")) {

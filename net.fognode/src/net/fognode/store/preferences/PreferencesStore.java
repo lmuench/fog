@@ -52,7 +52,7 @@ public class PreferencesStore implements Store {
 	}
 	
 	@Override
-	public void putMap(String node, Map<String, String> value) {
+	public void put(String node, Map<String, String> value) {
 		Preferences preferences = Preferences.userRoot().node(node);
 		try {
 			preferences.clear();
@@ -71,7 +71,7 @@ public class PreferencesStore implements Store {
 	}
 	
 	@Override
-	public Map<String, String> getMap(String node) {
+	public Map<String, String> get(String node) {
 		Preferences preferences = Preferences.userRoot().node(node);
 		Map<String, String> map = new HashMap<>();
 		try {

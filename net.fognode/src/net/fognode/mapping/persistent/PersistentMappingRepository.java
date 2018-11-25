@@ -45,7 +45,7 @@ public class PersistentMappingRepository implements MappingRepository {
 	private Map<String, String> mappings = new HashMap<>();
 	
 	public void init() {
-		Map<String, String> mappings = store.getMap("fognode:mappings");
+		Map<String, String> mappings = store.get("fognode:mappings");
 		if (mappings == null) return;
 		this.mappings = mappings;
 //		System.out.println("PersistentMappingRepository# mapping restored: ");
@@ -96,7 +96,7 @@ public class PersistentMappingRepository implements MappingRepository {
 	 * because of a power loss).
 	 */
 	private void persistMapping() { 
-		store.putMap("fognode:mappings", mappings);
+		store.put("fognode:mappings", mappings);
 //		System.out.println("PersistentMappingRepository# mapping persisted: ");
 //		System.out.println(mapping);
 	}

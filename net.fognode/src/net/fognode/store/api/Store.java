@@ -49,7 +49,7 @@ public interface Store {
 	 * @param node the top-level node (e.g. "mapping")
 	 * @param value the Map
 	 */
-	public void putMap(String node, Map<String, String> value);
+	public void put(String node, Map<String, String> value);
 	/**
 	 * Returns the value for a given key of a key-value pair under a given node.
 	 * @param node the top-level node (e.g. "mapping")
@@ -62,7 +62,7 @@ public interface Store {
 	 * @param node the top-level node (e.g. "mapping")
 	 * @return the Map containing all key-value pairs under the given node
 	 */
-	public Map<String, String> getMap(String node);
+	public Map<String, String> get(String node);
 	/**
 	 * Deletes a key-value pair under a given node.
 	 * @param node the top-level node (e.g. "mapping")

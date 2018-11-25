@@ -42,12 +42,12 @@ import net.fognode.store.api.Store;
  */
 public class PersistentMappingRepository implements MappingRepository {
 	private volatile Store store;
-	private static Map<String, String> mappings = new HashMap<String, String>();  // TODO why is this static when services are singletons?
+	private Map<String, String> mappings = new HashMap<>();  // TODO why is this static when services are singletons?
 	
 	public void init() {
 		Map<String, String> mappings = store.getMap("fognode:mappings");
 		if (mappings == null) return;
-		PersistentMappingRepository.mappings = mappings;
+		this.mappings = mappings;
 //		System.out.println("PersistentMappingRepository# mapping restored: ");
 //		System.out.println(PersistentMappingRepository.mapping);		
 	}
@@ -59,7 +59,7 @@ public class PersistentMappingRepository implements MappingRepository {
 
 	@Override
 	public void setMappings(Map<String, String> mappings) {
-		PersistentMappingRepository.mappings = mappings;
+		this.mappings = mappings;
 		persistMapping();
 	}
 

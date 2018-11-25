@@ -21,7 +21,9 @@
  ******************************************************************************/
 package net.fognode.mapping.persistent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.fognode.mapping.api.MappingRepository;
@@ -68,10 +70,26 @@ public class PersistentMappingRepository implements MappingRepository {
 	}
 	
 	@Override
+	public List<String> getApi() {
+		List<String> api = new ArrayList<>();
+		mappings.keySet().forEach(key -> {
+			if (!key.contains(":")) {
+				api.add(key);
+			}
+		});
+		return api;
+	}
+	
+	@Override
 	public String getOutgoingURL(String ingoingPath) {
 		return mappings.get(ingoingPath);
 	}
 	
+	/*
+	 * Mappings should be persisted every time they change, so they are	
+	 * persisted even when the OSGi container doesn't shut down properly (e.g.
+	 * because of a power loss).
+	 */
 	private void persistMapping() { 
 		store.putMap("fognode:mappings", mappings);
 //		System.out.println("PersistentMappingRepository# mapping persisted: ");

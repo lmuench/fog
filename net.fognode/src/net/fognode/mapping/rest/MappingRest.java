@@ -21,7 +21,6 @@
  ******************************************************************************/
 package net.fognode.mapping.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -59,13 +58,7 @@ public class MappingRest {
 	@GET @Path("/api")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<String> getApi() {
-		List<String> api = new ArrayList<>();
-		mappingRepository.getMappings().keySet().forEach(key -> {
-			if (!key.contains(":")) {
-				api.add(key);
-			}
-		});
-		return api;
+		return mappingRepository.getApi();
 	}
 	
 	@PUT

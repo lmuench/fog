@@ -21,6 +21,7 @@
  ******************************************************************************/
 package net.fognode.mapping.api;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,12 +51,21 @@ public interface MappingRepository {
 	 */
 	public void deleteMappings();
 	/**
+	 * Returns the API (= the ingoing paths of the user-defined API,
+	 * e.g. ["/temperatures/1", ...])
+	 * @return the API 
+	 */
+	public List<String> getApi();
+	/**
+	 * Returns the URL of the resource the request should be forwarded to (e.g.
+	 * "http://localhost:5000/temp1") 
 	 * @param ingoingPath the ingoing path of the user-defined API (e.g. "/temperatures/1") 
-	 * @return the URL of the resource the request should be forwarded to (e.g.
-	 * "http://localhost:5000/temp1") or null if it doesn't exist
+	 * @return the URL or null if it doesn't exist
 	 */
 	public String getOutgoingURL(String ingoingPath);
 	/**
+	 * Returns an attribute. Attributes can be, but are not limited to, CoRE Link
+	 * attributes (e.g. "rt").
 	 * @param ingoingPath the ingoing path of the user-defined API (e.g. "/temperatures/1")
 	 * @param attribute the name of the attribute (e.g. "rt") 
 	 * @return the attribute's value or null if it doesn't exist

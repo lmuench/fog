@@ -32,7 +32,9 @@ import net.fognode.store.api.Store;
  * Key-value Store (@see net.fognode.store.api.Store) implementation based on
  * <a href="https://docs.oracle.com/javase/8/docs/api/java/util/prefs/Preferences.html">
  * java.util.prefs.Preferences</a>.
- *  
+ * Note: Using Java preferences, the data can be over-written by other
+ * applications.
+ *   
  * @author Ludwig Muench
  *
  */

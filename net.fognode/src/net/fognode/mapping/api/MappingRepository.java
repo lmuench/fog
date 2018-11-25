@@ -27,7 +27,10 @@ import java.util.Map;
  * Holds the resource-to-resource mapping from the user-defined API (e.g. "/temperatures/1")
  * to the resources (e.g. "temp1") on the physical endpoints (e.g. "http://localhost:5000").
  * A mapping entry with the exemplary values from above would be
- * <code>"/temperatures/1":"http://localhost:5000/temp1"<code/>
+ * <code>"/temperatures/1":"http://localhost:5000/temp1"<code/>.
+ * To store CoRE Link Format attributes, a client can save them as key-value pairs
+ * with the key consisting of the path, a colon and the attribute name
+ * (e.g. "/temperatures/1:rt" => "sensor").
  *
  * @author Ludwig Muench
  */

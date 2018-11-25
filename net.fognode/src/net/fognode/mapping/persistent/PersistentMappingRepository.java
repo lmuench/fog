@@ -42,7 +42,7 @@ import net.fognode.store.api.Store;
  */
 public class PersistentMappingRepository implements MappingRepository {
 	private volatile Store store;
-	private Map<String, String> mappings = new HashMap<>();  // TODO why is this static when services are singletons?
+	private Map<String, String> mappings = new HashMap<>();
 	
 	public void init() {
 		Map<String, String> mappings = store.getMap("fognode:mappings");
@@ -85,6 +85,11 @@ public class PersistentMappingRepository implements MappingRepository {
 		return mappings.get(ingoingPath);
 	}
 	
+	@Override
+	public String getAttribute(String ingoingPath, String attribute) {
+		return mappings.get(ingoingPath + ":" + attribute);
+	}
+	
 	/*
 	 * Mappings should be persisted every time they change, so they are	
 	 * persisted even when the OSGi container doesn't shut down properly (e.g.
@@ -94,10 +99,5 @@ public class PersistentMappingRepository implements MappingRepository {
 		store.putMap("fognode:mappings", mappings);
 //		System.out.println("PersistentMappingRepository# mapping persisted: ");
 //		System.out.println(mapping);
-	}
-	
-	@Override
-	public String getAttribute(String ingoingPath, String attribute) {
-		return mappings.get(ingoingPath + ":" + attribute);
 	}
 }

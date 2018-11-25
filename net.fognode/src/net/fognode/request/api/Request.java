@@ -81,4 +81,18 @@ public interface Request {
 	 * @param payload the request's payload
 	 */
 	public void setPayload(Object payload);
+	/**
+	 * Returns an attribute. Attributes can be, but are not limited to, CoRE Link
+	 * attributes (e.g. "rt").
+	 * @param key the name of the attribute (e.g. "rt") 
+	 * @return the attribute's value or null if it doesn't exist
+	 */
+	public String getAttribute(String key);
+	/**
+	 * Sets an attribute. Attributes can be, but are not limited to, CoRE Link
+	 * attributes (e.g. "rt").
+	 * @param key the attribute's name
+	 * @param value the attribute's value
+	 */
+	public void setAttribute(String key, String value);
 }

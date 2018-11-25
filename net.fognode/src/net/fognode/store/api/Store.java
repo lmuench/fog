@@ -29,9 +29,9 @@ import java.util.Map;
  * Middleware (@see net.fognode.middleware.api.Middleware) and
  * Shadow (@see net.fognode.shadow.api.Shadow).
  * The store's content is organized in nodes, with the nodes at the top level
- * identifying the different components. For example, should a persistent
- * MappingRepository (@see net.fognode.mapping.api.MappingRepository)
- * implementation store the user-defined mapping under a "mapping" node.
+ * identifying both the application and the different components. For example,
+ * should a persistent MappingRepository (@see net.fognode.mapping.api.MappingRepository)
+ * implementation store the user-defined mapping below a "net.fognode:mappings" node.
  * Any component can freely access the data stored under nodes used by other
  * components.
  * @author Ludwig Muench

@@ -21,6 +21,9 @@
  ******************************************************************************/
 package net.fognode.request.simple;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.fognode.request.api.Request;
 
 /**
@@ -37,6 +40,7 @@ public class SimpleRequest implements Request {
 	private String ingoingPath;
 	private String outgoingURL;
 	private Object payload;
+	private Map<String, String> attributes;
 	
 	public SimpleRequest(
 		String method,
@@ -45,6 +49,7 @@ public class SimpleRequest implements Request {
 		this.method = method;
 		this.ingoingPath = inqoingPath;
 		this.payload = null;
+		this.attributes = new HashMap<String, String>();
 	}
 
 	@Override
@@ -85,5 +90,15 @@ public class SimpleRequest implements Request {
 	@Override
 	public void setPayload(Object payload) {
 		this.payload = payload;
+	}
+
+	@Override
+	public String getAttribute(String key) {
+		return attributes.get(key);
+	}
+
+	@Override
+	public void setAttribute(String key, String value) {
+		attributes.put(key, value);
 	}
 }

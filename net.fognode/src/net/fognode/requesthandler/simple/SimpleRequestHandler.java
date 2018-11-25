@@ -62,7 +62,7 @@ import net.fognode.shadow.api.ShadowFactory;
  * @author Ludwig Muench
  */
 public class SimpleRequestHandler implements RequestHandler {
-	private volatile MappingRepository mapping;
+	private volatile MappingRepository mappingRepository;
 	private volatile List<Middleware> activeMiddleware = new ArrayList<Middleware>();
 	private volatile ShadowFactory shadowFactory;	
 	
@@ -81,6 +81,8 @@ public class SimpleRequestHandler implements RequestHandler {
 			res.setStatus(Status.NOT_FOUND.getStatusCode());
 			return;
 		}
+		
+		addAttributesToRequest(req);
 		
 		boolean urlContainsProtocol = addProtocolToRequest(req);
 		if (!urlContainsProtocol) {
@@ -126,8 +128,17 @@ public class SimpleRequestHandler implements RequestHandler {
 	
 	private void addOutgoingUrlToRequest(Request req) {
 		req.setOutgoingURL(
-			mapping.getOutgoingURL(req.getIngoingPath())
+			mappingRepository.getOutgoingURL(req.getIngoingPath())
 		); 
+	}
+	
+	private void addAttributesToRequest(Request req) {
+		req.setAttribute(
+			"if", mappingRepository.getAttribute(req.getIngoingPath(), "if")
+		);
+		req.setAttribute(
+			"rt", mappingRepository.getAttribute(req.getIngoingPath(), "rt")
+		);
 	}
 	
 	private boolean addProtocolToRequest(Request req) {

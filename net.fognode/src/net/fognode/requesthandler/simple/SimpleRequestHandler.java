@@ -82,7 +82,7 @@ public class SimpleRequestHandler implements RequestHandler {
 			return;
 		}
 		
-		addAttributesToRequest(req);
+//		addAttributesToRequest(req);
 		
 		boolean urlContainsProtocol = addProtocolToRequest(req);
 		if (!urlContainsProtocol) {
@@ -132,14 +132,14 @@ public class SimpleRequestHandler implements RequestHandler {
 		); 
 	}
 	
-	private void addAttributesToRequest(Request req) {
-		req.setAttribute(
-			"if", mappingRepository.getAttribute(req.getIngoingPath(), "if")
-		);
-		req.setAttribute(
-			"rt", mappingRepository.getAttribute(req.getIngoingPath(), "rt")
-		);
-	}
+//	private void addAttributesToRequest(Request req) {
+//		req.setAttribute(
+//			"if", mappingRepository.getAttribute(req.getIngoingPath(), "if")
+//		);
+//		req.setAttribute(
+//			"rt", mappingRepository.getAttribute(req.getIngoingPath(), "rt")
+//		);
+//	}
 	
 	private boolean addProtocolToRequest(Request req) {
 		String outgoingURL = req.getOutgoingURL();

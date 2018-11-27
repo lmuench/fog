@@ -19,17 +19,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.mapping.rest;
+package net.fognode.mappingrepository.persistent;
 
 import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
 
-import net.fognode.mapping.api.MappingRepository;
+import net.fognode.mappingrepository.api.MappingRepository;
+import net.fognode.store.api.Store;
 
 /**
- * Registers MappingRest as an OSGi service with a dependency to a
- * MappingRepository (@see net.fognode.store.api.Store) service.
+ * Registers PersistentMappingRepository as a MappingRepository 
+ * (@see net.fognode.mapping.api.MappingRepository) OSGi service with a
+ * dependency to a Store (@see net.fognode.store.api.Store) service.
  *   
  * @author Ludwig Muench
  */
@@ -39,11 +41,11 @@ public class Activator extends DependencyActivatorBase {
 	public void init(BundleContext context, DependencyManager manager) throws Exception {
 		manager.add(
 			createComponent()
-			.setInterface(Object.class.getName(), null)
-			.setImplementation(MappingRest.class)
+			.setInterface(MappingRepository.class.getName(), null)
+			.setImplementation(PersistentMappingRepository.class)
 			.add(
 				createServiceDependency()
-				.setService(MappingRepository.class)
+				.setService(Store.class)
 				.setRequired(true)
 			)
 		);

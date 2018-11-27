@@ -19,14 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.mapping.persistent;
+package net.fognode.mappingrepository.persistent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.fognode.mapping.api.MappingRepository;
+import net.fognode.mappingrepository.api.MappingRepository;
 import net.fognode.store.api.Store;
 
 /**

@@ -29,8 +29,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import net.fognode.mapping.api.MappingRepository;
-import net.fognode.mapping.persistent.PersistentMappingRepository;
+import net.fognode.mappingrepository.api.MappingRepository;
+import net.fognode.mappingrepository.persistent.PersistentMappingRepository;
 
 public class PersistentMappingTest {
 	String key1 = "http://192.168.1.50:8080/temperature/room1";

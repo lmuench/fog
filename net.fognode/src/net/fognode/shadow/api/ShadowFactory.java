@@ -31,5 +31,5 @@ public interface ShadowFactory {
 	 * @param protocol current request's protocol (e.g. "HTTP")
 	 * @return a device shadow implementation to handle the current request
 	 */
-	public Shadow createShadow(String protocol);
+	public Shadow createShadow(String url);
 }

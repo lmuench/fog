@@ -19,20 +19,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.mapping.persistent;
+package net.fognode.shadowrepository.simple;
 
 import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
 
-import net.fognode.mapping.api.MappingRepository;
-import net.fognode.store.api.Store;
+import net.fognode.client.api.Client;
+import net.fognode.shadow.api.ShadowFactory;
+import net.fognode.shadowrepository.api.ShadowRepository;
+import net.fognode.shadowrepository.simple.SimpleShadowRepository;
 
 /**
- * Registers PersistentMappingRepository as a MappingRepository 
- * (@see net.fognode.mapping.api.MappingRepository) OSGi service with a
- * dependency to a Store (@see net.fognode.store.api.Store) service.
- *   
+ * Registers StatelessShadowFactory as a ShadowFactory
+ * (@see net.fognode.shadow.api.ShadowFactory) OSGi service with dependencies
+ * to all active Client (@see net.fognode.client.api.Client) services. To keep
+ * track of all active clients, the StatelessShadowFactory observes the service
+ * registry withhelp of its "added()" and "removed() methods registered as
+ * callbacks below.
+ * 
  * @author Ludwig Muench
  */
 public class Activator extends DependencyActivatorBase {
@@ -41,12 +46,17 @@ public class Activator extends DependencyActivatorBase {
 	public void init(BundleContext context, DependencyManager manager) throws Exception {
 		manager.add(
 			createComponent()
-			.setInterface(MappingRepository.class.getName(), null)
-			.setImplementation(PersistentMappingRepository.class)
+			.setInterface(ShadowRepository.class.getName(), null)
+			.setImplementation(SimpleShadowRepository.class)
 			.add(
 				createServiceDependency()
-				.setService(Store.class)
+				.setService(ShadowFactory.class)
 				.setRequired(true)
+			).add(
+				createServiceDependency()
+				.setService(Client.class)
+				.setRequired(true)
+				.setCallbacks("added", "removed")
 			)
 		);
 	}

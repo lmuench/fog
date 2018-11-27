@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.mapping.api;
+package net.fognode.mappingrepository.api;
 
 import java.util.List;
 import java.util.Map;

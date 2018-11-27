@@ -19,26 +19,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.requesthandler.simple;
+package net.fognode.mappingrepository.rest;
 
 import org.apache.felix.dm.DependencyActivatorBase;
 import org.apache.felix.dm.DependencyManager;
 import org.osgi.framework.BundleContext;
 
 import net.fognode.mappingrepository.api.MappingRepository;
-import net.fognode.middleware.api.Middleware;
-import net.fognode.requesthandler.api.RequestHandler;
-import net.fognode.shadowrepository.api.ShadowRepository;
 
 /**
- * Registers SimpleRequestHandler as a RequestHandler
- * (@see net.fognode.requesthandler.api.RequestHandler) OSGi service with
- * dependencies to a MappingRepository service, a ShadowFactory service, as
- * well as all active Middleware services. To keep track of all active
- * middleware, the SimpleRequestHandler observes the service registry
- * withhelp of its "added()" and "removed() methods registered as callbacks
- * below.
- * 
+ * Registers MappingRest as an OSGi service with a dependency to a
+ * MappingRepository (@see net.fognode.store.api.Store) service.
+ *   
  * @author Ludwig Muench
  */
 public class Activator extends DependencyActivatorBase {
@@ -47,20 +39,11 @@ public class Activator extends DependencyActivatorBase {
 	public void init(BundleContext context, DependencyManager manager) throws Exception {
 		manager.add(
 			createComponent()
-			.setInterface(RequestHandler.class.getName(), null)
-			.setImplementation(SimpleRequestHandler.class)
+			.setInterface(Object.class.getName(), null)
+			.setImplementation(MappingRepositoryRest.class)
 			.add(
 				createServiceDependency()
 				.setService(MappingRepository.class)
-				.setRequired(true)
-			).add(
-				createServiceDependency()
-				.setService(Middleware.class)
-				.setRequired(false)
-				.setCallbacks("added", "removed")
-			).add(
-				createServiceDependency()
-				.setService(ShadowRepository.class)
 				.setRequired(true)
 			)
 		);

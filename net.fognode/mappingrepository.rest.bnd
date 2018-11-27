@@ -1,0 +1,2 @@
+Private-Package: net.fognode.mappingrepository.rest
+Bundle-Activator: net.fognode.mappingrepository.rest.Activator

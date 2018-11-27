@@ -38,13 +38,28 @@ import net.fognode.shadow.api.Shadow;
  */
 public class StatelessShadow implements Shadow {
 	private volatile Client client;
+	private String protocol;
 	
-	public StatelessShadow(Client client) {
+	public StatelessShadow(String protocol) {
+		this.protocol = protocol;
+	}
+	
+	@Override
+	public void setClient(Client client) {
 		this.client = client;
 	}
 	
 	@Override
+	public String getProtocol() {
+		return protocol;
+	}
+	
+	@Override
 	public void handle(Request req, Response res) {
-		client.handle(req, res);
+		if (null != client) {
+			client.handle(req, res);
+		} else {
+			throw new IllegalStateException();
+		}
 	}
 }

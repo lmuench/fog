@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.mapping.rest;
+package net.fognode.mappingrepository.rest;
 
 import java.util.List;
 import java.util.Map;
@@ -32,7 +32,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import net.fognode.mapping.api.MappingRepository;
+import net.fognode.mappingrepository.api.MappingRepository;
 
 /**
  * MappingRepository (@see net.fognode.mapping.api.MappingRepository) REST API
@@ -46,7 +46,7 @@ import net.fognode.mapping.api.MappingRepository;
  * @author Ludwig Muench
  */
 @Path("/mappings")
-public class MappingRest {
+public class MappingRepositoryRest {
 	private volatile MappingRepository mappingRepository;
 	
 	@GET

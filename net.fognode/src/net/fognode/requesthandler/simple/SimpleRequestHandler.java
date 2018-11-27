@@ -26,13 +26,13 @@ import java.util.List;
 
 import javax.ws.rs.core.Response.Status;
 
-import net.fognode.mapping.api.MappingRepository;
+import net.fognode.mappingrepository.api.MappingRepository;
 import net.fognode.middleware.api.Middleware;
 import net.fognode.request.api.Request;
 import net.fognode.requesthandler.api.RequestHandler;
 import net.fognode.response.api.Response;
 import net.fognode.shadow.api.Shadow;
-import net.fognode.shadow.api.ShadowFactory;
+import net.fognode.shadowrepository.api.ShadowRepository;
 
 /**
  * RequestHandler (@see net.fognode.requesthandler.api.RequestHandler)
@@ -64,7 +64,7 @@ import net.fognode.shadow.api.ShadowFactory;
 public class SimpleRequestHandler implements RequestHandler {
 	private volatile MappingRepository mappingRepository;
 	private volatile List<Middleware> activeMiddleware = new ArrayList<Middleware>();
-	private volatile ShadowFactory shadowFactory;	
+	private volatile ShadowRepository shadowRepository;	
 	
 	public void added(Middleware middleware) {
 		activeMiddleware.add(middleware);
@@ -99,12 +99,12 @@ public class SimpleRequestHandler implements RequestHandler {
 		
 		try {
 			Shadow shadow;
-			shadow = shadowFactory.createShadow(req.getProtocol());
+			shadow = shadowRepository.getShadow(req.getOutgoingURL());
 			shadow.handle(req, res);
 			
 			processResponse(req, res);
 			
-		} catch (UnsupportedOperationException e) {
+		} catch (IllegalArgumentException e) {
 			res.setStatus(Status.NOT_IMPLEMENTED.getStatusCode());
 		}
 	}

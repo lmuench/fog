@@ -21,6 +21,7 @@
  ******************************************************************************/
 package net.fognode.shadow.api;
 
+import net.fognode.client.api.Client;
 import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
@@ -38,6 +39,8 @@ import net.fognode.response.api.Response;
  *
  */
 public interface Shadow {
+	public void setClient(Client client);
+	public String getProtocol();
 	/**
 	 * Handles a request. When the "Device Shadow" IoT pattern is not applied,
 	 * this method simpy forwards the request to its  assigned client.

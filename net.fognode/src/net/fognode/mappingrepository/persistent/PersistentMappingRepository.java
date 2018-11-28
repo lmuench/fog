@@ -30,7 +30,7 @@ import net.fognode.mappingrepository.api.MappingRepository;
 import net.fognode.store.api.Store;
 
 /**
- * Persistent MappingRepository (@see net.fognode.mapping.api.MappingRepository)
+ * Persistent MappingRepository (@see net.fognode.mappingrepository.api.MappingRepository)
  * implementation. This implementation uses a currently active Store
  * (@see net.fognode.store.api.Store) service to persist its mapping data
  * immediatly, each time it receives a new mapping.

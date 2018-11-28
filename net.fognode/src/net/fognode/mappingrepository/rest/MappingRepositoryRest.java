@@ -35,7 +35,7 @@ import javax.ws.rs.core.MediaType;
 import net.fognode.mappingrepository.api.MappingRepository;
 
 /**
- * MappingRepository (@see net.fognode.mapping.api.MappingRepository) REST API
+ * MappingRepository (@see net.fognode.mappingrespository.api.MappingRepository) REST API
  * accepting and returning JSON.
  * Offers a "/mappings" resource, representing the mappings stored in a
  * MappingRepository.

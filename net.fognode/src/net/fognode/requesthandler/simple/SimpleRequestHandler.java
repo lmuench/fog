@@ -45,14 +45,14 @@ import net.fognode.shadowrepository.api.ShadowRepository;
  * Request handling (@see SimpleRequestHandler#handleRequest(Request, Response)})
  * sequence of actions:
  * 1. Get outgoing URL from MappingRepository
- * (@see net.fognode.mapping.api.MappingRepository) service and stop processing
- * the request if no matching outgoing URL is found. 
+ * (@see net.fognode.mappingrepository.api.MappingRepository) service and stop
+ * processing the request if no matching outgoing URL is found. 
  * 2. Extract the protocol from the URL scheme and stop processing the request
  * if the URL string (wrongly) does not contain a scheme.
  * 3. Apply all active middleware (@see net.fognode.middleware.api.Middleware)
  * in the order the middleware services were started and stop processing the
  * request if and as soon as any middleware service returns <code>false</code>.
- * 4. Try to create a device shadow (@see net.fognode.shadow.api.Shadow) suitable
+ * 4. Try to get a device shadow (@see net.fognode.shadow.api.Shadow) suitable
  * for the current request's protocol (e.g. HTTP). Then either pass on the
  * request to the device shadow or throw an exception if no device shadow
  * implementation for said protocol is available.

@@ -36,7 +36,7 @@ import net.fognode.shadowrepository.api.ShadowRepository;
  * dependencies to a MappingRepository service, a ShadowFactory service, as
  * well as all active Middleware services. To keep track of all active
  * middleware, the SimpleRequestHandler observes the service registry
- * withhelp of its "added()" and "removed() methods registered as callbacks
+ * withhelp of its "added()" and "removed()" methods registered as callbacks
  * below.
  * 
  * @author Ludwig Muench

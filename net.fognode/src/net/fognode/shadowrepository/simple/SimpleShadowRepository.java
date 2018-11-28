@@ -37,6 +37,11 @@ public class SimpleShadowRepository implements ShadowRepository {
 		return shadow;
 	}
 	
+	/*
+	 * Injects a matching Client.
+	 * Throws IllegalArgumentException, if no Client matching the Shadow's
+	 * protocol attribute is installed and active.
+	 */
 	private void injectClient(Shadow shadow) {
 		String protocol = shadow.getProtocol();
 		Client client = (

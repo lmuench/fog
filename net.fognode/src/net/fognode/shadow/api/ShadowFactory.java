@@ -28,8 +28,10 @@ package net.fognode.shadow.api;
 public interface ShadowFactory {
 	/**
 	 * Shadow factory method.
-	 * @param protocol current request's protocol (e.g. "HTTP")
-	 * @return a device shadow implementation to handle the current request
+	 * @param url current request's outgoing URL (used to extract the protocol
+	 * from the URL scheme)
+	 * @return a device shadow implementation (with its protocol attribute set
+	 * to the protocol extracted from the "url" argument)
 	 */
 	public Shadow createShadow(String url);
 }

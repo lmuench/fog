@@ -33,8 +33,9 @@ import net.fognode.response.api.Response;
  * It handles every request received by said REST API component in the
  * following sequence:
  * 1. Get the URL of the actual resource (e.g. a sensor) from the
- * MappingRepository (@see net.fognode.mapping.api.MappingRepository) and add  
- * it to the handled Request (@see net.fognode.request.api.Request) object.
+ * MappingRepository (@see net.fognode.mappingrepository.api.MappingRepository)
+ * and add it to the handled Request (@see net.fognode.request.api.Request) 
+ * object.
  * 2. Pass the Request object to all active middleware
  * (@see net.fognode.middleware.api.Middleware) services.
  * 3. Pass the Request object to an appropriate device shadow

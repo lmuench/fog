@@ -104,7 +104,7 @@ public class SimpleRequestHandler implements RequestHandler {
 			
 			processResponse(req, res);
 			
-		} catch (IllegalArgumentException e) {
+		} catch (ClassNotFoundException e) {
 			res.setStatus(Status.NOT_IMPLEMENTED.getStatusCode());
 		}
 	}

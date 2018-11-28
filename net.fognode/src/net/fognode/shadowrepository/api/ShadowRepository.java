@@ -12,8 +12,8 @@ public interface ShadowRepository {
 	 * new one and keep it for further requests.
 	 * @param url The outgoing URL used as a primary key for Shadows.
 	 * @return a Shadow representing the resource identified by the outgoing URL
-	 * @throws IllegalArgumentException if no matching Client for the requested
-	 * Shadow's protocol (e.g. HTTP) is currently installed and active.  
+	 * @throws ClassNotFoundException if no matching Client for the requested
+	 * Shadow's protocol (e.g. HTTP) is currently installed and active. 
 	 */
-	public Shadow getShadow(String url) throws IllegalArgumentException;
+	public Shadow getShadow(String url) throws ClassNotFoundException;
 }

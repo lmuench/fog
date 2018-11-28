@@ -24,7 +24,7 @@ public class SimpleShadowRepository implements ShadowRepository {
 	}
 
 	@Override
-	public Shadow getShadow(String url) throws IllegalArgumentException {
+	public Shadow getShadow(String url) throws ClassNotFoundException {
 		Shadow shadow = shadows.get(url);
 		if (null == shadow) {
 			shadow = shadowFactory.createShadow(url);
@@ -42,14 +42,14 @@ public class SimpleShadowRepository implements ShadowRepository {
 	 * Throws IllegalArgumentException, if no Client matching the Shadow's
 	 * protocol attribute is installed and active.
 	 */
-	private void injectClient(Shadow shadow) {
+	private void injectClient(Shadow shadow) throws ClassNotFoundException {
 		String protocol = shadow.getProtocol();
 		Client client = (
 			clients
 			.stream()
 			.filter(c -> c.getProtocol().equalsIgnoreCase(protocol))
 			.findAny()
-			.orElseThrow(() -> new IllegalArgumentException (
+			.orElseThrow(() -> new ClassNotFoundException(
 				"No client available for protocol: " + protocol
 			))
 		);

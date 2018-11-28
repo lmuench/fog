@@ -82,8 +82,6 @@ public class SimpleRequestHandler implements RequestHandler {
 			return;
 		}
 		
-//		addAttributesToRequest(req);
-		
 		boolean urlContainsProtocol = addProtocolToRequest(req);
 		if (!urlContainsProtocol) {
 			System.out.println(
@@ -132,26 +130,31 @@ public class SimpleRequestHandler implements RequestHandler {
 		); 
 	}
 	
-//	private void addAttributesToRequest(Request req) {
-//		req.setAttribute(
-//			"if", mappingRepository.getAttribute(req.getIngoingPath(), "if")
-//		);
-//		req.setAttribute(
-//			"rt", mappingRepository.getAttribute(req.getIngoingPath(), "rt")
-//		);
-//	}
-	
 	private boolean addProtocolToRequest(Request req) {
-		String outgoingURL = req.getOutgoingURL();
-		try {
-			String protocol = outgoingURL.split(":")[0];
-			if (protocol.length() >= 0) {
-				req.setProtocol(protocol);
-				return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		return getProtocolFromAttributes(req) || extractProtocolFromUrl(req);
+	}
+	
+	private boolean getProtocolFromAttributes(Request req) {
+		String protocol = mappingRepository.getAttribute(
+			req.getIngoingPath(), "protocol"
+		);
+		if (null != protocol && protocol.length() > 0) {
+			req.setProtocol(protocol);
+			return true;
 		}
+		return false;
+	}
+	
+	private boolean extractProtocolFromUrl(Request req) {
+		String protocol = req.getOutgoingURL().split(":")[0];
+		if (protocol.length() > 0) {
+			req.setProtocol(protocol);
+			return true;
+		}
+		System.out.println(
+			"SimpleRequestHandler# Can't forward request: " +
+			"outgoing URL doesn't contain scheme!"
+		);
 		return false;
 	}
 }

@@ -26,6 +26,7 @@ import net.fognode.request.api.Request;
 import net.fognode.response.api.Response;
 
 /**
+ * Each resource of the user-defined API should be proxied by a Shadow.
  * If required, apply the "Device Shadow" IoT pattern
  * (see <a href="http://www.internetofthingspatterns.com/patterns/communication/device-shadow/">
  * Device Shadow IoT Pattern</a>) in a custom implementation of the Shadow

@@ -22,7 +22,6 @@
 package net.fognode.requesthandler.rest;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -69,39 +68,54 @@ public class RequestHandlerRest {
 	@Path("{path : .+}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Map<String, Object> handlePostRequest(Object httpBody, @PathParam("path") String path) {
-		return handleRequest("POST", path, httpBody);
+	public javax.ws.rs.core.Response handlePostRequest(Object httpBody, @PathParam("path") String path) {
+		Response res = handleRequest("POST", path, httpBody);
+		return (
+			javax.ws.rs.core.Response
+			.status(res.getStatus())
+			.entity(res.getPayload())
+			.build()
+		);
 	}
 	
 	@GET
 	@Path("{path : .+}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Map<String, Object> handleGetRequest(@PathParam("path") String path) {
-		return handleRequest("GET", path, null);
+	public javax.ws.rs.core.Response handleGetRequest(@PathParam("path") String path) {
+		Response res = handleRequest("GET", path, null);
+		return (
+			javax.ws.rs.core.Response
+			.status(res.getStatus())
+			.entity(res.getPayload())
+			.build()
+		);
 	}
 	
 	@PUT
 	@Path("{path : .+}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Map<String, Object> handlePutRequest(Object httpBody, @PathParam("path") String path) {
-		return handleRequest("PUT", path, httpBody);
+	public javax.ws.rs.core.Response handlePutRequest(Object httpBody, @PathParam("path") String path) {
+		Response res = handleRequest("PUT", path, httpBody);
+		return (
+			javax.ws.rs.core.Response
+			.status(res.getStatus())
+			.entity(res.getPayload())
+			.build()
+		);
 	}
 
-	private Map<String, Object> handleRequest(String method, String path, Object httpBody) {
+	private Response handleRequest(String method, String path, Object httpBody) {
 		path = "/" + path;
-//		System.out.println("RequestHandlerRest# " + method + " " + path);
+		if (null == httpBody) {
+			httpBody = new HashMap<String, Object>();
+		}
+
 		Request req = requestFactory.createRequest(method, path);
-		req.setPayload(
-			httpBody != null ? httpBody : new HashMap<String, Object>()
-		);
-
+		req.setPayload(httpBody);
 		Response res = responseFactory.createResponse();
-		requestHandler.handleRequest(req, res);
 
-		Map<String, Object> json = new HashMap<>();
-		json.put("status", res.getStatus());
-		json.put("payload", res.getPayload());
-		return json;
+		requestHandler.handleRequest(req, res);
+		return res;
 	}
 }

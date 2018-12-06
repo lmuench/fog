@@ -47,6 +47,7 @@ public interface Shadow {
 	 * this method simpy forwards the request to its  assigned client.
 	 * @param req protocol-independent request (@see net.fognode.request.api.Request)
 	 * @param res protocol-independent response (@see net.fognode.response.api.Response)
+	 * @throws ClassNotFoundException if no appropriate Client is available
 	 */
-	public void handle(Request req, Response res);
+	public void handle(Request req, Response res) throws ClassNotFoundException;
 }

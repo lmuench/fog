@@ -47,8 +47,9 @@ import net.fognode.shadowrepository.api.ShadowRepository;
  * 1. Get outgoing URL from MappingRepository
  * (@see net.fognode.mappingrepository.api.MappingRepository) service and stop
  * processing the request if no matching outgoing URL is found. 
- * 2. Extract the protocol from the URL scheme and stop processing the request
- * if the URL string (wrongly) does not contain a scheme.
+ * 2. Either get the protocol from resource attributes or extract the protocol
+ * from the URL scheme. Stop processing the request if no protocol attribute
+ * exists and the URL string does not contain a scheme either.
  * 3. Apply all active middleware (@see net.fognode.middleware.api.Middleware)
  * in the order the middleware services were started and stop processing the
  * request if and as soon as any middleware service returns <code>false</code>.
@@ -82,12 +83,8 @@ public class SimpleRequestHandler implements RequestHandler {
 			return;
 		}
 		
-		boolean urlContainsProtocol = addProtocolToRequest(req);
-		if (!urlContainsProtocol) {
-			System.out.println(
-				"SimpleRequestHandler# INTERNAL SERVER ERRROR (500): URL " +
-				req.getOutgoingURL() + " is missing scheme!"
-			);
+		boolean protocolFound = addProtocolToRequest(req);
+		if (!protocolFound) {
 			res.setStatus(Status.INTERNAL_SERVER_ERROR.getStatusCode());
 			return;
 		}

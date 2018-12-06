@@ -55,11 +55,11 @@ public class StatelessShadow implements Shadow {
 	}
 	
 	@Override
-	public void handle(Request req, Response res) {
+	public void handle(Request req, Response res) throws ClassNotFoundException {
 		if (null != client) {
 			client.handle(req, res);
 		} else {
-			throw new IllegalStateException();
+			throw new ClassNotFoundException();
 		}
 	}
 }

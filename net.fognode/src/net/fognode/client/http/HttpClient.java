@@ -110,13 +110,14 @@ public class HttpClient implements Client {
 	private void executeRequest(okhttp3.Request httpReq, Response res) {
 		try {
 			okhttp3.Response httpRes = client.newCall(httpReq).execute();
-			try {
-				res.setPayload(gson.fromJson(httpRes.body().string(), Object.class));
-				res.setStatus(httpRes.code());
-			} catch (JsonSyntaxException e) {
-				res.setStatus(Status.INTERNAL_SERVER_ERROR.getStatusCode());
+			res.setStatus(httpRes.code());
+			if (httpRes.body().contentType().equals(JSON)) {
+				try {
+					res.setPayload(gson.fromJson(httpRes.body().string(), Object.class));
+				} catch (JsonSyntaxException e) {
+					res.setStatus(Status.INTERNAL_SERVER_ERROR.getStatusCode());
+				}
 			}
-			
 		} catch (IOException e) {
 			res.setStatus(Status.BAD_GATEWAY.getStatusCode());
 		}

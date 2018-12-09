@@ -21,10 +21,13 @@
  ******************************************************************************/
 package net.fognode.rd.rest;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -43,6 +46,21 @@ import net.fognode.rd.api.RD;
 @Path("/rd")
 public class RDRest {
 	private volatile RD rd;
+	
+	@PUT @Path("/url")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public boolean setRdUrl(Map<String, String> map) {
+		return rd.setRdUrl(map.get("url"));
+	}
+	
+	@GET @Path("/url")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Map<String, String> getRdUrl() {
+		Map<String, String> map = new HashMap<>();
+		map.put("url", rd.getRdUrl());
+		return map;
+	}
 
 	@GET @Path("/endpoints")
 	@Produces(MediaType.APPLICATION_JSON)

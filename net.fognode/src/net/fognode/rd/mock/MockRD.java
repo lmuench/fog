@@ -72,12 +72,26 @@ import net.fognode.rd.api.RD;
  * @author Ludwig Muench
  */
 public class MockRD implements RD {
+	private String url;
 	private String yamlPath;
 	private Yaml yaml;
 	
 	public MockRD() {
 		yamlPath = "/net/fognode/rd/mock/endpoints.yaml";
 		yaml = new Yaml();
+	}
+
+	@Override
+	public boolean setRdUrl(String url) {
+		System.out.println(url);
+		this.url = url;
+		return true;
+	}
+	
+	@Override
+	public String getRdUrl() {
+		System.out.println(url);
+		return url;
 	}
 
 	@SuppressWarnings("unchecked")

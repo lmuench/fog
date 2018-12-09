@@ -32,6 +32,18 @@ import java.util.Map;
  */
 public interface RD {
 	/**
+	 * Resource Directory URL setter.
+	 * @param url URL of the Resource Directory to connect to.
+	 * @return true if a Resource Directory can be reached with the provided
+	 * URL, false if not
+	 */
+	public boolean setRdUrl(String url);
+	/**
+	 * Resource Directory URL getter.
+	 * @return URL of the Resource Directory the gateway is connected to
+	 */
+	public String getRdUrl();
+	/**
 	 * Method for getting all "endpoints" registered in a CoRE Resource Directory.
 	 * Each "endpoint" can have multiple "resources".
 	 * @return list of "endpoints", as specified in the CoRE Resource Directory drafts

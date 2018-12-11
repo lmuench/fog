@@ -83,14 +83,13 @@ public class MockRD implements RD {
 
 	@Override
 	public boolean setRdUrl(String url) {
-		System.out.println(url);
+		System.out.println("MockRD# new RD URL = " + url);
 		this.url = url;
 		return true;
 	}
 	
 	@Override
 	public String getRdUrl() {
-		System.out.println(url);
 		return url;
 	}
 

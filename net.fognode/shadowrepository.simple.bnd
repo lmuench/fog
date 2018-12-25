@@ -1,2 +1,3 @@
 Private-Package: net.fognode.shadowrepository.simple
 Bundle-Activator: net.fognode.shadowrepository.simple.Activator
+Bundle-Name: Simple Shadow Repository

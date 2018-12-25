@@ -1,1 +1,2 @@
 Export-Package: net.fognode.requesthandler.api
+Bundle-Name: Request Handler API

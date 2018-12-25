@@ -1,2 +1,3 @@
 Private-Package: net.fognode.mappingrepository.rest
 Bundle-Activator: net.fognode.mappingrepository.rest.Activator
+Bundle-Name: Mapping Repository REST API

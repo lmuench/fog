@@ -1,2 +1,3 @@
 Private-Package: net.fognode.mappingrepository.persistent
 Bundle-Activator: net.fognode.mappingrepository.persistent.Activator
+Bundle-Name: Persistent Mapping Repository

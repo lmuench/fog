@@ -108,8 +108,9 @@ public class HttpClient implements Client {
 	}
 	
 	private void executeRequest(okhttp3.Request httpReq, Response res) {
+		okhttp3.Response httpRes = null;
 		try {
-			okhttp3.Response httpRes = client.newCall(httpReq).execute();
+			httpRes = client.newCall(httpReq).execute();
 			res.setStatus(httpRes.code());
 			if (httpRes.body().contentType().equals(JSON)) {
 				try {
@@ -120,6 +121,10 @@ public class HttpClient implements Client {
 			}
 		} catch (IOException e) {
 			res.setStatus(Status.BAD_GATEWAY.getStatusCode());
+		} finally {
+			if (null != httpRes) {
+				httpRes.close();
+			}
 		}
 	}
 	

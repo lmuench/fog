@@ -1,2 +1,3 @@
 Private-Package: net.fognode.middlewareutils.simple
 Bundle-Activator: net.fognode.middlewareutils.simple.Activator
+Bundle-Name: Simple Middleware Utils

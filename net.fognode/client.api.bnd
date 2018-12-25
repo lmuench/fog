@@ -1,2 +1,2 @@
-Bundle-Name: Fog Node
+Bundle-Name: Client API
 Export-Package: net.fognode.client.api

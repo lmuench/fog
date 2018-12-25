@@ -1,2 +1,3 @@
 Private-Package: net.fognode.rd.mock
 Bundle-Activator: net.fognode.rd.mock.Activator
+Bundle-Name: Mock RD

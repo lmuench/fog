@@ -47,9 +47,9 @@ public interface Store {
 	/**
 	 * Stores all entries of a Map<String, String> under a given top-level node.
 	 * @param node the top-level node (e.g. "mapping")
-	 * @param value the Map
+	 * @param values the Map
 	 */
-	public void put(String node, Map<String, String> value);
+	public void put(String node, Map<String, String> values);
 	/**
 	 * Returns the value for a given key of a key-value pair under a given node.
 	 * @param node the top-level node (e.g. "mapping")

@@ -1,2 +1,3 @@
 Private-Package: net.fognode.rd.rest
 Bundle-Activator: net.fognode.rd.rest.Activator
+Bundle-Name: RD REST API

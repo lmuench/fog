@@ -1,1 +1,2 @@
 Export-Package: net.fognode.mappingrepository.api
+Bundle-Name: Mapping Repository API

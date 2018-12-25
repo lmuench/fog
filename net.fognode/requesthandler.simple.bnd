@@ -1,2 +1,3 @@
 Private-Package: net.fognode.requesthandler.simple
 Bundle-Activator: net.fognode.requesthandler.simple.Activator
+Bundle-Name: Simple Request Handler

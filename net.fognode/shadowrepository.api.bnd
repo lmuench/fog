@@ -1,1 +1,2 @@
 Export-Package: net.fognode.shadowrepository.api
+Bundle-Name: Shadow Repository API

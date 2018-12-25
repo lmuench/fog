@@ -1,2 +1,3 @@
 Private-Package: net.fognode.request.simple
 Bundle-Activator: net.fognode.request.simple.Activator
+Bundle-Name: Simple Request

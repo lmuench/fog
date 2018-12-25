@@ -1,2 +1,3 @@
 Private-Package: net.fognode.response.simple
 Bundle-Activator: net.fognode.response.simple.Activator
+Bundle-Name: Simple Response

@@ -1,2 +1,3 @@
 Private-Package: net.fognode.shadow.stateless
 Bundle-Activator: net.fognode.shadow.stateless.Activator
+Bundle-Name: Stateless Shadow

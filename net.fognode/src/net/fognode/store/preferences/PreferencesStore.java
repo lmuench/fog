@@ -52,11 +52,11 @@ public class PreferencesStore implements Store {
 	}
 	
 	@Override
-	public void put(String node, Map<String, String> value) {
+	public void put(String node, Map<String, String> values) {
 		Preferences preferences = Preferences.userRoot().node(node);
 		try {
 			preferences.clear();
-			for (Map.Entry<String, String> entry : value.entrySet()) {
+			for (Map.Entry<String, String> entry : values.entrySet()) {
 				preferences.put(entry.getKey(), entry.getValue());
 			}
 		} catch (BackingStoreException e) {

@@ -1,1 +1,2 @@
 Export-Package: net.fognode.middlewareutils.api
+Bundle-Name: Middleware Utils API

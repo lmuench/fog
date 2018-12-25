@@ -1,1 +1,2 @@
 Export-Package: net.fognode.request.api
+Bundle-Name: Request API

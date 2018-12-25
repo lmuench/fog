@@ -1,2 +1,3 @@
 Private-Package: net.fognode.filters.response.cors
 Bundle-Activator: net.fognode.filters.response.cors.Activator
+Bundle-Name: CORS Response Filter

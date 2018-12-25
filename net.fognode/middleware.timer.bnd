@@ -1,2 +1,3 @@
 Private-Package: net.fognode.middleware.timer
 Bundle-Activator: net.fognode.middleware.timer.Activator
+Bundle-Name: Timer Middleware

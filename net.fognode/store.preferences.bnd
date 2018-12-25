@@ -1,2 +1,3 @@
 Private-Package: net.fognode.store.preferences
 Bundle-Activator: net.fognode.store.preferences.Activator
+Bundle-Name: Preferences Store

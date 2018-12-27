@@ -40,7 +40,8 @@ import net.fognode.response.simple.SimpleResponseFactory;
 public class HttpClientStubTest {
 	String protocol;
 	String method;
-	String location;
+	String ingoingPath;
+	String outgoingURL;
 	Map<String, Object> payload;
 	RequestFactory requestFactory;
 	ResponseFactory responseFactory;
@@ -49,7 +50,8 @@ public class HttpClientStubTest {
 	@Before
 	public void setUp() throws Exception {
 		protocol = "HTTP";
-		location = "http://www.example.com/foo/bar";
+		ingoingPath = "/foo/bar/42";
+		outgoingURL = "http://127.0.0.1:5000/foo";
 		payload = new HashMap<>();
 		payload.put("someString", "foo");
 		payload.put("someNumber", 4.2);
@@ -61,7 +63,8 @@ public class HttpClientStubTest {
 
 	@Test
 	public void testPost() {
-		Request req = requestFactory.createRequest(protocol, "POST", location, payload);
+		Request req = requestFactory.createRequest("POST", ingoingPath);
+		req.setOutgoingURL(outgoingURL);
 		Response res = responseFactory.createResponse();
 		cut.handle(req, res);
 		assertEquals(res.getStatus(), 201);
@@ -70,7 +73,7 @@ public class HttpClientStubTest {
 
 	@Test
 	public void testGet() {
-		Request req = requestFactory.createRequest(protocol, "GET", location);
+		Request req = requestFactory.createRequest("GET", ingoingPath);
 		Response res = responseFactory.createResponse();
 		cut.handle(req, res);
 		assertEquals(res.getStatus(), 200);
@@ -78,7 +81,7 @@ public class HttpClientStubTest {
 
 	@Test
 	public void testPut() {
-		Request req = requestFactory.createRequest(protocol, "PUT", location, payload);
+		Request req = requestFactory.createRequest("PUT", ingoingPath);
 		Response res = responseFactory.createResponse();
 		cut.handle(req, res);
 		assertEquals(res.getStatus(), 204);
@@ -86,7 +89,7 @@ public class HttpClientStubTest {
 
 	@Test
 	public void testDelete() {
-		Request req = requestFactory.createRequest(protocol, "DELETE", location);
+		Request req = requestFactory.createRequest("DELETE", ingoingPath);
 		Response res = responseFactory.createResponse();
 		cut.handle(req, res);
 		assertEquals(res.getStatus(), 204);
@@ -94,7 +97,7 @@ public class HttpClientStubTest {
 	
 	@Test
 	public void testUnsupportedMethodPatch() {
-		Request req = requestFactory.createRequest(protocol, "PATCH", location);
+		Request req = requestFactory.createRequest("PATCH", ingoingPath);
 		Response res = responseFactory.createResponse();
 		cut.handle(req, res);
 		assertEquals(res.getStatus(), 405);

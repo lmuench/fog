@@ -47,6 +47,13 @@ public abstract class ClientTest {
 
 	@Before
 	public void setUp() throws Exception {
+		instantiateCUT();
+		if (null == cut) {
+			System.out.println("You must instantiate the CUT. Example:");
+			System.out.println("instantiateCUT() { super.cut = new MyImpl(); }");
+		}
+		org.junit.Assume.assumeNotNull(cut);
+		
 		ingoingPath = "/foo/bar/42";
 		outgoingURL = "http://127.0.0.1:5000/foo";
 		payload = new HashMap<>();
@@ -55,13 +62,12 @@ public abstract class ClientTest {
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
 		requestFactory = new SimpleRequestFactory();
 		responseFactory = new SimpleResponseFactory();
-		setCUT();
 	}
 	
 	/**
-	 * Set super.cut to the implementation under test
+	 * Instantiate super.cut with the implementation under test.
 	 */
-	protected abstract void setCUT(); 
+	protected abstract void instantiateCUT(); 
 
 	@Test
 	public void testPost() {

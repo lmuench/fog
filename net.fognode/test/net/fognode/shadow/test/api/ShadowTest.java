@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.request.test.api;
+package net.fognode.shadow.test.api;
 
 import static org.junit.Assert.*;
 
@@ -29,78 +29,88 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import net.fognode.client.httpstub.HttpClientStub;
 import net.fognode.request.api.Request;
+import net.fognode.request.api.RequestFactory;
+import net.fognode.request.simple.SimpleRequest;
+import net.fognode.response.api.Response;
+import net.fognode.response.api.ResponseFactory;
+import net.fognode.response.simple.SimpleResponse;
+import net.fognode.shadow.api.Shadow;
 
-public abstract class RequestTest {
+public abstract class ShadowTest {
 	protected String protocol;
 	protected String method;
 	protected String ingoingPath;
 	protected String outgoingURL;
-	protected String attributeKey;
-	protected String attributeValue;
 	protected Map<String, Object> payload;
-	protected Request cut;
+	protected RequestFactory requestFactory;
+	protected ResponseFactory responseFactory;
+	protected Shadow cut;
+	protected Request req;
+	protected Response res;
 
 	@Before
 	public void setUp() throws Exception {
 		protocol = "HTTP";
-		method = "POST";
 		ingoingPath = "/foo/bar/42";
-		outgoingURL = "http://localhost:5000/foo";
-		attributeKey = "rt";
-		attributeValue = "temperature";
+		outgoingURL = "http://127.0.0.1/foo";
 		payload = new HashMap<>();
 		payload.put("someString", "foo");
 		payload.put("someNumber", 4.2);
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
 		
-		instantiateCUT(method, ingoingPath);
+		instantiateCUT(protocol);
 		if (null == cut) {
 			System.out.println("You must instantiate the CUT. Example:");
 			System.out.println("instantiateCUT() { super.cut = new MyImpl(); }");
 		}
 		org.junit.Assume.assumeNotNull(cut);
 		
-		cut.setProtocol(protocol);
-		cut.setAttribute(attributeKey, attributeValue);
-		cut.setOutgoingURL(outgoingURL);
-		cut.setPayload(payload);
+		cut.setClient(new HttpClientStub());
+		res = new SimpleResponse();
 	}
 	
 	/**
-	 * Instantiate super.cut with the implementation under test
+	 * Instantiate super.cut with the implementation under test.
 	 */
-	protected abstract void instantiateCUT(String method, String ingoingPath); 
+	protected abstract void instantiateCUT(String protocol);
 
 	@Test
-	public void testGetters() {
-		assertEquals(cut.getProtocol(), protocol);
-		assertEquals(cut.getMethod(), method);
-		assertEquals(cut.getAttribute(attributeKey), attributeValue);
-		assertEquals(cut.getIngoingPath(), ingoingPath);
-		assertEquals(cut.getOutgoingURL(), outgoingURL);
-		assertEquals(cut.getPayload(), payload);
+	public void testPost() throws ClassNotFoundException {
+		req = new SimpleRequest("POST", ingoingPath);
+		setRequestFields(req);
+		cut.handle(req, res);
+		assertEquals(res.getStatus(), 201);
+	}
+
+	@Test
+	public void testGet() throws ClassNotFoundException {
+		req = new SimpleRequest("GET", ingoingPath);
+		setRequestFields(req);
+		cut.handle(req, res);
+		assertEquals(res.getStatus(), 200);
+	}
+
+	@Test
+	public void testPut() throws ClassNotFoundException {
+		req = new SimpleRequest("PUT", ingoingPath);
+		setRequestFields(req);
+		cut.handle(req, res);
+		assertEquals(res.getStatus(), 204);
+	}
+
+	@Test
+	public void testDelete() throws ClassNotFoundException {
+		req = new SimpleRequest("DELETE", ingoingPath);
+		setRequestFields(req);
+		cut.handle(req, res);
+		assertEquals(res.getStatus(), 204);
 	}
 	
-	/**
-	 * Test case checking if the request implementation is secure.
-	 * If the request's payload attribute isn't populated with a defensive
-	 * deep copy, anyone with a reference to the payload can change it at any
-	 * point of time. 
-	 */
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testChangingPayload() {
-		payload.replace("someNumber", 2.3);
-		double someNumber = (double) (
-			(Map<String, Object>) cut.getPayload()
-		).get("someNumber");
-		if (2.3 == someNumber) {
-			System.out.println(
-				"RequestTest# Note: " + 
-				cut.getClass().getName() +
-				" doesn't make defensive payload copies"
-			);
-		};
+	protected void setRequestFields(Request req) {
+		req.setOutgoingURL(outgoingURL);
+		req.setProtocol(protocol);
+		req.setPayload(payload);
 	}
 }

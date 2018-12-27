@@ -19,40 +19,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.shadow.test.stateless;
+package net.fognode.mappingrepository.test.api;
 
 import static org.junit.Assert.*;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import net.fognode.client.httpstub.HttpClientStub;
-import net.fognode.shadow.api.Shadow;
-import net.fognode.shadow.stateless.StatelessShadowFactory;
+import net.fognode.mappingrepository.api.MappingRepository;
+import net.fognode.store.dummy.StoreDummy;
 
-public class StatelessShadowFactoryTest {
-	StatelessShadowFactory cut;
+public abstract class MappingRepositoryTest {
+	protected String key1 = "/rooms/1/temperature";
+	protected String key2 = "/rooms/1/lights/left";
+	protected String val1 = "http://192.168.1.16:1883/temperature";
+	protected String val2 = "http://192.168.1.16:1883/light";
+	protected Map<String, String> mappings;
+	protected MappingRepository cut;
 
 	@Before
 	public void setUp() throws Exception {
-		cut = new StatelessShadowFactory();
-		cut.added(new HttpClientStub());
-	}
-
-	/**
-	 * Positive test: creating shadow for supported protocol "HTTP"
-	 */
-	@Test
-	public void test1() {
-		Shadow shadow = cut.createShadow("HTTP");
-		assertNotNull(shadow);
+		instantiateCUT();
+		if (null == cut) {
+			System.out.println("You must instantiate the CUT. Example:");
+			System.out.println("instantiateCUT() { super.cut = new MyImpl(); }");
+		}
+		org.junit.Assume.assumeNotNull(cut);
+		
+		mappings = new HashMap<String, String>();
+		mappings.put(key1, val1);
+		mappings.put(key2, val2);
+		Field cutStore = cut.getClass().getDeclaredField("store");
+		cutStore.setAccessible(true);
+		cutStore.set(cut, new StoreDummy());
 	}
 	
 	/**
-	 * Negative test: trying to create shadow for unsupported protocol "ABCDEF"
+	 * Instantiate super.cut with the implementation under test.
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void test2() {
-		cut.createShadow("ABCDEF");
+	protected abstract void instantiateCUT();
+	
+	@Test
+	public void test() {
+		cut.setMappings(mappings);
+		assertEquals(val1, cut.getOutgoingURL(key1));
+		assertEquals(val2, cut.getOutgoingURL(key2));
 	}
 }

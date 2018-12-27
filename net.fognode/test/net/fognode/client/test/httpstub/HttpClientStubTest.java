@@ -6,7 +6,7 @@ import net.fognode.client.test.api.ClientTest;
 public class HttpClientStubTest extends ClientTest {
 
 	@Override
-	protected void setCUT() {
+	protected void instantiateCUT() {
 		super.cut = new HttpClientStub();
 	}
 }

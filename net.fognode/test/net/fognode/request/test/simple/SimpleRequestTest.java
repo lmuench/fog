@@ -6,7 +6,7 @@ import net.fognode.request.test.api.RequestTest;
 public class SimpleRequestTest extends RequestTest {
 
 	@Override
-	protected void setCUT(String method, String ingoingPath) {
+	protected void instantiateCUT(String method, String ingoingPath) {
 		super.cut = new SimpleRequest(method, ingoingPath);
 	}
 }

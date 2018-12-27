@@ -21,8 +21,6 @@
  ******************************************************************************/
 package net.fognode.request.simple;
 
-import java.util.Map;
-
 import net.fognode.request.api.Request;
 import net.fognode.request.api.RequestFactory;
 

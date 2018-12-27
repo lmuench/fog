@@ -48,4 +48,11 @@ public class MockRDTest {
 		assertNotNull(endpoints);
 		assertTrue(endpoints.size() > 0);
 	}
+	
+//	@Test
+//	public void testGetResources() {
+//		endpoints = cut.getEndpoints();
+//		assertNotNull(endpoints);
+//		assertTrue(endpoints.size() > 0);
+//	}
 }

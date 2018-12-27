@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
-package net.fognode.request.test.http;
+package net.fognode.request.test.api;
 
 import static org.junit.Assert.*;
 
@@ -30,45 +30,70 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.fognode.request.api.Request;
-import net.fognode.request.simple.SimpleRequest;
 
-public class HttpRequestTest {
-	String protocol;
-	String method;
-	String location;
-	Map<String, Object> payload;
-	Request cut;
+public abstract class RequestTest {
+	protected String protocol;
+	protected String method;
+	protected String ingoingPath;
+	protected String outgoingURL;
+	protected String attributeKey;
+	protected String attributeValue;
+	protected Map<String, Object> payload;
+	protected Request cut;
 
 	@Before
 	public void setUp() throws Exception {
 		protocol = "HTTP";
 		method = "POST";
-		location = "http://www.example.com/foo/bar";
+		ingoingPath = "/foo/bar/42";
+		outgoingURL = "http://localhost:5000/foo";
+		attributeKey = "rt";
+		attributeValue = "temperature";
 		payload = new HashMap<>();
 		payload.put("someString", "foo");
 		payload.put("someNumber", 4.2);
 		payload.put("someArray", new Double[] {1.0, 1.2, 1.4});
-		cut = new SimpleRequest(protocol, method, location, payload);
+		setCUT(method, ingoingPath);
+		cut.setProtocol(protocol);
+		cut.setAttribute(attributeKey, attributeValue);
+		cut.setOutgoingURL(outgoingURL);
+		cut.setPayload(payload);
 	}
+	
+	/**
+	 * Set super.cut to the implementation under test
+	 */
+	protected abstract void setCUT(String method, String ingoingPath); 
 
 	@Test
-	public void testHttpRequest() {
+	public void testGetters() {
 		assertEquals(cut.getProtocol(), protocol);
 		assertEquals(cut.getMethod(), method);
-		assertEquals(cut.getIngoingPath(), location);
+		assertEquals(cut.getAttribute(attributeKey), attributeValue);
+		assertEquals(cut.getIngoingPath(), ingoingPath);
+		assertEquals(cut.getOutgoingURL(), outgoingURL);
 		assertEquals(cut.getPayload(), payload);
 	}
 	
 	/**
-	 * Test case demonstrating how this request implementation is not secure.
-	 * Since the request's payload attribute isn't populated with a defensive
+	 * Test case checking if the request implementation is secure.
+	 * If the request's payload attribute isn't populated with a defensive
 	 * deep copy, anyone with a reference to the payload can change it at any
 	 * point of time. 
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testHttpRequestChangingPayload() {
+	public void testChangingPayload() {
 		payload.replace("someNumber", 2.3);
-		assertEquals(((Map<String, Object>) cut.getPayload()).get("someNumber"), 2.3);
+		double someNumber = (double) (
+			(Map<String, Object>) cut.getPayload()
+		).get("someNumber");
+		if (2.3 == someNumber) {
+			System.out.println(
+				"RequestTest# Note: " + 
+				cut.getClass().getName() +
+				" doesn't make defensive payload copies"
+			);
+		};
 	}
 }

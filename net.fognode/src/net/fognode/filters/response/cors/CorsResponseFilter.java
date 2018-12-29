@@ -42,7 +42,7 @@ public class CorsResponseFilter implements ContainerResponseFilter {
 		ContainerResponseContext responseContext
 	) throws IOException {
 		MultivaluedMap<String, Object> headers = responseContext.getHeaders();
-		headers.add("Access-Control-Allow-Origin", "http://localhost:3000");
+		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH");			
 		headers.add("Access-Control-Allow-Headers", "Content-Type");
 	}

@@ -33,6 +33,19 @@ import org.junit.Test;
 import net.fognode.mappingrepository.api.MappingRepository;
 import net.fognode.store.dummy.StoreDummy;
 
+/**
+ * In a running OSGi container, gateway services have their dependencies to other
+ * OSGi services injected by the Felix Dependency Manager.
+ * Since unit testing shouldn't depend on an OSGi framework, these references
+ * are injected manually through reflection.
+ * To verify the correct implementation of interfaces and enable reuse of tests,
+ * interfaces are tested with abstract classes which must be extended to
+ * implement an instantiateCUT() method. This method is used to instantiate the 
+ * class under test with the implementation that is to be tested.  
+ * 
+ * @author Ludwig Muench
+ *
+ */
 public abstract class MappingRepositoryTest {
 	protected String key1 = "/rooms/1/temperature";
 	protected String key2 = "/rooms/1/lights/left";
@@ -53,9 +66,20 @@ public abstract class MappingRepositoryTest {
 		mappings = new HashMap<String, String>();
 		mappings.put(key1, val1);
 		mappings.put(key2, val2);
-		Field cutStore = cut.getClass().getDeclaredField("store");
-		cutStore.setAccessible(true);
-		cutStore.set(cut, new StoreDummy());
+		
+		Field storeField = null;
+		try {
+			storeField = cut.getClass().getDeclaredField("store");
+			storeField.setAccessible(true);
+			storeField.set(cut, new StoreDummy());
+		} catch (NoSuchFieldException e) {
+			System.out.println(
+				"Your MappingRepository implementation must have a " +
+				"'store' field for this test to manually inject " +
+				" a StoreDummy instance."
+			);
+			org.junit.Assume.assumeNotNull(storeField);
+		}
 	}
 	
 	/**

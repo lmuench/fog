@@ -37,6 +37,19 @@ import net.fognode.response.api.Response;
 import net.fognode.response.api.ResponseFactory;
 import net.fognode.response.simple.SimpleResponseFactory;
 
+/**
+ * In a running OSGi container, gateway services have their dependencies to other
+ * OSGi services injected by the Felix Dependency Manager.
+ * Since unit testing shouldn't depend on an OSGi framework, these references
+ * are injected manually through reflection.
+ * To verify the correct implementation of interfaces and enable reuse of tests,
+ * interfaces are tested with abstract classes which must be extended to
+ * implement an instantiateCUT() method. This method is used to instantiate the 
+ * class under test with the implementation that is to be tested.  
+ * 
+ * @author Ludwig Muench
+ *
+ */
 public abstract class ClientTest {
 	protected String ingoingPath;
 	protected String outgoingURL;

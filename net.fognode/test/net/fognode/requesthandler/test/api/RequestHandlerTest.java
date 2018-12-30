@@ -30,7 +30,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import net.fognode.client.http.HttpClient;
+import net.fognode.client.httpstub.HttpClientStub;
 import net.fognode.mappingrepository.api.MappingRepository;
 import net.fognode.mappingrepository.persistent.PersistentMappingRepository;
 import net.fognode.requesthandler.api.RequestHandler;
@@ -96,7 +96,7 @@ public abstract class RequestHandlerTest {
 		}
 		
 		shadowRepository = new SimpleShadowRepository();
-		shadowRepository.added(new HttpClient());
+		shadowRepository.added(new HttpClientStub());
 		
 		Field shadowFactoryField = shadowRepository.getClass().getDeclaredField("shadowFactory");
 		shadowFactoryField.setAccessible(true);

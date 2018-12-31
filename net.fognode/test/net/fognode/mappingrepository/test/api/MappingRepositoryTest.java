@@ -76,7 +76,7 @@ public abstract class MappingRepositoryTest {
 			System.out.println(
 				"Your MappingRepository implementation must have a " +
 				"'store' field for this test to manually inject " +
-				" a StoreDummy instance."
+				"a StoreDummy instance."
 			);
 			org.junit.Assume.assumeNotNull(storeField);
 		}

@@ -29,7 +29,7 @@ import net.fognode.request.api.Request;
 /**
  * Request (@see net.fognode.request.api.Request) implementation.
  * For increased security (but decreased performance), create a new Request
- * implementation creating defensive deep copies inside constructor, getters
+ * implementation which makes defensive deep copies inside constructor, getters
  * and setters.
  * 
  * @author Ludwig Muench

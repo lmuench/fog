@@ -94,26 +94,4 @@ public abstract class RequestTest {
 		assertEquals(cut.getOutgoingURL(), outgoingURL);
 		assertEquals(cut.getPayload(), payload);
 	}
-	
-	/**
-	 * Test case checking if the request implementation is secure.
-	 * If the request's payload attribute isn't populated with a defensive
-	 * deep copy, anyone with a reference to the payload can change it at any
-	 * point of time. 
-	 */
-	@SuppressWarnings("unchecked")
-	@Test
-	public void testChangingPayload() {
-		payload.replace("someNumber", 2.3);
-		double someNumber = (double) (
-			(Map<String, Object>) cut.getPayload()
-		).get("someNumber");
-		if (2.3 == someNumber) {
-			System.out.println(
-				"RequestTest# Note: " + 
-				cut.getClass().getName() +
-				" doesn't make defensive payload copies"
-			);
-		};
-	}
 }

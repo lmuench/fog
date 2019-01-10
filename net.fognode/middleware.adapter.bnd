@@ -1,0 +1,3 @@
+Private-Package: net.fognode.middleware.adapter
+Bundle-Activator: net.fognode.middleware.adapter.Activator
+Bundle-Name: Adapter Middleware

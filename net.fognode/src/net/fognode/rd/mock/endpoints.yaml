@@ -17,6 +17,11 @@ resources:
     if: actuator                  # interface description
     rt: light                     # resource type
     path: /light                  # resource path
+  - protocol: HTTP                # protocol
+    if: aggregator                # interface description
+    rt: temperature               # resource type
+    path: /daily-temperatures     # resource path
+
 ---
 ep: endpoint2                     # endpoint name
 d: THK/F07/ZW717                  # sector

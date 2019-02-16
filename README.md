@@ -31,7 +31,7 @@ You can easily extend the gateway with support of new protocols or functionality
 2. On the dropdown menu, either select a specific resource or click on "View all"
 3. Use the buttons to send HTTP requests with an optional body ("New Value" column)
 
-### Install/Start/Stop modules
+### Install/Update/Start/Stop modules
 ![web-console](https://user-images.githubusercontent.com/28816371/52898388-8c20bd00-31dd-11e9-8b6d-00d04d152592.png)
 1. Click “Web Console” on the navigation bar to access the embedded [Felix Web Console](http://felix.apache.org/documentation/subprojects/apache-felix-web-console.html)
 2. Use the start/stop button to the right of each module or the "Install/Update..." button at the top-right corner

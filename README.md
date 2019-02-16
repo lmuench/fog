@@ -18,7 +18,6 @@ You can easily extend the gateway with support of new protocols or functionality
 3. Enter both gateway and RD URL
 4. Click “Save”
 
-
 ### Create a REST API for resources registered in an RD
 ![create](https://user-images.githubusercontent.com/28816371/52898276-11a36d80-31dc-11e9-9843-24516e0877d5.png)
 1. Click “API Builder” on the navigation bar
@@ -26,9 +25,13 @@ You can easily extend the gateway with support of new protocols or functionality
 3. Check the boxes in front of each resource you want to include in your custom REST API
 4. Click “Save selected”
 
-
 ### Access resources
 ![access](https://user-images.githubusercontent.com/28816371/52898323-89719800-31dc-11e9-9131-2dcaf51dcf55.png)
 1. Click “Resources” on the navigation bar to open a dropdown menu
 2. On the dropdown menu, either select a specific resource or click on "View all"
 3. Use the buttons to send HTTP requests with an optional body ("New Value" column)
+
+### Install/Start/Stop modules
+![web-console](https://user-images.githubusercontent.com/28816371/52898388-8c20bd00-31dd-11e9-8b6d-00d04d152592.png)
+1. Click “Web Console” on the navigation bar to access the embedded [Felix Web Console](http://felix.apache.org/documentation/subprojects/apache-felix-web-console.html)
+2. Use the start/stop button to the right of each module or the "Install/Update..." button at the top-right corner

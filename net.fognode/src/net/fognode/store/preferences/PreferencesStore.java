@@ -45,7 +45,7 @@ public class PreferencesStore implements Store {
 		Preferences preferences = Preferences.userRoot().node(node);
 		try {
 			preferences.clear();
-			preferences.put(key, (String) value);
+			preferences.put(key, value);
 		} catch (BackingStoreException e) {
 			e.printStackTrace();
 		}

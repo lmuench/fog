@@ -76,7 +76,7 @@ public class SimpleRequestHandler implements RequestHandler {
 	}
 
 	@Override
-	public void handleRequest(Request req, Response res) throws UnsupportedOperationException {
+	public void handleRequest(Request req, Response res) {
 		addOutgoingUrlToRequest(req);
 		if(null == req.getOutgoingURL()) {
 			res.setStatus(Status.NOT_FOUND.getStatusCode());
@@ -143,11 +143,18 @@ public class SimpleRequestHandler implements RequestHandler {
 	}
 	
 	private boolean extractProtocolFromUrl(Request req) {
-		String protocol = req.getOutgoingURL().split(":")[0];
-		if (protocol.length() > 0) {
-			req.setProtocol(protocol);
+//		String protocol = req.getOutgoingURL().split(":")[0];
+//		if (protocol.length() > 0) {
+//			req.setProtocol(protocol);
+//			return true;
+//		}
+
+		String[] splitString = req.getOutgoingURL().split(":");
+		if (splitString.length > 1) {
+			req.setProtocol(splitString[0]);
 			return true;
 		}
+
 		System.out.println(
 			"SimpleRequestHandler# Can't forward request: " +
 			"outgoing URL doesn't contain scheme!"

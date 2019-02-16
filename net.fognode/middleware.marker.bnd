@@ -1,0 +1,3 @@
+Bundle-Name: Marker Middleware
+Private-Package: net.fognode.middleware.marker
+Bundle-Activator: net.fognode.middleware.marker.Activator

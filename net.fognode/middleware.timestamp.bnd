@@ -1,3 +1,3 @@
 Private-Package: net.fognode.middleware.timestamp
-Bundle-Activator: net.fognode.middleware.timestamp.Activator
 Bundle-Name: Timestamp Middleware
+Bundle-Activator: net.fognode.middleware.timestamp.Activator

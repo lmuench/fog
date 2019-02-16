@@ -22,5 +22,4 @@ public class AdapterMiddleware implements Middleware {
 		
 		return true;
 	}
-	
 }

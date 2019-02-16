@@ -18,9 +18,17 @@ You can easily extend the gateway with support of new protocols or functionality
 3. Enter both gateway and RD URL
 4. Click “Save”
 
+
 ### Create a REST API for resources registered in an RD
 ![create](https://user-images.githubusercontent.com/28816371/52898276-11a36d80-31dc-11e9-9843-24516e0877d5.png)
 1. Click “API Builder” on the navigation bar
 2. Enter custom URNs in the “Custom Path” column
 3. Check the boxes in front of each resource you want to include in your custom REST API
 4. Click “Save selected”
+
+
+### Access resources
+![access](https://user-images.githubusercontent.com/28816371/52898323-89719800-31dc-11e9-9131-2dcaf51dcf55.png)
+1. Click “Resources” on the navigation bar to open a dropdown menu
+2. On the dropdown menu, either select a specific resource or click on "View all"
+3. Use the buttons to send HTTP requests with an optional body ("New Value" column)

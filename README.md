@@ -35,3 +35,8 @@ You can easily extend the gateway with support of new protocols or functionality
 ![web-console](https://user-images.githubusercontent.com/28816371/52898388-8c20bd00-31dd-11e9-8b6d-00d04d152592.png)
 1. Click “Web Console” on the navigation bar to access the embedded [Felix Web Console](http://felix.apache.org/documentation/subprojects/apache-felix-web-console.html)
 2. Use the start/stop button to the right of each module or the "Install/Update..." button at the top-right corner
+
+## Architecture
+### High-Level Design
+![component-diagram](https://user-images.githubusercontent.com/28816371/52965653-9a213a00-33a5-11e9-86d5-92fd8fb9283c.png)
+*Component diagram*

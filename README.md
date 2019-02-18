@@ -39,4 +39,10 @@ You can easily extend the gateway with support of new protocols or functionality
 ## Architecture
 ### High-Level Design
 ![component-diagram](https://user-images.githubusercontent.com/28816371/52965653-9a213a00-33a5-11e9-86d5-92fd8fb9283c.png)
+
 *Component diagram*
+
+### Dynamic Model View
+![activity-diagram-request-handling](https://user-images.githubusercontent.com/28816371/52966015-82968100-33a6-11e9-944d-2efec0e0324e.png)
+
+*Request handling activity diagram*

@@ -11,6 +11,7 @@ You can easily extend the gateway with support of new protocols or functionality
 ![system-overview](https://user-images.githubusercontent.com/28816371/52897417-7064e900-31d4-11e9-8042-972b20352e1c.png)
 
 ## Web UI Usage
+source code: https://github.com/lmuench/fog-ui
 ### Connect to a gateway and a Resource Directory
 ![connect](https://user-images.githubusercontent.com/28816371/52898200-3a773300-31db-11e9-9156-8e91b86ddc98.png)
 1. Click on the right-most item on the navigation bar to open a dropdown menu
